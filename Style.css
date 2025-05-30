@@ -1,0 +1,90 @@
+```css
+
+Body {
+
+    Font-family: Arial, sans-serif;
+
+    Margin: 0;
+
+    Padding: 0;
+
+    Background-color: #f4f4f4;
+
+    Color: #333;
+
+}
+
+
+
+Header {
+
+    Background-color: #333;
+
+    Color: #fff;
+
+    Padding: 1em 0;
+
+    Text-align: center;
+
+}
+
+
+
+Nav ul {
+
+    Padding: 0;
+
+    List-style: none;
+
+}
+
+
+
+Nav li {
+
+    Display: inline;
+
+    Margin: 0 1em;
+
+}
+
+
+
+Nav a {
+
+    Color: #fff;
+
+    Text-decoration: none;
+
+}
+
+
+
+Main {
+
+    Padding: 20px;
+
+}
+
+
+
+Footer {
+
+    Background-color: #333;
+
+    Color: #fff;
+
+    Text-align: center;
+
+    Padding: 1em 0;
+
+    Position: fixed;
+
+    Bottom: 0;
+
+    Width: 100%;
+
+}
+
+```
+
