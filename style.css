@@ -1,54 +1,108 @@
 ```css
+
 /* Reset básico para asegurar la consistencia entre navegadores */
+
 /* Puedes usar Normalize.css para un reset más completo */
 
-/*
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+
+
+
+
+Body {
+
+    Font-family: Arial, sans-serif;
+
+    Margin: 0;
+
+    Padding: 0;
+
+    Background-color: #f4f4f4;
+
+    Color: #333;
+
 }
-*/
+
+
+
+
 
 /* Estilos del encabezado */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 1em 0;
-    text-align: center;
+
+Header {
+
+    Background-color: #333;
+
+    Color: #fff;
+
+    Padding: 1em 0;
+
+    Text-align: center;
+
 }
+
+
 
 /* Estilos de la navegación */
-nav ul {
-    padding: 0;
-    list-style: none;
+
+Nav ul {
+
+    Padding: 0;
+
+    List-style: none;
+
 }
 
-nav li {
-    display: inline;
-    margin: 0 1em;
+
+
+Nav li {
+
+    Display: inline;
+
+    Margin: 0 1em;
+
 }
 
-nav a {
-    color: #fff;
-    text-decoration: none;
+
+
+Nav a {
+
+    Color: #fff;
+
+    Text-decoration: none;
+
 }
+
+
 
 /* Estilos del contenido principal */
-main {
-    padding: 20px;
+
+Main {
+
+    Padding: 20px;
+
 }
 
+
+
 /* Estilos del pie de página */
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1em 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+
+Footer {
+
+    Background-color: #333;
+
+    Color: #fff;
+
+    Text-align: center;
+
+    Padding: 1em 0;
+
+    Position: fixed;
+
+    Bottom: 0;
+
+    Width: 100%;
+
 }
+
 ```
+
