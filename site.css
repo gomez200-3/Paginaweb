@@ -1,1 +1,96 @@
+```css
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
 
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilos para la sección de registro */
+#registro {
+    margin-bottom: 20px;
+}
+
+#registro h2 {
+    color: #333;
+}
+
+#registro label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#registro input[type="text"],
+#registro input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#registro button {
+    background-color: #5cb85c;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#registro button:hover {
+    background-color: #4cae4c;
+}
+
+/* Estilos para la sección de emojis */
+#emojis {
+    margin-bottom: 20px;
+}
+
+.emoji {
+    font-size: 2em;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Estilos para la sección de botones de emojis con imágenes */
+#imageEmojis {
+    margin-top: 20px;
+}
+
+#imageEmojis button {
+    font-size: 1.5em;
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#imageEmojis img {
+    display: none;
+    max-width: 100px;
+    margin-top: 10px;
+}
+```
