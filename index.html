@@ -1,108 +1,116 @@
 ```html
-
 <!DOCTYPE html>
-
-<html lang=”es”>
-
+<html lang="es">
 <head>
-
-    <meta charset=”UTF-8”>
-
-    <meta name=”viewport” content=”width=device-width, initial-scale=1.0”>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestra Aventura</title>
-
-    <link rel=”stylesheet” href=”site.css”>
-
+    <link rel="stylesheet" href="site.css">
+    <style>
+        #emojiButton {
+            font-size: 2em;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
-
 <body>
-
     <header>
+        ```javascript
+        
+document.addEventListener('DOMContentLoaded', function() {
+    function setupButton(buttonId, imageId) {
+        const emojiButton = document.getElementById(buttonId);
+        const myImage = document.getElementById(imageId);
 
-        <!—Imagen o video de nosotros dos 
+        emojiButton.addEventListener('click', function() {
+            if (myImage.style.display === 'none') {
+                myImage.style.display = 'block';
+            } else {
+                myImage.style.display = 'none';
+            }
+        });
+    }
 
-        <img src=”ruta/a/nuestra/imagen.jpg” alt=”Nuestra Imagen”>
-
-        <!—O un video 
-
-        <!-- <video src=”ruta/a/nuestro/video.mp4” autoplay loop muted></video> 
-
+    setupButton('emojiButton1', 'myImage1');
+    setupButton('emojiButton2', 'myImage2');
+    setupButton('emojiButton3', 'myImage3');
+    setupButton('emojiButton4', 'myImage4');
+});
+        ```
     </header>
 
-
-
     <main>
-
-        <!—Sección de registro 
-
-        <section id=”registro”>
-
+        <!-- Sección de registro -->
+        <section id="registro">
             <h2>Registro</h2>
-
             <form>
+                <label for="usuario1">Usuario (Tu):</label>
+                <input type="text" id="usuario1" name="usuario1" required>
 
-                <label for=”usuario1”>Usuario (Tu):</label>
+                <label for="usuario2">Usuario (Pareja):</label>
+                <input type="text" id="usuario2" name="usuario2" required>
 
-                <input type=”text” id=”usuario1” name=”usuario1” required>
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required>
 
-
-
-                <label for=”usuario2”>Usuario (Pareja):</label>
-
-                <input type=”text” id=”usuario2” name=”usuario2” required>
-
-
-
-                <label for=”contrasena”>Contraseña:</label>
-
-                <input type=”password” id=”contrasena” name=”contrasena” required>
-
-
-
-                <button type=”submit”>Iniciar Aventura</button>
-
+                <button type="submit">Iniciar Aventura</button>
             </form>
-
         </section>
 
-
-
-        <!—Aquí puedes agregar los emojis 
-
-        <section id=”emojis”>
-
-            <span class=”emoji” data-text=”TE AMO SIN IMPORTAR EL MOMENTO.”>❤️</span>
-
-            <span class=”emoji” data-text=”ERES LA ESTRELLA MAS HERMOSA DEL FIRMAMENTO.”>😻</span>
-
-            <span class=”emoji” data-text=”AUN QUE ME SACAS CANAS SIEMPRE SERA MI LUGAR FAVORITO.”>🙄</span>
-
-            <span class=”emoji” data-text=”LE DOY GRACIASA MI SUEGRA POR NO TRAGARTE Y DARME LA OPORTUNIDAD DE CONOCERTE PA MANOSEARTE Y COMERTE TODA.”>🥴</span>
-
-            <span class=”emoji” data-text=”LA NOCHE DEL QUE RESIVIEL MEJOR REGALO FUE CUANDO TE PROVE.”>🎉</span>
-
-            <span class=”emoji” data-text=”MY BEAUTIFUL LOVE.”>🥺</span>
-
+        <!-- Sección de emojis con texto emergente -->
+        <section id="emojis">
+            <span class="emoji" data-text="TE AMO SIN IMPORTAR EL MOMENTO.">❤️</span>
+            <span class="emoji" data-text="ERES LA ESTRELLA MAS HERMOSA DEL FIRMAMENTO.">😻</span>
+            <span class="emoji" data-text="AUN QUE ME SACAS CANAS SIEMPRE SERA MI LUGAR FAVORITO.">🙄</span>
+            <span class="emoji" data-text="LE DOY GRACIASA MI SUEGRA POR NO TRAGARTE Y DARME LA OPORTUNIDAD DE CONOCERTE PA MANOSEARTE Y COMERTE TODA.">🥴</span>
+            <span class="emoji" data-text="LA NOCHE DEL QUE RESIVIEL MEJOR REGALO FUE CUANDO TE PROVE.">🎉</span>
+            <span class="emoji" data-text="MY BEAUTIFUL LOVE.">🥺</span>
         </section>
 
+        <!-- Sección de botones de emojis con imágenes -->
+        <section id="imageEmojis">
+            <button id="emojiButton1">❤️</button>
+            <img id="myImage1" src="Paginaweb/media/imagen1.jpg" alt="Imagen 1" style="display:none;">
+
+            <button id="emojiButton2">😂</button>
+            <img id="myImage2" src="Paginaweb/media/imagen2.jpg" alt="Imagen 2" style="display:none;">
+
+            <button id="emojiButton3">👍</button>
+            <img id="myImage3" src="Paginaweb/media/imagen3.jpg" alt="Imagen 3" style="display:none;">
+
+            <button id="emojiButton4">🔥</button>
+            <img id="myImage4" src="Paginaweb/media/imagen4.jpg" alt="Imagen 4" style="display:none;">
+        </section>
     </main>
 
-
-
     <footer>
-
-        <!—Pie de página 
-
+        <!-- Pie de página -->
     </footer>
 
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function setupButton(buttonId, imageId) {
+                const emojiButton = document.getElementById(buttonId);
+                const myImage = document.getElementById(imageId);
 
+                emojiButton.addEventListener('click', function() {
+                    if (myImage.style.display === 'none') {
+                        myImage.style.display = 'block';
+                    } else {
+                        myImage.style.display = 'none';
+                    }
+                });
+            }
 
-    <script src=”script.js”></script>
-
+            setupButton('emojiButton1', 'myImage1');
+            setupButton('emojiButton2', 'myImage2');
+            setupButton('emojiButton3', 'myImage3');
+            setupButton('emojiButton4', 'myImage4');
+        });
+    </script>
 </body>
-
 </html>
-
 ```
-
