@@ -1,3 +1,7 @@
+*
+
+*style.css:*
+
 ```css
 
 /* Reset básico para asegurar la consistencia entre navegadores */
@@ -26,7 +30,7 @@ Body {
 
 
 
-
+ Estilos del encabezado 
 
 Header {
 
@@ -42,7 +46,7 @@ Header {
 
 
 
- Estilos de la navegación 
+Estilos de la navegación 
 
 Nav ul {
 
@@ -74,7 +78,7 @@ Nav a {
 
 
 
- Estilos del contenido principal 
+Estilos del contenido principal 
 
 Main {
 
