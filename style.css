@@ -1,16 +1,6 @@
-*
-
-*style.css:*
-
 ```css
 
-/* Reset básico para asegurar la consistencia entre navegadores */
-
-/* Puedes usar Normalize.css para un reset más completo */
-
-
-
-
+/* Estilos generales */
 
 Body {
 
@@ -20,17 +10,13 @@ Body {
 
     Padding: 0;
 
-    Background-color: #f4f4f4;
-
-    Color: #333;
+    Background-color: #f0f0f0;
 
 }
 
 
 
-
-
- Estilos del encabezado 
+/* Estilos del encabezado */
 
 Header {
 
@@ -38,7 +24,7 @@ Header {
 
     Color: #fff;
 
-    Padding: 1em 0;
+    Padding: 20px;
 
     Text-align: center;
 
@@ -46,49 +32,89 @@ Header {
 
 
 
-Estilos de la navegación 
+/* Estilos de la sección de registro */
 
-Nav ul {
+#registro {
 
-    Padding: 0;
+    Width: 50%;
 
-    List-style: none;
-
-}
-
-
-
-Nav li {
-
-    Display: inline;
-
-    Margin: 0 1em;
-
-}
-
-
-
-Nav a {
-
-    Color: #fff;
-
-    Text-decoration: none;
-
-}
-
-
-
-Estilos del contenido principal 
-
-Main {
+    Margin: 20px auto;
 
     Padding: 20px;
 
+    Background-color: #fff;
+
+    Border-radius: 5px;
+
+    Box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 }
 
 
 
-Estilos del pie de página 
+#registro h2 {
+
+    Text-align: center;
+
+}
+
+
+
+#registro label {
+
+    Display: block;
+
+    Margin-bottom: 5px;
+
+}
+
+
+
+#registro input {
+
+    Width: 100%;
+
+    Padding: 10px;
+
+    Margin-bottom: 10px;
+
+    Border: 1px solid #ccc;
+
+    Border-radius: 4px;
+
+    Box-sizing: border-box;
+
+}
+
+
+
+#registro button {
+
+    Background-color: #4CAF50;
+
+    Color: white;
+
+    Padding: 10px 20px;
+
+    Border: none;
+
+    Border-radius: 4px;
+
+    Cursor: pointer;
+
+}
+
+
+
+#registro button:hover {
+
+    Background-color: #45ª049;
+
+}
+
+
+
+/* Estilos del pie de página */
 
 Footer {
 
@@ -96,9 +122,9 @@ Footer {
 
     Color: #fff;
 
-    Text-align: center;
+    Padding: 10px;
 
-    Padding: 1em 0;
+    Text-align: center;
 
     Position: fixed;
 
