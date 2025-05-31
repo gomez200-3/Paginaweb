@@ -17,28 +17,21 @@
 </head>
 <body>
     <header>
-        ```javascript
-        
-document.addEventListener('DOMContentLoaded', function() {
-    function setupButton(buttonId, imageId) {
-        const emojiButton = document.getElementById(buttonId);
-        const myImage = document.getElementById(imageId);
+  <!-- Sección de botones de emojis con imágenes -->
+        <section id="imageEmojis">
+            <button id="emojiButton1">MI MUNDO</button>
+            <img id="myImage1" src="Paginaweb/media/imagen1.jpg" alt="Imagen 1" style="display:none;">
 
-        emojiButton.addEventListener('click', function() {
-            if (myImage.style.display === 'none') {
-                myImage.style.display = 'block';
-            } else {
-                myImage.style.display = 'none';
-            }
-        });
-    }
+            <button id="emojiButton2">MI FELICIDAD</button>
+            <img id="myImage2" src="Paginaweb/media/imagen2.jpg" alt="Imagen 2" style="display:none;">
 
-    setupButton('emojiButton1', 'myImage1');
-    setupButton('emojiButton2', 'myImage2');
-    setupButton('emojiButton3', 'myImage3');
-    setupButton('emojiButton4', 'myImage4');
-});
-        ```
+            <button id="emojiButton3">ME CRAZY</button>
+            <img id="myImage3" src="Paginaweb/media/imagen3.jpg" alt="Imagen 3" style="display:none;">
+
+            <button id="emojiButton4">MY FAVORITE</button>
+            <img id="myImage4" src="Paginaweb/media/imagen4.jpg" alt="Imagen 4" style="display:none;">
+        </section>
+    </main>
     </header>
 
     <main>
