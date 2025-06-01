@@ -22,7 +22,7 @@ function explosionCorazones(btn) {
 }
 
 // Audio global para la canción
-const audio = new Audio('media/Afaz Natural - Deseo Saber (Video Oficial)(M4A_128K).m4a');
+const audio = new Audio('Media/Afaz Natural - Deseo Saber (Video Oficial)(M4A_128K).m4a');
 audio.preload = "auto";
 
 // Play audio (reinicia si ya estaba sonando)
@@ -33,11 +33,11 @@ function playSong() {
 
 // SLIDESHOW (ahora con imágenes locales)
 const slideImages = [
-  'media/andrea.jpg',
-  'media/gutierrez.jpg',
-  'media/IMG-mi reina.jpg',
-  'media/amor.jpg',
-  'media/20250503_182247.jpg'
+  'Media/andrea.jpg',
+  'Media/gutierrez.jpg',
+  'Media/IMG-mi reina.jpg',
+  'Media/amor.jpg',
+  'Media/20250503_182247.jpg'
 ];
 let currentSlide = 0;
 
@@ -50,6 +50,7 @@ function showSlide(index) {
   img.alt = "Foto especial " + (currentSlide + 1);
 }
 
+// Navegación del slideshow
 function prevSlide() {
   showSlide(currentSlide - 1);
 }
@@ -64,13 +65,7 @@ function iniciarDiapositiva() {
   if (section) {
     section.scrollIntoView({ behavior: "smooth" });
   }
-}
-
-// Botones de interacción especial
-function accionEspecial(btn) {
-  playSong();
-  btn.classList.add('btn-active');
-  setTimeout(() => btn.classList.remove('btn-active'), 300);
+  showSlide(currentSlide); // Para mostrar la imagen actual si no se ha mostrado aún
 }
 
 // ---- NUEVO: Enlazando la interactividad de la página ----
@@ -86,5 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
       playSong();
     });
   }
-  // No se ejecutan eventos para modales o emojis si los elementos no existen, evitando errores JS
+
+  // Mostrar primer slide al cargar la página
+  showSlide(currentSlide);
 });
