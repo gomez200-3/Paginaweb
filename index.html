@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -39,12 +38,23 @@
         </section>
 
         <!-- Modal -->
-        <div id="myModal" class="modal">
+        <div id="myModal" class="modal" style="display:none;">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <img class="modal-image" id="modalImage" src="" alt="Modal Image">
             </div>
         </div>
+
+        <!-- Slideshow -->
+        <section id="slideshow-section">
+            <h2>Diapositiva Especial</h2>
+            <img id="slide-img" src="" alt="Foto especial" style="max-width:90%;display:block;margin:auto;">
+            <div style="text-align:center;">
+                <button onclick="prevSlide()">⏪ Anterior</button>
+                <button onclick="iniciarDiapositiva()">▶️ Iniciar Diapositiva</button>
+                <button onclick="nextSlide()">Siguiente ⏩</button>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -52,5 +62,33 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+    // Modal para mostrar imagen al hacer click en los botones "Ver imagen..."
+    document.addEventListener("DOMContentLoaded", function() {
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("modalImage");
+        var closeBtn = document.querySelector(".close");
+
+        document.querySelectorAll(".ver-imagen").forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                modal.style.display = "block";
+                modalImg.src = this.getAttribute("data-image");
+            });
+        });
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+            modalImg.src = "";
+        };
+
+        // Cierra el modal si se hace click fuera de la imagen
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                modalImg.src = "";
+            }
+        };
+    });
+    </script>
 </body>
 </html>
