@@ -41,18 +41,37 @@ header {
 }
 
 /* Estilos para la sección de emojis con texto emergente */
-#emojis {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+css
+.emoji {
+ position: relative;
+ display: inline-block;
+ cursor: pointer;
 }
 
-#emojis .emoji {
-    font-size: 2em;
-    cursor: pointer;
-    margin: 10px; /* Espacio entre los emojis */
+.emoji::before {
+ content: attr(data-text);
+ position: absolute;
+ bottom: 100%;
+ left: 50%;
+ transform: translateX(-50%);
+ background-color: rgba(0, 0, 0, 0.8);
+ color: white;
+ padding: 5px;
+ border-radius: 5px;
+ font-size: 12px;
+ white-space: nowrap;
+ opacity: 0;
+ visibility: hidden;
+ transition: opacity 0.3s ease, visibility 0.3s ease;
+ z-index: 1;
 }
+
+.emoji:hover::before {
+ opacity: 1;
+ visibility: visible;
+}
+```
+
 
 /* Estilos de la sección de registro */
 #registro {
