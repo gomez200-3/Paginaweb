@@ -1,119 +1,259 @@
+/* Reset básico */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    background: #fafafa;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f9f9fc;
+  color: #222;
+  min-height: 100vh;
+  line-height: 1.6;
 }
-header {
-    background: #7a1432;
-    color: #fff;
-    padding: 30px 0 15px 0;
-    text-align: center;
+
+header, footer {
+  text-align: center;
+  padding: 1.5em 0 1em 0;
+  background: linear-gradient(90deg, #ba1841 0%, #1976d2 100%);
+  color: #fff;
+  margin-bottom: 2em;
 }
-h1 {
-    margin: 0;
-    font-size: 2.5em;
-    font-weight: bold;
+
+header h1 {
+  font-size: 2.3em;
+  margin-bottom: 0.2em;
+  font-family: 'Segoe UI Semibold', Arial, sans-serif;
 }
-#imageEmojis {
-    margin-top: 30px;
-    display: flex;
+
+header p {
+  font-size: 1.1em;
+  opacity: 0.95;
+}
+
+footer {
+  margin-top: 2.8em;
+  font-size: 1em;
+  background: #ba1841;
+  color: #fff;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  box-shadow: 0 -2px 8px #ba18416b;
+}
+
+/* Listado de aventuras */
+.adventure-list {
+  list-style: none;
+  padding: 0;
+  max-width: 700px;
+  margin: 0 auto 2em auto;
+}
+
+.adventure-list li {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.1em;
+  margin-bottom: 36px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #ba184115;
+  transition: box-shadow 0.18s;
+}
+
+.adventure-list li:hover {
+  box-shadow: 0 4px 16px #1976d244;
+}
+
+.adventure-img {
+  width: 130px;
+  max-width: 33vw;
+  min-width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0;
+  box-shadow: 0 2px 8px #1976d212;
+  flex-shrink: 0;
+}
+
+.adventure-title {
+  font-weight: bold;
+  font-size: 1.15em;
+  margin-bottom: 2px;
+  color: #ba1841;
+}
+
+.adventure-desc {
+  margin-bottom: 7px;
+  font-size: 1em;
+  color: #222;
+}
+
+@media (max-width: 660px) {
+  .adventure-list li {
     flex-direction: column;
-    align-items: center;
-}
-.image-container {
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.emoji {
-    font-size: 2.5em;
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 6px;
-    transition: transform 0.2s;
-}
-.emoji:hover {
-    transform: scale(1.2) rotate(-8deg);
-}
-.ver-imagen {
-    background: #ff69b4;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 22px;
-    font-size: 1em;
-    cursor: pointer;
-    margin-bottom: 10px;
-    transition: background 0.2s, transform 0.2s;
-}
-.ver-imagen:hover {
-    background: #d91c7c;
-    transform: scale(1.05);
-}
-#botonAventuras {
-    background: #fff;
-    color: #7a1432;
-    border: 2px solid #7a1432;
-    border-radius: 8px;
-    padding: 8px 18px;
-    font-size: 1.1em;
-    cursor: pointer;
-    margin: 20px auto;
-    display: block;
-    transition: background 0.2s, color 0.2s;
-}
-#botonAventuras:hover {
-    background: #7a1432;
-    color: #fff;
-}
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: auto;
-    background: rgba(0,0,0,0.7);
-}
-.modal-content {
-    background: #fff;
-    margin: 7% auto;
-    padding: 20px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 380px;
-    text-align: center;
-    position: relative;
-}
-.close {
-    color: #7a1432;
-    position: absolute;
-    top: 8px;
-    right: 18px;
-    font-size: 2em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-.close:hover {
-    color: #d91c7c;
-}
-.modal-image {
+    align-items: stretch;
+    gap: 0.6em;
+    padding: 11px 5px 14px 5px;
+  }
+  .adventure-img {
     width: 100%;
-    max-height: 350px;
-    object-fit: contain;
-    border-radius: 8px;
+    min-width: 0;
+    height: 150px;
+  }
 }
-@media (max-width: 600px) {
-    .modal-content {
-        width: 97%;
-        padding: 10px;
-    }
-    .image-container {
-        margin-bottom: 18px;
-    }
+
+/* Botones */
+.button-center {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 36px 0 0 0;
+}
+
+.next-btn, .back-btn, .start-btn, .slide-btn, .opciones-btn, .heart-btn {
+  background: #ba1841;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 10px 28px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.15s;
+  outline: none;
+  box-shadow: 0 1px 5px #ba184117;
+  font-family: inherit;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  position: relative;
+}
+
+.next-btn:active, .back-btn:active,
+.start-btn:active, .slide-btn:active,
+.opciones-btn:active, .heart-btn:active,
+.opciones-btn.btn-active {
+  background: #a01538;
+  color: #fffdfd;
+  transform: scale(1.08);
+}
+
+.heart-btn {
+  background: #1976d2;
+}
+.heart-btn:active {
+  background: #13549a;
+}
+
+/* Animaciones corazones */
+.heart-explosion {
+  pointer-events: none;
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.heart {
+  position: absolute;
+  font-size: 2em;
+  opacity: 0.9;
+  animation: explode 0.35s ease;
+}
+
+@keyframes explode {
+  0% { opacity: 0.9; transform: scale(1) translate(0,0);}
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.7) translate(var(--tx), var(--ty));}
+}
+
+/* Slideshow (aventuras2.html) */
+#slideshow-section {
+  margin: 40px auto 24px auto;
+  max-width: 340px;
+  text-align: center;
+  background: #fff8fd;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px #ba184117;
+  padding: 22px 12px 18px 12px;
+}
+
+#slideshow-section h2 {
+  color: #ba1841;
+  margin-bottom: 11px;
+}
+
+#slide-img {
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px #ba184123;
+}
+
+.slide-controls {
+  margin-bottom: 14px;
+}
+
+.slide-btn {
+  background: #ba1841;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 7px 18px;
+  font-size: 1.07em;
+  cursor: pointer;
+  margin: 0 7px;
+  transition: background 0.18s, transform 0.15s;
+}
+
+.slide-btn:active {
+  background: #a01538;
+  color: #fffdfd;
+  transform: scale(1.08);
+}
+
+/* Opciones de interacción especial */
+.opciones-btn {
+  background: #ba1841;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 8px 18px;
+  font-size: 1em;
+  cursor: pointer;
+  margin: 7px 6px 0 6px;
+  transition: background 0.18s, transform 0.18s;
+}
+.opciones-btn.btn-active {
+  background: #a01538;
+  color: #fffdfd;
+  transform: scale(1.12);
+}
+
+/* Ajuste móvil para slideshow y botones */
+@media (max-width: 430px) {
+  #slideshow-section {
+    padding: 12px 2px 11px 2px;
+    max-width: 97vw;
+  }
+  #slide-img {
+    height: 130px;
+  }
+  .slide-btn {
+    font-size: 0.97em;
+    padding: 6px 9px;
+  }
+}
+
+/* SCROLL SUAVE para navegaciones de JS */
+html {
+  scroll-behavior: smooth;
 }
