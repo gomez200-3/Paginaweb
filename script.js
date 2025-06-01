@@ -1,40 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Animación de corazoncitos al presionar el botón "Iniciar aventura" o "Volver al inicio"
-    document.querySelectorAll('.heart-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            showHearts(btn, () => {
-                window.location.href = btn.getAttribute('data-next');
-            });
+    // Mostrar imagen en modal al hacer clic en "ver-imagen"
+    document.querySelectorAll('.ver-imagen').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const imgSrc = btn.getAttribute('data-image');
+            const modal = document.getElementById('myModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imgSrc;
+            modal.style.display = "block";
         });
     });
 
-    function showHearts(target, callback) {
-        // Crear contenedor de corazones
-        const heartContainer = document.createElement('div');
-        heartContainer.className = 'hearts-container';
-        for(let i=0; i<12; i++) {
-            const heart = document.createElement('span');
-            heart.className = 'heart';
-            heart.textContent = '💖';
-            // Aleatorizar posición y animación
-            heart.style.left = (Math.random() * 80 + 10) + '%';
-            heart.style.animationDelay = (Math.random() * 0.2) + 's';
-            heartContainer.appendChild(heart);
-        }
-        // Posicionar el contenedor sobre el botón
-        heartContainer.style.position = 'absolute';
-        heartContainer.style.top = target.offsetTop - 20 + 'px';
-        heartContainer.style.left = target.offsetLeft - 30 + 'px';
-        heartContainer.style.width = target.offsetWidth + 60 + 'px';
-        heartContainer.style.height = '60px';
-        heartContainer.style.pointerEvents = 'none';
-        heartContainer.style.zIndex = 10;
-        target.parentNode.appendChild(heartContainer);
+    // Cerrar modal al hacer clic en la X
+    document.querySelector('.close').addEventListener('click', function() {
+        document.getElementById('myModal').style.display = "none";
+        document.getElementById('modalImage').src = "";
+    });
 
-        setTimeout(() => {
-            heartContainer.remove();
-            callback();
-        }, 300);
-    }
+    // Cerrar modal al hacer clic fuera del contenido
+    window.onclick = function(event) {
+        const modal = document.getElementById('myModal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+            document.getElementById('modalImage').src = "";
+        }
+    };
+
+    // Mostrar texto al hacer clic en emojis
+    document.querySelectorAll('.emoji').forEach(btn => {
+        btn.addEventListener('click', function() {
+            alert(btn.getAttribute('data-text'));
+        });
+    });
+
+    // Acción para el botón "Nuestras Aventuras Iniciaron Aquí"
+    document.getElementById('botonAventuras').addEventListener('click', function() {
+        alert("¡Aquí comenzó nuestra historia! ♥");
+    });
 });
