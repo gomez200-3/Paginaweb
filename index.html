@@ -29,21 +29,52 @@
 
     <main>
         <!-- Sección de registro -->
-      <section id="registro">
-            <h2>Registro</h2>
-            <form>
-                <label for="usuario1">(MI VIDA):</label>
-                <input type="text" id="usuario1" name="usuario1" required>
+      ```html
+<main>
+ <section id="registro">
+  <h2>Registro</h2>
+  <form id="registroForm">
+   <label for="usuario1">(MI VIDA):</label>
+   <input type="text" id="usuario1" name="usuario1" required><br><br>
 
-                <label for="usuario2">(MI AMOR):</label>
-                <input type="text" id="usuario2" name="usuario2" required>
+   <label for="usuario2">(MI AMOR):</label>
+   <input type="text" id="usuario2" name="usuario2" required><br><br>
 
-                <label for="contrasena">RECUERDAS CUAL ES NUESTRA FECHA:</label>
-                <input type="password" id="contrasena" name="contrasena" required>
+   <label for="contrasena">RECUERDAS CUAL ES NUESTRA FECHA:</label>
+   <input type="password" id="contrasena" name="contrasena" required><br><br>
 
-                <button type="submit">Iniciar Aventura</button>
-            </form>
-        </section> 
+   <button type="submit">Iniciar Aventura</button>
+  </form>
+ </section>
+</main>
+
+<script>
+ let usuariosRegistrados = 0;
+
+ document.getElementById('registroForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  if (usuariosRegistrados >= 2) {
+   alert('Ya se ha alcanzado el límite de usuarios registrados.');
+   return;
+  }
+
+  const usuario1 = document.getElementById('usuario1').value;
+  const usuario2 = document.getElementById('usuario2').value;
+  const contrasena = document.getElementById('contrasena').value;
+
+  // Aquí puedes agregar validaciones adicionales para los campos si es necesario
+
+  // Simulación de envío al servidor (reemplaza esto con tu lógica real)
+  console.log('Enviando datos al servidor:', { usuario1, usuario2, contrasena });
+
+  usuariosRegistrados++;
+  console.log('Usuario registrado. Total:', usuariosRegistrados);
+
+  // Limpiar el formulario después del registro (opcional)
+  document.getElementById('registroForm').reset();
+ });
+</script>
 
         <!-- Sección de emojis con texto emergente -->
         <section id="emojis">
