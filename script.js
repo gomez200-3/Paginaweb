@@ -18,7 +18,7 @@ function explosionCorazones(btn) {
   }
   setTimeout(() => {
     explosion.remove();
-  }, 300);
+  }, 500);
 }
 
 // Audio global para la canción
@@ -69,3 +69,48 @@ function accionEspecial(btn) {
   btn.classList.add('btn-active');
   setTimeout(() => btn.classList.remove('btn-active'), 300);
 }
+
+// ---- NUEVO: Enlazando la interactividad de la página ----
+document.addEventListener("DOMContentLoaded", function() {
+  // Texto al hacer click en emojis
+  document.querySelectorAll('.emoji').forEach(btn => {
+    btn.addEventListener('click', function() {
+      alert(btn.dataset.text);
+      accionEspecial(btn);
+    });
+  });
+
+  // Mostrar imagen en modal
+  const modal = document.getElementById('myModal');
+  const modalImage = document.getElementById('modalImage');
+  document.querySelectorAll('.ver-imagen').forEach(btn => {
+    btn.addEventListener('click', function() {
+      modal.style.display = "block";
+      modalImage.src = btn.dataset.image;
+      modalImage.alt = "Imagen especial";
+      playSong();
+    });
+  });
+
+  // Cerrar modal
+  document.querySelector('.close').addEventListener('click', function() {
+    modal.style.display = "none";
+    modalImage.src = "";
+  });
+  // Cerrar modal al hacer click fuera de la imagen
+  window.addEventListener('click', function(event) {
+    if(event.target == modal) {
+      modal.style.display = "none";
+      modalImage.src = "";
+    }
+  });
+
+  // Iniciar aventura (corazones + navegación)
+  document.getElementById('botonAventuras').addEventListener('click', function(e) {
+    explosionCorazones(this);
+    setTimeout(() => {
+      window.location.href = "aventuras.html";
+    }, 600); // Pequeño delay para ver la animación
+    playSong();
+  });
+});
