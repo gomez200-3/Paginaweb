@@ -1,16 +1,21 @@
-
-
-```css
+css
 /* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f4f4f4; /* Modificado desde site.css */
 }
 
 header, main, footer {
     padding: 20px;
+}
+
+/* Estilos del encabezado */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
 }
 
 /* Estilos para la sección de emojis con imágenes */
@@ -49,22 +54,41 @@ header, main, footer {
     margin: 10px; /* Espacio entre los emojis */
 }
 
-/* Estilos para la sección de registro */
+/* Estilos de la sección de registro */
 #registro {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 20px; /* Añadido desde site.css */
+    width: 50%; /* Añadido desde style.css */
+    margin: 20px auto; /* Añadido desde style.css */
+    padding: 20px; /* Añadido desde style.css */
+    background-color: #fff; /* Añadido desde style.css */
+    border-radius: 5px; /* Añadido desde style.css */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añadido desde style.css */
+}
+
+#registro h2 {
+    text-align: center;
+}
+
+#registro label {
+    display: block;
+    margin-bottom: 5px;
 }
 
 #registro input {
-    margin: 5px;
-    padding: 8px;
+    margin: 5px; /* Modificado desde site.css */
+    padding: 8px; /* Modificado desde site.css */
     border: 1px solid #ccc;
     border-radius: 4px;
+    width: 100%; /* Añadido desde style.css */
+    padding: 10px; /* Añadido desde style.css */
+    margin-bottom: 10px; /* Añadido desde style.css */
+    box-sizing: border-box; /* Añadido desde style.css */
 }
 
 #registro button {
     padding: 10px 20px;
-    background-color: #5cb85c;
+    background-color: #5cb85c; /* Modificado desde site.css */
     color: white;
     border: none;
     border-radius: 4px;
@@ -72,6 +96,17 @@ header, main, footer {
 }
 
 #registro button:hover {
-    background-color: #4cae4c;
+    background-color: #4cae4c; /* Modificado desde site.css */
 }
-`
+
+/* Estilos del pie de página */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+```
