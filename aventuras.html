@@ -1,141 +1,136 @@
-```html
+```html name=aventuras.html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestras Aventuras Iniciaron Aquí</title>
-    <link rel="stylesheet" href="site.css">
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: sans-serif; /* Puedes cambiar la fuente si lo deseas */
-            margin: 0;
-            padding: 0;
-            overflow: hidden; /* Para evitar barras de desplazamiento */
-        }
-
-        header {
-            text-align: center;
-            padding: 20px;
-        }
-
-        h1 {
-            font-style: italic;
-            font-weight: bold;
-        }
-
-        #emojiButtonContainer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 50vh; /* Centra verticalmente */
-        }
-
-        #emojiButton {
-            background-image: url('Media/corazon.jpg'); /* Reemplaza con la imagen que desees */
-            background-size: cover; /* Cubre todo el botón con la imagen */
-            background-repeat: no-repeat;
-            border: none;
-            padding: 20px;
-            cursor: pointer;
-            width: 100px; /* Ajusta el tamaño del botón */
-            height: 100px;
-            border-radius: 50%; /* Hace el botón circular */
-        }
-
-        .emoji {
-            position: absolute;
-            font-size: 2em;
-            animation: fly 1s ease-out forwards;
-        }
-
-        @keyframes fly {
-            0% {
-                transform: translate(0, 0);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px));
-                opacity: 0;
-            }
-        }
-
-        /* Estilos para los botones de imágenes emergentes */
-        .image-button {
-            width: 100px; /* Ajusta el tamaño según necesites */
-            height: 100px;
-            margin: 10px;
-            border: none;
-            cursor: pointer;
-            background-size: cover;
-            background-repeat: no-repeat;
-            border-radius: 10px; /* Opcional: para bordes redondeados */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Aventuras</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #3066be;
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+      padding: 2rem;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .adventure-list {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+    }
+    .adventure-list li {
+      border-bottom: 1px solid #eee;
+      padding: 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .adventure-list li:last-child {
+      border-bottom: none;
+    }
+    .adventure-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      background: #fafafa;
+    }
+    .adventure-title {
+      font-size: 1.2rem;
+      margin: 0 0 0.4rem 0;
+      color: #3066be;
+    }
+    .adventure-desc {
+      margin: 0;
+      color: #444;
+      font-size: 1rem;
+    }
+    footer {
+      text-align: center;
+      color: #888;
+      font-size: 0.9rem;
+      padding: 2rem 1rem 1rem 1rem;
+    }
+    @media (max-width: 600px) {
+      main {
+        padding: 1rem;
+      }
+      .adventure-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .adventure-img {
+        width: 100%;
+        height: 120px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1><b><i>ESTE ES NUESTRO FUTURO Y NADIE NOS VA A CAMBIAR LA META</i></b></h1>
-    </header>
-
-    <main>
-        <div style="display: flex; justify-content: center;">
-            <button class="image-button" style="background-image: url('Media/Enamorado.jpg');" onclick="showAlert('Enamorado')"></button>
-            <button class="image-button" style="background-image: url('Media/amor.jpg');" onclick="showAlert('Amor')"></button>
-            <button class="image-button" style="background-image: url('Media/corazon.jpg');" onclick="showAlert('Corazon')"></button>
-            <button class="image-button" style="background-image: url('Media/nuestro.jpg');" onclick="showAlert('Nuestro')"></button>
+  <header>
+    <h1>Aventuras Increíbles</h1>
+    <p>Descubre y explora nuevas experiencias.</p>
+  </header>
+  <main>
+    <ul class="adventure-list">
+      <li>
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Montañas" class="adventure-img">
+        <div>
+          <div class="adventure-title">Excursión a la Montaña</div>
+          <p class="adventure-desc">Vive la experiencia única de ascender a las cumbres más impresionantes y disfruta de vistas espectaculares.</p>
         </div>
-        
-        <div id="emojiButtonContainer">
-            <button id="emojiButton"></button>
+      </li>
+      <li>
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Selva" class="adventure-img">
+        <div>
+          <div class="adventure-title">Aventura en la Selva</div>
+          <p class="adventure-desc">Adéntrate en la selva y descubre la fauna y flora exótica, acompañado de guías expertos.</p>
         </div>
-    </main>
-
-    <footer>
-        <!-- Pie de página -->
-    </footer>
-
-    <script>
-        const button = document.getElementById('emojiButton');
-        const container = document.getElementById('emojiButtonContainer');
-
-        button.addEventListener('click', function(e) {
-            for (let i = 0; i < 30; i++) {
-                createEmoji(e.clientX, e.clientY);
-            }
-        });
-
-        function createEmoji(x, y) {
-            const emoji = document.createElement('div');
-            emoji.classList.add('emoji');
-            emoji.innerHTML = '💖'; // Puedes cambiar el emoji
-            container.appendChild(emoji);
-
-            const size = Math.floor(Math.random() * 30) + 10;
-            emoji.style.fontSize = `${size}px`;
-
-            const xOffset = Math.random() * 200 - 100;
-            const yOffset = Math.random() * 200 - 100;
-
-        ...emoji.style.setProperty('--x', xOffset);
-            emoji.style.setProperty('--y', yOffset);
-
-            emoji.style.left = `${x}px`;
-            emoji.style.top = `${y}px`;
-
-            emoji.addEventListener('animationend', () => {
-                emoji.remove();
-            });
-        }
-
-        function showAlert(imageName) {
-            alert('¡Has presionado ' + imageName + '!'); // Aquí puedes cambiar el comportamiento
-        }
-    </script>
+      </li>
+      <li>
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" alt="Kayak" class="adventure-img">
+        <div>
+          <div class="adventure-title">Kayak en el Río</div>
+          <p class="adventure-desc">Navega por ríos cristalinos y siente la adrenalina del kayak en aguas rápidas.</p>
+        </div>
+      </li>
+      <li>
+        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=400&q=80" alt="Desierto" class="adventure-img">
+        <div>
+          <div class="adventure-title">Safari en el Desierto</div>
+          <p class="adventure-desc">Recorre dunas doradas y asómbrate con la belleza y la tranquilidad del desierto.</p>
+        </div>
+      </li>
+      <li>
+        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=400&q=80" alt="Mar" class="adventure-img">
+        <div>
+          <div class="adventure-title">Buceo en el Mar</div>
+          <p class="adventure-desc">Sumérgete y explora arrecifes de coral llenos de vida marina, apto para todos los niveles.</p>
+        </div>
+      </li>
+    </ul>
+  </main>
+  <footer>
+    &copy; 2025 Aventuras Increíbles. Todos los derechos reservados.
+  </footer>
 </body>
 </html>
-```
-
-¡Espero que esto te ayude! Si tienes alguna otra pregunta, no dudes en preguntar.
+```!
