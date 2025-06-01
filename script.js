@@ -1,60 +1,71 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Mostrar imagen en modal al hacer clic en "ver-imagen"
-    document.querySelectorAll('.ver-imagen').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const imgSrc = btn.getAttribute('data-image');
-            const modal = document.getElementById('myModal');
-            const modalImg = document.getElementById('modalImage');
-            // Mostrar la imagen
-            modalImg.src = imgSrc;
-            modalImg.style.display = "block";
-            // Ocultar mensaje de texto, si existe
-            const modalText = document.getElementById('modalText');
-            if (modalText) modalText.style.display = "none";
-            modal.style.display = "block";
-        });
-    });
+// Explosión de corazones en 'Iniciar aventura'
+function explosionCorazones(btn) {
+  let explosion = document.createElement('div');
+  explosion.className = 'heart-explosion';
+  btn.parentNode.style.position = "relative";
+  btn.parentNode.appendChild(explosion);
 
-    // Mostrar mensaje en modal al hacer clic en emoji
-    document.querySelectorAll('.emoji').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const modal = document.getElementById('myModal');
-            const modalImg = document.getElementById('modalImage');
-            const modalText = document.getElementById('modalText');
-            // Ocultar imagen
-            modalImg.src = "";
-            modalImg.style.display = "none";
-            // Mostrar mensaje
-            if (modalText) {
-                modalText.textContent = btn.getAttribute('data-text');
-                modalText.style.display = "block";
-            }
-            modal.style.display = "block";
-        });
-    });
+  for (let i = 0; i < 8; i++) {
+    let heart = document.createElement('span');
+    heart.className = 'heart';
+    heart.textContent = '❤️';
+    let angle = (i / 8) * 2 * Math.PI;
+    let tx = Math.cos(angle) * 60 + "px";
+    let ty = Math.sin(angle) * 60 + "px";
+    heart.style.setProperty('--tx', tx);
+    heart.style.setProperty('--ty', ty);
+    explosion.appendChild(heart);
+  }
+  setTimeout(() => {
+    explosion.remove();
+  }, 300);
+}
 
-    // Cerrar modal al hacer clic en la X
-    document.querySelector('.close').addEventListener('click', function() {
-        document.getElementById('myModal').style.display = "none";
-        document.getElementById('modalImage').src = "";
-        const modalText = document.getElementById('modalText');
-        if (modalText) modalText.style.display = "none";
-    });
+// Audio global para la canción
+const audio = new Audio('media/Afaz Natural - Deseo Saber (Video Oficial)(M4A_128K).m4a');
+audio.preload = "auto";
 
-    // Cerrar modal al hacer clic fuera del contenido
-    window.onclick = function(event) {
-        const modal = document.getElementById('myModal');
-        if (event.target == modal) {
-            modal.style.display = "none";
-            document.getElementById('modalImage').src = "";
-            const modalText = document.getElementById('modalText');
-            if (modalText) modalText.style.display = "none";
-        }
-    };
+// Play audio (reinicia si ya estaba sonando)
+function playSong() {
+  audio.currentTime = 0;
+  audio.play();
+}
 
-    // Acción para el botón "Nuestras Aventuras Iniciaron Aquí"
-    document.getElementById('botonAventuras').addEventListener('click', function() {
-        // Redirigir a otra página, por ejemplo: aventuras.html
-        window.location.href = "aventuras.html";
-    });
-});
+// SLIDESHOW (ahora con imágenes locales)
+const slideImages = [
+  'media/andrea.jpg',
+  'media/gutierrez.jpg',
+  'media/IMG-mi reina.jpg',
+  'media/amor.jpg',
+  'media/20250503_182247.jpg'
+];
+let currentSlide = 0;
+
+// Inicializa el slideshow
+function showSlide(index) {
+  const img = document.getElementById('slide-img');
+  if (!img) return;
+  currentSlide = (index + slideImages.length) % slideImages.length;
+  img.src = slideImages[currentSlide];
+  img.alt = "Foto especial " + (currentSlide + 1);
+}
+
+function prevSlide() {
+  showSlide(currentSlide - 1);
+}
+function nextSlide() {
+  showSlide(currentSlide + 1);
+}
+
+// Cuando se inicia la sección de diapositivas, reproduce el audio
+function iniciarDiapositiva() {
+  playSong();
+  document.getElementById('slideshow-section').scrollIntoView({ behavior: "smooth" });
+}
+
+// Botones de interacción especial
+function accionEspecial(btn) {
+  playSong();
+  btn.classList.add('btn-active');
+  setTimeout(() => btn.classList.remove('btn-active'), 300);
+}
