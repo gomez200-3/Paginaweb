@@ -1,37 +1,34 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Get the modal
+    // Modal
     var modal = document.getElementById("myModal");
-
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
     var modalImg = document.getElementById("modalImage");
-    var emojis = document.querySelectorAll('#imageEmojis button.emoji');
-
-    // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
-    // Function to open the modal
-    function openModal(imageSrc) {
-        modal.style.display = "block";
-        modalImg.src = imageSrc;
-    }
-
-    // Add click event to each emoji
-    emojis.forEach(emoji => {
-        emoji.addEventListener('click', function() {
+    // Abrir modal al hacer click en "ver imagen"
+    document.querySelectorAll('.ver-imagen').forEach(btn => {
+        btn.addEventListener('click', function() {
             var imageSrc = this.getAttribute('data-image');
-            openModal(imageSrc);
+            modal.style.display = "block";
+            modalImg.src = imageSrc;
         });
     });
 
-    // When the user clicks on <span> (x), close the modal
+    // Cerrar modal al hacer click en la X
     span.onclick = function() {
         modal.style.display = "none";
+        modalImg.src = "";
     }
 
-    // Close the modal if the user clicks outside of the modal
+    // Cerrar modal al hacer click fuera de la imagen/modal
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
+            modalImg.src = "";
         }
     }
+
+    // Ejemplo: acción para el botón de aventuras (puedes cambiarla a lo que quieras)
+    document.getElementById('botonAventuras').addEventListener('click', function() {
+        alert('¡Aquí iniciaron nuestras aventuras!');
+    });
 });
