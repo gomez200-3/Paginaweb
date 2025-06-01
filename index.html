@@ -4,95 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestra Aventura</title>
+    <title>Nuestras Aventuras</title>
     <link rel="stylesheet" href="site.css">
 </head>
 <body>
     <header>
-        <!-- Sección de botones de emojis con imágenes -->
-        <section id="imageEmojis">
-            <button id="emojiButton1">MI MUNDO</button>
-            <img id="myImage1" src="Paginaweb/media/imagen1.jpg" alt="Imagen 1">
-
-            <button id="emojiButton2">MI FELICIDAD</button>
-            <img id="myImage2" src="Paginaweb/media/imagen2.jpg" alt="Imagen 2">
-
-            <button id="emojiButton3">ME CRAZY</button>
-            <img id="myImage3" src="Paginaweb/media/imagen3.jpg" alt="Imagen 3">
-
-            <button id="emojiButton4">MY FAVORITE</button>
-            <img id="myImage4" src="Paginaweb/media/imagen4.jpg" alt="Imagen 4">
-        </section>
+        <h1>Nuestras Aventuras</h1>
     </header>
 
+    <main>
+        <!-- Sección de registro de usuarios -->
+        <section id="registro">
+            <h2>Registro</h2>
+            <form id="registroForm">
+                <label for="usuario1">Usuario 1:</label>
+                <input type="text" id="usuario1" name="usuario1"><br><br>
 
+                <label for="usuario2">Usuario 2:</label>
+                <input type="text" id="usuario2" name="usuario2"><br><br>
+
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena"><br><br>
+
+                <button type="submit">Registrar</button>
+            </form>
+        </section>
 
         <!-- Sección de emojis con texto emergente -->
-        ```css
-    
- Estilos generales 
-#emojis {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+        <section id="emojis">
+            <span class="emoji" data-text="TE AMO SIN IMPORTAR EL MOMENTO.">❤️</span>
+            <span class="emoji" data-text="ERES LA ESTRELLA MAS HERMOSA DEL FIRMAMENTO.">😻</span>
+            <span class="emoji" data-text="AUN QUE ME SACAS CANAS SIEMPRE SERA MI LUGAR FAVORITO.">🙄</span>
+            <span class="emoji" data-text="LE DOY GRACIASA MI SUEGRA POR NO TRAGARTE Y DARME LA OPORTUNIDAD DE CONOCERTE PA MANOSEARTE Y COMERTE TODA.">🥴</span>
+            <span class="emoji" data-text="LA NOCHE DEL QUE RESIVIEL MEJOR REGALO FUE CUANDO TE PROVE.">🎉</span>
+            <span class="emoji" data-text="MY BEAUTIFUL LOVE.">🥺</span>
+        </section>
 
-.emoji {
-  position: relative;
-  cursor: pointer;
-  margin-bottom: 10px; /* Añade un margen inferior al emoji */
-  font-size: 2em; /* Ajusta el tamaño del emoji */
-}
+        <!-- Sección de emojis con imágenes -->
+        <section id="imageEmojis">
+            <button id="emojiButton1">🥺</button>
+            <img id="myImage1" src="media/imagen1.jpg" alt="Imagen 1">
 
-.emoji::after {
-  content: attr(data-text); /* Muestra el texto del atributo data-text */
-  position: absolute;
-  top: 120%; /* Coloca el texto debajo del emoji */
-  left: 50%;
-  transform: translateX(-50%); /* Centra el texto */
-  background-color: rgba(0, 0, 0, 0.8); /* Fondo negro */
-  color: white; /* Texto blanco */
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 12px;
-  white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
-  opacity: 0; /* Oculta el texto por defecto */
-  visibility: hidden; /* Oculta el texto por defecto */
-  transition: opacity 0.3s ease, visibility 0.3s ease; /* Transición suave */
-  z-index: 1;
-  font-style: italic; /* Texto en cursiva */
-  font-family: cursive; /* Fuente cursiva elegante */
-}
+            <button id="emojiButton2">🥴</button>
+            <img id="myImage2" src="media/imagen2.jpg" alt="Imagen 2">
 
-.emoji:hover::after {
-  opacity: 1; /* Muestra el texto al pasar el ratón */
-  visibility: visible; /* Muestra el texto al pasar el ratón */
-}
+            <button id="emojiButton3">❤️‍🔥</button>
+            <img id="myImage3" src="media/imagen3.jpg" alt="Imagen 3">
 
-/* Media Query para dispositivos móviles */
-@media (max-width: 768px) {
-  .emoji {
-    font-size: 1.5em; /* Reduce el tamaño del emoji en pantallas pequeñas */
-  }
-  .emoji::after {
-    font-size: 10px; /* Reduce el tamaño del texto en pantallas pequeñas */
-  }
-}
-```
+            <button id="emojiButton4">🦕</button>
+            <img id="myImage4" src="media/imagen4.jpg" alt="Imagen 4">
+        </section>
 
-        <!-- Sección de botones de emojis con imágenes -->
-        <section id="imageEmojis2">
-            <button id="emojiButton21">❤️</button>
-            <img id="myImage21" src="Paginaweb/media/imagen1.jpg" alt="Imagen 1">
+        <!-- Sección del botón "Nuestras Aventuras Iniciaron Aquí" -->
+        <section id="aventuras">
+            <button id="botonAventuras">Nuestras Aventuras Iniciaron Aquí</button>
+            <!-- Aquí puedes añadir un formulario para subir imágenes -->
+        </section>
 
-            <button id="emojiButton22">😂</button>
-            <img id="myImage22" src="Paginaweb/media/imagen2.jpg" alt="Imagen 2">
-
-            <button id="emojiButton23">👍</button>
-            <img id="myImage23" src="Paginaweb/media/imagen3.jpg" alt="Imagen 3">
-
-            <button id="emojiButton24">🔥</button>
-            <img id="myImage24" src="Paginaweb/media/imagen4.jpg" alt="Imagen 4">
+        <!-- Sección de videos y fotos con contraseña -->
+        <section id="contenidoProtegido">
+            <h2>Contenido Protegido</h2>
+            <!-- Aquí puedes añadir enlaces a videos y fotos que requieran contraseña -->
         </section>
     </main>
 
@@ -101,39 +73,7 @@
     </footer>
 
     <script>
-    let usuariosRegistrados = 0;
-
-    document.getElementById('registroForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const usuario1 = document.getElementById('usuario1').value;
-        const usuario2 = document.getElementById('usuario2').value;
-        const contrasena = document.getElementById('contrasena').value;
-
-        // Validación de campos
-        if (!usuario1 || !usuario2 || !contrasena) {
-            alert('Por favor, complete todos los campos.');
-            return;
-        }
-
-        if (usuariosRegistrados >= 2) {
-            alert('Ya se ha alcanzado el límite de usuarios registrados.');
-            return;
-        }
-
-        // Envío de datos al servidor (reemplaza con tu código real)
-        console.log('Enviando datos al servidor:', {
-            usuario1: usuario1,
-           ...usuario2: usuario2,
-            contrasena: contrasena
-        });
-
-        usuariosRegistrados++;
-        console.log('Usuario registrado. Total:', usuariosRegistrados);
-
-        // Limpiar el formulario después del registro (opcional)
-        document.getElementById('registroForm').reset();
-    });
+        // Aquí puedes añadir el código JavaScript para la interactividad
     </script>
 </body>
 </html>
