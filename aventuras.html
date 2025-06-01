@@ -119,4 +119,23 @@
             const xOffset = Math.random() * 200 - 100;
             const yOffset = Math.random() * 200 - 100;
 
-        ...
+        ...emoji.style.setProperty('--x', xOffset);
+            emoji.style.setProperty('--y', yOffset);
+
+            emoji.style.left = `${x}px`;
+            emoji.style.top = `${y}px`;
+
+            emoji.addEventListener('animationend', () => {
+                emoji.remove();
+            });
+        }
+
+        function showAlert(imageName) {
+            alert('¡Has presionado ' + imageName + '!'); // Aquí puedes cambiar el comportamiento
+        }
+    </script>
+</body>
+</html>
+```
+
+¡Espero que esto te ayude! Si tienes alguna otra pregunta, no dudes en preguntar.
