@@ -60,7 +60,10 @@ function nextSlide() {
 // Cuando se inicia la sección de diapositivas, reproduce el audio
 function iniciarDiapositiva() {
   playSong();
-  document.getElementById('slideshow-section').scrollIntoView({ behavior: "smooth" });
+  const section = document.getElementById('slideshow-section');
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
 }
 
 // Botones de interacción especial
@@ -72,45 +75,16 @@ function accionEspecial(btn) {
 
 // ---- NUEVO: Enlazando la interactividad de la página ----
 document.addEventListener("DOMContentLoaded", function() {
-  // Texto al hacer click en emojis
-  document.querySelectorAll('.emoji').forEach(btn => {
-    btn.addEventListener('click', function() {
-      alert(btn.dataset.text);
-      accionEspecial(btn);
-    });
-  });
-
-  // Mostrar imagen en modal
-  const modal = document.getElementById('myModal');
-  const modalImage = document.getElementById('modalImage');
-  document.querySelectorAll('.ver-imagen').forEach(btn => {
-    btn.addEventListener('click', function() {
-      modal.style.display = "block";
-      modalImage.src = btn.dataset.image;
-      modalImage.alt = "Imagen especial";
+  // Iniciar aventura en la página principal
+  const botonAventuras = document.getElementById('botonAventuras');
+  if (botonAventuras) {
+    botonAventuras.addEventListener('click', function(e) {
+      explosionCorazones(this);
+      setTimeout(() => {
+        window.location.href = "aventuras2.html";
+      }, 600); // Pequeño delay para ver la animación
       playSong();
     });
-  });
-
-  // Cerrar modal
-  document.querySelector('.close').addEventListener('click', function() {
-    modal.style.display = "none";
-    modalImage.src = "";
-  });
-  // Cerrar modal al hacer click fuera de la imagen
-  window.addEventListener('click', function(event) {
-    if(event.target == modal) {
-      modal.style.display = "none";
-      modalImage.src = "";
-    }
-  });
-
-  // Iniciar aventura (corazones + navegación)
-  document.getElementById('botonAventuras').addEventListener('click', function(e) {
-    explosionCorazones(this);
-    setTimeout(() => {
-      window.location.href = "aventuras.html";
-    }, 600); // Pequeño delay para ver la animación
-    playSong();
-  });
+  }
+  // No se ejecutan eventos para modales o emojis si los elementos no existen, evitando errores JS
 });
