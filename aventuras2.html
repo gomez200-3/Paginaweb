@@ -5,6 +5,136 @@
   <title>Más Aventuras</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="site.css">
+  <style>
+    .adventure-list {
+      list-style: none;
+      padding: 0;
+    }
+    .adventure-list li {
+      margin-bottom: 32px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 18px;
+    }
+    .adventure-img {
+      width: 100%;
+      max-width: 330px;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .adventure-title {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 3px;
+    }
+    .adventure-desc {
+      margin-bottom: 10px;
+    }
+    .start-btn {
+      background: #ba1841;
+      color: white;
+      border: none;
+      border-radius: 100px;
+      padding: 9px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      position: relative;
+      overflow: visible;
+    }
+    .start-btn:active {
+      background: #a01538;
+    }
+    .heart-explosion {
+      pointer-events: none;
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+    .heart {
+      position: absolute;
+      font-size: 2em;
+      opacity: 0.9;
+      animation: explode 0.3s ease;
+    }
+    @keyframes explode {
+      0% { opacity: 0.9; transform: scale(1) translate(0,0);}
+      80% { opacity: 1; }
+      100% { opacity: 0; transform: scale(1.7) translate(var(--tx), var(--ty));}
+    }
+    .button-center {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 30px 0 0 0;
+    }
+    .back-btn, .next-btn {
+      background: #ba1841;
+      color: white;
+      border: none;
+      border-radius: 100px;
+      padding: 9px 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .back-btn:active, .next-btn:active {
+      background: #a01538;
+    }
+    /* Slideshow */
+    #slideshow-section {
+      margin: 40px auto 24px auto;
+      max-width: 340px;
+      text-align: center;
+      background: #fff8fd;
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(186, 24, 65, 0.07);
+      padding: 22px 12px 18px 12px;
+    }
+    #slide-img {
+      width: 100%;
+      max-width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px #ba184123;
+    }
+    .slide-controls {
+      margin-bottom: 14px;
+    }
+    .slide-btn {
+      background: #ba1841;
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin: 0 6px;
+      transition: background 0.18s;
+    }
+    .slide-btn:active, .opciones-btn.btn-active {
+      background: #a01538;
+      color: #fffdfd;
+      transform: scale(1.08);
+    }
+    .opciones-btn {
+      background: #ba1841;
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: 7px 14px;
+      font-size: 1em;
+      cursor: pointer;
+      margin: 7px 6px 0 6px;
+      transition: background 0.18s, transform 0.18s;
+    }
+    .opciones-btn.btn-active {
+      background: #a01538;
+      color: #fffdfd;
+      transform: scale(1.12);
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -14,34 +144,61 @@
   <main>
     <ul class="adventure-list">
       <li>
-        <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=400&q=80" alt="Glaciar" class="adventure-img">
+        <img src="media/andrea.jpg" alt="Andrea" class="adventure-img">
         <div>
           <div class="adventure-title">Exploración de Glaciares</div>
           <p class="adventure-desc">Camina sobre el hielo y disfruta de paisajes únicos en los glaciares más impresionantes del mundo.</p>
+          <button class="start-btn" onclick="explosionCorazones(this)">Iniciar aventura</button>
         </div>
       </li>
       <li>
-        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Bosque" class="adventure-img">
+        <img src="media/gutierrez.jpg" alt="Gutierrez" class="adventure-img">
         <div>
           <div class="adventure-title">Senderismo en el Bosque</div>
           <p class="adventure-desc">Recorre senderos rodeados de naturaleza y respira aire puro en los bosques más hermosos.</p>
+          <button class="start-btn" onclick="explosionCorazones(this)">Iniciar aventura</button>
         </div>
       </li>
       <li>
-        <img src="https://images.unsplash.com/photo-1414541944151-2f3ec1cfd87d?auto=format&fit=crop&w=400&q=80" alt="Isla" class="adventure-img">
+        <img src="media/IMG-mi reina.jpg" alt="Mi Reina" class="adventure-img">
         <div>
           <div class="adventure-title">Aventura en la Isla</div>
           <p class="adventure-desc">Descubre islas paradisíacas y vive una experiencia inolvidable entre playas y palmeras.</p>
+          <button class="start-btn" onclick="explosionCorazones(this)">Iniciar aventura</button>
         </div>
       </li>
     </ul>
+
+    <!-- DIAPOSITIVA -->
+    <section id="slideshow-section">
+      <h2>Diapositiva Especial</h2>
+      <img id="slide-img" src="" alt="Diapositiva">
+      <div class="slide-controls">
+        <button class="slide-btn" onclick="prevSlide()">⏮️ Anterior</button>
+        <button class="slide-btn" onclick="iniciarDiapositiva()">▶️ Iniciar Diapositiva</button>
+        <button class="slide-btn" onclick="nextSlide()">Siguiente ⏭️</button>
+      </div>
+      <div>
+        <button class="opciones-btn" onclick="accionEspecial(this)">Te dedico esta canción</button>
+        <button class="opciones-btn" onclick="accionEspecial(this)">Eres mi amor soñado</button>
+        <button class="opciones-btn" onclick="accionEspecial(this)">Eres mi mejor versión</button>
+      </div>
+    </section>
+
     <div class="button-center">
-      <button class="next-btn heart-btn" data-next="aventuras.html">Volver al inicio</button>
+      <button class="next-btn" onclick="window.location.href='aventuras.html'">Volver al inicio</button>
+      <button class="back-btn" onclick="window.history.back()">Retroceder</button>
     </div>
   </main>
   <footer>
     &copy; 2025 Aventuras Increíbles. Todos los derechos reservados.
   </footer>
   <script src="script.js"></script>
+  <script>
+    // Iniciar el slideshow en la primera imagen al cargar
+    document.addEventListener("DOMContentLoaded", function() {
+      showSlide(0);
+    });
+  </script>
 </body>
 </html>
