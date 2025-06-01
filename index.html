@@ -1,65 +1,144 @@
 ```html
+
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Nuestras Aventuras</title>
+
     <link rel="stylesheet" href="site.css">
+
 </head>
+
 <body>
+
     <header>
+
         <h1>Nuestras Aventuras</h1>
+
     </header>
 
+
+
     <main>
+
         
 
-        <!-- Sección de emojis con texto emergente -->
-        <section id="emojis">
-            <span class="emoji" data-text="TE AMO SIN IMPORTAR EL MOMENTO.">❤️</span>
-            <span class="emoji" data-text="ERES LA ESTRELLA MAS HERMOSA DEL FIRMAMENTO.">😻</span>
-            <span class="emoji" data-text="AUN QUE ME SACAS CANAS SIEMPRE SERA MI LUGAR FAVORITO.">🙄</span>
-            <span class="emoji" data-text="LE DOY GRACIASA MI SUEGRA POR NO TRAGARTE Y DARME LA OPORTUNIDAD DE CONOCERTE PA MANOSEARTE Y COMERTE TODA.">🥴</span>
-            <span class="emoji" data-text="LA NOCHE DEL QUE RESIVIEL MEJOR REGALO FUE CUANDO TE PROVE.">🎉</span>
-            <span class="emoji" data-text="MY BEAUTIFUL LOVE.">🥺</span>
-        </section>
+
 
         <!-- Sección de emojis con imágenes -->
+
         <section id="imageEmojis">
-            <button id="emojiButton1">🥺</button>
-            <img id="myImage1" src="media/imagen1.jpg" alt="Imagen 1">
 
-            <button id="emojiButton2">🥴</button>
-            <img id="myImage2" src="media/imagen2.jpg" alt="Imagen 2">
+            <div class="image-container">
 
-            <button id="emojiButton3">❤️‍🔥</button>
-            <img id="myImage3" src="media/imagen3.jpg" alt="Imagen 3">
+                <button class="emoji" data-image="media/imagen1.jpg" data-text="MI MUNDO">🥺</button>
 
-            <button id="emojiButton4">🦕</button>
-            <img id="myImage4" src="media/imagen4.jpg" alt="Imagen 4">
+                <img id="myImage1" src="media/imagen1.jpg" alt="Imagen 1">
+
+            </div>
+
+
+
+            <div class="image-container">
+
+                <button class="emoji" data-image="media/imagen2.jpg" data-text="MI FELICIDAD">🥴</button>
+
+                <img id="myImage2" src="media/imagen2.jpg" alt="Imagen 2">
+
+            </div>
+
+
+
+            <div class="image-container">
+
+                <button class="emoji" data-image="media/imagen3.jpg" data-text="ME CRAZY">❤🔥</button>
+
+                <img id="myImage3" src="media/imagen3.jpg" alt="Imagen 3">
+
+            </div>
+
+
+
+            <div class="image-container">
+
+                <button class="emoji" data-image="media/imagen4.jpg" data-text="MY FAVORITE">🦕</button>
+
+                <img id="myImage4" src="media/imagen4.jpg" alt="Imagen 4">
+
+            </div>
+
         </section>
+
+
 
         <!-- Sección del botón "Nuestras Aventuras Iniciaron Aquí" -->
+
         <section id="aventuras">
+
             <button id="botonAventuras">Nuestras Aventuras Iniciaron Aquí</button>
+
             <!-- Aquí puedes añadir un formulario para subir imágenes -->
+
         </section>
+
+
 
         <!-- Sección de videos y fotos con contraseña -->
+
         <section id="contenidoProtegido">
+
             <h2>Contenido Protegido</h2>
+
             <!-- Aquí puedes añadir enlaces a videos y fotos que requieran contraseña -->
+
         </section>
+
+
+
+        <!-- The Modal -->
+
+        <div id="myModal" class="modal">
+
+
+
+            <!-- Modal content -->
+
+            <div class="modal-content">
+
+                <span class="close">&times;</span>
+
+                <img class="modal-image" id="modalImage" src="" alt="Modal Image">
+
+            </div>
+
+
+
+        </div>
+
     </main>
 
+
+
     <footer>
+
         <!-- Pie de página -->
+
     </footer>
 
-    <script>
-        // Aquí puedes añadir el código JavaScript para la interactividad
-    </script>
+
+
+    <script src="script.js"></script>
+
 </body>
+
 </html>
+
 ```
+
