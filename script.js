@@ -29,6 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Ejemplo: acción para el botón de aventuras (puedes cambiarla a lo que quieras)
     document.getElementById('botonAventuras').addEventListener('click', function() {
-        alert('¡Aquí iniciaron nuestras aventuras!');
+        alert('ESTAS DE CHISMOSITA JSJS TE AMO GRACIAS POR SER MI BEBESITA');
     });
 });
