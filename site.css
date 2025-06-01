@@ -1,129 +1,302 @@
-css
+```css
+
 /* Estilos generales */
+
 body {
+
     font-family: Arial, sans-serif;
+
     margin: 0;
+
     padding: 0;
+
     background-color: #f4f4f4; /* Modificado desde site.css */
+
 }
+
+
 
 header, main, footer {
+
     padding: 20px;
+
 }
+
+
 
 /* Estilos del encabezado */
+
 header {
+
     background-color: #333;
+
     color: #fff;
+
     text-align: center;
+
 }
+
+
 
 /* Estilos para la sección de emojis con imágenes */
+
 #imageEmojis {
+
     display: flex;
+
     flex-wrap: wrap;
+
     justify-content: center;
+
     align-items: center;
+
 }
 
-#imageEmojis button {
-    font-size: 2em;
-    border: none;
-    background: none;
-    cursor: pointer;
-    margin: 10px; /* Espacio entre los botones */
+
+
+#imageEmojis .image-container {
+
+    margin: 10px;
+
+    position: relative;
+
 }
+
+
+
+#imageEmojis button.emoji {
+
+    font-size: 2em;
+
+    border: none;
+
+    background: none;
+
+    cursor: pointer;
+
+    /*margin: 10px;  Espacio entre los botones */
+
+    position: relative; /* Para el posicionamiento del texto emergente */
+
+}
+
+
 
 #imageEmojis img {
+
     display: none; /* Oculta las imágenes por defecto */
+
     max-width: 100px; /* Ancho máximo de las imágenes */
+
     height: auto;
+
 }
 
-/* Estilos para la sección de emojis con texto emergente */
-css
-.emoji {
- position: relative;
- display: inline-block;
- cursor: pointer;
+
+
+
+
+/* Estilos para el texto emergente (tooltip) */
+
+#imageEmojis .image-container .emoji::before {
+
+    content: attr(data-text);
+
+    position: absolute;
+
+    bottom: 100%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background-color: rgba(0, 0, 0, 0.8);
+
+    color: white;
+
+    padding: 5px;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    z-index: 1;
+
 }
 
-.emoji::before {
- content: attr(data-text);
- position: absolute;
- bottom: 100%;
- left: 50%;
- transform: translateX(-50%);
- background-color: rgba(0, 0, 0, 0.8);
- color: white;
- padding: 5px;
- border-radius: 5px;
- font-size: 12px;
- white-space: nowrap;
- opacity: 0;
- visibility: hidden;
- transition: opacity 0.3s ease, visibility 0.3s ease;
- z-index: 1;
+
+
+#imageEmojis .image-container .emoji:hover::before {
+
+    opacity: 1;
+
+    visibility: visible;
+
 }
 
-.emoji:hover::before {
- opacity: 1;
- visibility: visible;
-}
-```
 
 
 #registro button {
+
     padding: 10px 20px;
+
     background-color: #5cb85c; /* Modificado desde site.css */
+
     color: white;
+
     border: none;
+
     border-radius: 4px;
+
     cursor: pointer;
+
 }
+
+
 
 #registro button:hover {
-    background-color: #4cae4c; /* Modificado desde site.css */
+
+    Background-color: #4cae4c; /* Modificado desde site.css */
+
 }
+
+
 
 /* Estilos del pie de página */
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+
+Footer {
+
+    Background-color: #333;
+
+    Color: #fff;
+
+    Text-align: center;
+
 }
 
 
-```css
-.texto-emergente {
-  position: relative;
-  cursor: pointer; /* Opcional: cambia el cursor al pasar el ratón */
+
+/* The Modal (background) */
+
+.modal {
+
+    Display: none; /* Hidden by default */
+
+    Position: fixed; /* Stay in place */
+
+    z-index: 1; /* Sit on top */
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%; /* Full width */
+
+    height: 100%; /* Full height */
+
+    overflow: auto; /* Enable scroll if needed */
+
+    background-color: rgb(0,0,0); /* Fallback color */
+
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+
 }
 
-.texto-emergente::after {
-  content: attr(data-text); /* Muestra el texto del atributo data-text */
-  position: sticky;
-  top: 100%; /* Coloca el texto debajo del emoji */
-  left: 50%;
-  transform: translateX(-50%); /* Centra el texto */
-  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
-  color: white; /* Texto blanco */
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 12px;
-  white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
-  opacity: 0; /* Oculta el texto por defecto */
-  visibility: hidden; /* Oculta el texto por defecto */
-  transition: opacity 0.3s ease, visibility 0.3s ease; /* Transición suave */
-  z-index: 1; /* Asegura que el texto esté por encima de otros elementos */
+
+
+/* Modal Content (image) */
+
+.modal-content {
+
+    Margin: auto;
+
+    Display: block;
+
+    Max-width: 80%;
+
+    Max-height: 80%;
+
 }
 
-.texto-emergente:hover::after {
-  opacity: 1; /* Muestra el texto al pasar el ratón */
-  visibility: visible; /* Muestra el texto al pasar el ratón */
+
+
+/* Add Animation */
+
+.modal-content {
+
+    -webkit-animation-name: zoom;
+
+    -webkit-animation-duration: 0.6s;
+
+    Animation-name: zoom;
+
+    Animation-duration: 0.6s;
+
 }
+
+
+
+@-webkit-keyframes zoom {
+
+    From {-webkit-transform:scale(0)}
+
+    To {-webkit-transform:scale(1)}
+
+}
+
+
+
+@keyframes zoom {
+
+    From {transform:scale(0)}
+
+    To {transform:scale(1)}
+
+}
+
+
+
+/* The Close Button */
+
+.close {
+
+    Position: absolute;
+
+    Top: 15px;
+
+    Right: 35px;
+
+    Color: #f1f1f1;
+
+    Font-size: 40px;
+
+    Font-weight: bold;
+
+    Transition: 0.3s;
+
+}
+
+
+
+.close:hover,
+
+.close:focus {
+
+    Color: #bbb;
+
+    Text-decoration: none;
+
+    Cursor: pointer;
+
+}
+
 ```
+
