@@ -1,3 +1,5 @@
+
+
 ```html
 <!DOCTYPE html>
 <html lang="es">
@@ -6,32 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestra Aventura</title>
     <link rel="stylesheet" href="site.css">
-    <style>
-        #emojiButton {
-            font-size: 2em;
-            border: none;
-            background: none;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
     <header>
-  <!-- Sección de botones de emojis con imágenes -->
+        <!-- Sección de botones de emojis con imágenes -->
         <section id="imageEmojis">
             <button id="emojiButton1">MI MUNDO</button>
-            <img id="myImage1" src="Paginaweb/media/imagen1.jpg" alt="Imagen 1" style="display:none;">
+            <img id="myImage1" src="Paginaweb/media/imagen1.jpg" alt="Imagen 1">
 
             <button id="emojiButton2">MI FELICIDAD</button>
-            <img id="myImage2" src="Paginaweb/media/imagen2.jpg" alt="Imagen 2" style="display:none;">
+            <img id="myImage2" src="Paginaweb/media/imagen2.jpg" alt="Imagen 2">
 
             <button id="emojiButton3">ME CRAZY</button>
-            <img id="myImage3" src="Paginaweb/media/imagen3.jpg" alt="Imagen 3" style="display:none;">
+            <img id="myImage3" src="Paginaweb/media/imagen3.jpg" alt="Imagen 3">
 
             <button id="emojiButton4">MY FAVORITE</button>
-            <img id="myImage4" src="Paginaweb/media/imagen4.jpg" alt="Imagen 4" style="display:none;">
+            <img id="myImage4" src="Paginaweb/media/imagen4.jpg" alt="Imagen 4">
         </section>
-    </main>
     </header>
 
     <main>
@@ -63,18 +56,18 @@
         </section>
 
         <!-- Sección de botones de emojis con imágenes -->
-        <section id="imageEmojis">
+        <section id="imageEmojis2">
             <button id="emojiButton1">❤️</button>
-            <img id="myImage1" src="Paginaweb/media/imagen1.jpg" alt="Imagen 1" style="display:none;">
+            <img id="myImage1" src="Paginaweb/media/imagen1.jpg" alt="Imagen 1">
 
             <button id="emojiButton2">😂</button>
-            <img id="myImage2" src="Paginaweb/media/imagen2.jpg" alt="Imagen 2" style="display:none;">
+            <img id="myImage2" src="Paginaweb/media/imagen2.jpg" alt="Imagen 2">
 
             <button id="emojiButton3">👍</button>
-            <img id="myImage3" src="Paginaweb/media/imagen3.jpg" alt="Imagen 3" style="display:none;">
+            <img id="myImage3" src="Paginaweb/media/imagen3.jpg" alt="Imagen 3">
 
             <button id="emojiButton4">🔥</button>
-            <img id="myImage4" src="Paginaweb/media/imagen4.jpg" alt="Imagen 4" style="display:none;">
+            <img id="myImage4" src="Paginaweb/media/imagen4.jpg" alt="Imagen 4">
         </section>
     </main>
 
@@ -83,27 +76,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function setupButton(buttonId, imageId) {
-                const emojiButton = document.getElementById(buttonId);
-                const myImage = document.getElementById(imageId);
-
-                emojiButton.addEventListener('click', function() {
-                    if (myImage.style.display === 'none') {
-                        myImage.style.display = 'block';
-                    } else {
-                        myImage.style.display = 'none';
-                    }
-                });
-            }
-
-            setupButton('emojiButton1', 'myImage1');
-            setupButton('emojiButton2', 'myImage2');
-            setupButton('emojiButton3', 'myImage3');
-            setupButton('emojiButton4', 'myImage4');
-        });
-    </script>
 </body>
 </html>
 ```
