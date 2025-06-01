@@ -1,0 +1,122 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestras Aventuras Iniciaron Aquí</title>
+    <link rel="stylesheet" href="site.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: sans-serif; /* Puedes cambiar la fuente si lo deseas */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Para evitar barras de desplazamiento */
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        #emojiButtonContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 50vh; /* Centra verticalmente */
+        }
+
+        #emojiButton {
+            background-image: url('media/corazon.jpg'); /* Reemplaza con la imagen que desees */
+            background-size: cover; /* Cubre todo el botón con la imagen */
+            background-repeat: no-repeat;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            width: 100px; /* Ajusta el tamaño del botón */
+            height: 100px;
+            border-radius: 50%; /* Hace el botón circular */
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 2em;
+            animation: fly 1s ease-out forwards;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px));
+                opacity: 0;
+            }
+        }
+
+        /* Estilos para los botones de imágenes emergentes */
+        .image-button {
+            width: 100px; /* Ajusta el tamaño según necesites */
+            height: 100px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 10px; /* Opcional: para bordes redondeados */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><b><i>ESTE ES NUESTRO FUTURO Y NADIE NOS VA A CAMBIAR LA META</i></b></h1>
+    </header>
+
+    <main>
+        <div style="display: flex; justify-content: center;">
+            <button class="image-button" style="background-image: url('media/Enamorado.jpg');" onclick="showAlert('Enamorado')"></button>
+            <button class="image-button" style="background-image: url('media/amor.jpg');" onclick="showAlert('Amor')"></button>
+            <button class="image-button" style="background-image: url('media/corazon.jpg');" onclick="showAlert('Corazon')"></button>
+            <button class="image-button" style="background-image: url('media/nuestro.jpg');" onclick="showAlert('Nuestro')"></button>
+        </div>
+        
+        <div id="emojiButtonContainer">
+            <button id="emojiButton"></button>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Pie de página -->
+    </footer>
+
+    <script>
+        const button = document.getElementById('emojiButton');
+        const container = document.getElementById('emojiButtonContainer');
+
+        button.addEventListener('click', function(e) {
+            for (let i = 0; i < 30; i++) {
+                createEmoji(e.clientX, e.clientY);
+            }
+        });
+
+        function createEmoji(x, y) {
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            emoji.innerHTML = '💖'; // Puedes cambiar el emoji
+            container.appendChild(emoji);
+
+            const size = Math.floor(Math.random() * 30) + 10;
+            emoji.style.fontSize = `${size}px`;
+
+            const xOffset = Math.random() * 200 - 100;
+            const yOffset = Math.random() * 200 - 100;
+
+        ...
