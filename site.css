@@ -109,4 +109,34 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+
+```css
+.texto-emergente {
+  position: relative;
+  cursor: pointer; /* Opcional: cambia el cursor al pasar el ratón */
+}
+
+.texto-emergente::after {
+  content: attr(data-text); /* Muestra el texto del atributo data-text */
+  position: sticky;
+  top: 100%; /* Coloca el texto debajo del emoji */
+  left: 50%;
+  transform: translateX(-50%); /* Centra el texto */
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+  color: white; /* Texto blanco */
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+  opacity: 0; /* Oculta el texto por defecto */
+  visibility: hidden; /* Oculta el texto por defecto */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Transición suave */
+  z-index: 1; /* Asegura que el texto esté por encima de otros elementos */
+}
+
+.texto-emergente:hover::after {
+  opacity: 1; /* Muestra el texto al pasar el ratón */
+  visibility: visible; /* Muestra el texto al pasar el ratón */
+}
 ```
