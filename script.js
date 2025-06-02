@@ -1,51 +1,62 @@
-// Selecciona todos los botones personalizados y el contenedor de la imagen animada
-const botones = document.querySelectorAll(".boton-personalizado");
-const imagenContainer = document.getElementById("imagen-container");
+// --- Modal para los botones emoji ---
+const emojiBtns = document.querySelectorAll('.emoji-btn');
+const modalBg = document.getElementById('modal-bg');
+const modalClose = document.getElementById('modal-close');
+const modalText = document.getElementById('modal-text');
 
-// Si hay menos imágenes, ajusta aquí los nombres según tu carpeta "media"
-const imagenesDisponibles = [
-    "Media/gutierrez.jpg",
-    "Media/andrea.jpg",
-    "Media/IMG-mi reina.jpg",
-    "Media/bañando_perro.jpg."
-];
-
-botones.forEach((boton, idx) => {
-    // Si algún botón no tiene data-img, asígnale una aleatoria de media
-    if(!boton.dataset.img) {
-        boton.dataset.img = imagenesDisponibles[idx % imagenesDisponibles.length];
-    }
-    boton.addEventListener("click", (e) => {
-        // Elimina imagen anterior
-        imagenContainer.innerHTML = '';
-        const imgSrc = boton.dataset.img;
-        const img = document.createElement("img");
-        img.src = imgSrc;
-        img.alt = "Foto especial";
-        img.className = "imagen-animada";
-        imagenContainer.appendChild(img);
-
-        // Calcula la posición del botón y centra la imagen emergente allí
-        const rect = boton.getBoundingClientRect();
-        // Tamaño de la imagen emergente
-        const imgWidth = Math.min(window.innerWidth * 0.8, 320);
-        const imgHeight = Math.min(window.innerHeight * 0.4, 220);
-        img.style.width = `${imgWidth}px`;
-        img.style.height = `${imgHeight}px`;
-        img.style.left = `${rect.left + rect.width/2 - imgWidth/2}px`;
-        img.style.top = `${rect.top + rect.height/2 - imgHeight/2}px`;
-
-        // Activa la animación después de insertar la imagen
-        setTimeout(() => {
-            img.classList.add("visible");
-        }, 10);
-
-        // Cierra imagen tras 4 segundos o si se hace click en la imagen
-        const cerrar = () => {
-            img.classList.remove("visible");
-            setTimeout(() => { img.remove(); }, 400);
-        };
-        setTimeout(cerrar, 4000);
-        img.addEventListener("click", cerrar);
-    });
+emojiBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    modalText.textContent = btn.getAttribute('data-texto');
+    modalBg.classList.add('active');
+  });
 });
+modalClose.addEventListener('click', () => {
+  modalBg.classList.remove('active');
+});
+modalBg.addEventListener('click', (e) => {
+  if (e.target === modalBg) modalBg.classList.remove('active');
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') modalBg.classList.remove('active');
+});
+
+// --- Slider/diapositiva especial ---
+const imagenes = [
+  "media/1.jpg",
+  "media/2.jpg",
+  "media/3.jpg",
+  "media/4.jpg"
+  // Agrega más imágenes si tienes
+];
+let sliderIndice = 0;
+let sliderInterval = null;
+
+function mostrarFoto(idx) {
+  const img = document.getElementById("slider-img");
+  if (img && imagenes.length > 0) {
+    sliderIndice = (idx + imagenes.length) % imagenes.length;
+    img.src = imagenes[sliderIndice];
+  }
+}
+
+function cambiarFoto(dir) {
+  mostrarFoto(sliderIndice + dir);
+}
+
+function iniciarDiapositiva() {
+  if (sliderInterval) clearInterval(sliderInterval);
+  sliderInterval = setInterval(() => cambiarFoto(1), 2400);
+}
+
+// Opcional: detener autoplay cuando se cambia manualmente
+document.querySelectorAll(".slider-controls button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (sliderInterval) {
+      clearInterval(sliderInterval);
+      sliderInterval = null;
+    }
+  });
+});
+
+// Inicializa la primera imagen
+mostrarFoto(0);
