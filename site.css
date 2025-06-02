@@ -1,5 +1,5 @@
 body {
-  background: #2eb6d1; /* Fondo de pantalla verde agua marina oscuro */
+  background: #00FFFF; /* Fondo de pantalla verde agua marina oscuro */
 }
 
 .emoji-btn,
@@ -11,7 +11,7 @@ body {
 .music-btn,
 .add-file-label,
 .galeria-img-agregar-label {
-  background: linear-gradient(90deg, #2eb6d1 60%, #80d0ff 100%) !important;
+  background: linear-gradient(90deg, #00FFFF 60%, #80d0ff 100%) !important;
   color: #fff !important;
 }
 
