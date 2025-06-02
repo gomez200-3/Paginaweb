@@ -11,14 +11,16 @@
   <main>
     <h1 class="avent-title">Aventuras Futuristas</h1>
     <div class="futurista-btns">
-      <button class="futurista-romantic-btn" onclick="abrirVideos()">
+      <button id="videos-btn" class="futurista-romantic-btn" onclick="abrirVideos()">
         🎬 Videos
       </button>
-      <button class="futurista-romantic-btn" onclick="abrirMusica()">
+      <button id="musica-btn" class="futurista-romantic-btn" onclick="abrirMusica()">
         🎵 Música
       </button>
-      <button class="futurista-romantic-btn" onclick="abrirGaleria()">
-        📸 Álbum de Pasatiempos
+      <button id="album-btn" class="futurista-romantic-btn" onclick="animarAvionPlatillo(); setTimeout(abrirGaleria,700);">
+        🛩 Álbum de Pasatiempos
+        <span id="avion" class="avion-anim">🛩</span>
+        <span id="platillo" class="platillo-anim">🛸</span>
       </button>
     </div>
     <div style="text-align:center; margin:20px 0;">
@@ -26,28 +28,13 @@
       <a href="index.html" class="romantic-link-btn secondary">🏡 Volver al Inicio</a>
     </div>
 
-    <!-- Reproductor de música oculto -->
+    <!-- Modal de Música -->
     <div id="musica-modal" class="modal-bg">
-      <div class="modal-content">
-        <span onclick="cerrarMusica()" class="modal-close">&times;</span>
-        <div style="margin-bottom:10px; color:#c80054; font-weight:bold;">Nuestra música especial</div>
-        <audio id="audio-player" controls style="width:100%;">
-          Tu navegador no soporta el audio.
-        </audio>
-        <div style="margin-top:8px;">
-          <button onclick="cambiarCancion(-1)">⏮</button>
-          <span id="cancion-nombre" style="color:#c80054; font-weight:bold;"></span>
-          <button onclick="cambiarCancion(1)">⏭</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Galería romántica -->
-    <div id="galeria-modal" class="modal-bg">
       <div class="modal-content galeria-content">
-        <span onclick="cerrarGaleria()" class="modal-close">&times;</span>
-        <div class="galeria-titulo">🌹 Nuestro Álbum de Pasatiempos 🌹</div>
-        <div id="galeria-imgs" class="galeria-imgs"></div>
+        <span onclick="cerrarMusica()" class="modal-close">&times;</span>
+        <div class="galeria-titulo">🎵 Nuestra música especial</div>
+        <div id="lista-canciones" class="lista-canciones"></div>
+        <audio id="audio-player" controls style="width:100%;margin-top:10px;display:none;"></audio>
       </div>
     </div>
 
@@ -56,14 +43,30 @@
       <div class="modal-content galeria-content">
         <span onclick="cerrarVideos()" class="modal-close">&times;</span>
         <div class="galeria-titulo">🎬 Nuestros Videos Juntos</div>
-        <div id="videos-galeria" class="galeria-videos"></div>
-        <div style="margin-top:10px;">
-          <button onclick="cambiarVideo(-1)">⏮ Anterior</button>
-          <span id="nombre-video" style="color:#c80054; font-weight:bold;"></span>
-          <button onclick="cambiarVideo(1)">Siguiente ⏭</button>
-        </div>
+        <div id="lista-videos" class="lista-videos"></div>
+        <video id="video-player" controls style="width:100%;margin-top:10px;display:none;border-radius:10px;box-shadow:0 2px 16px #0003"></video>
       </div>
     </div>
+
+    <!-- Modal de Imagen emergente romántica -->
+    <div id="img-modal" class="modal-bg">
+      <div class="img-modal-inner">
+        <span onclick="cerrarImgModal()" class="modal-close">&times;</span>
+        <img id="img-modal-src" src="" alt="Recuerdo" />
+      </div>
+    </div>
+
+    <!-- Galería romántica -->
+    <div id="galeria-modal" class="modal-bg">
+      <div class="modal-content galeria-content">
+        <span onclick="cerrarGaleria()" class="modal-close">&times;</span>
+        <div class="galeria-titulo" id="galeria-titulo">
+          💖🌷 Nuestro Álbum de Pasatiempos 🌷💖
+        </div>
+        <div id="galeria-imgs" class="galeria-imgs"></div>
+      </div>
+    </div>
+    <div id="explosion-emojis"></div>
   </main>
   <script src="aventuras2.js"></script>
 </body>
