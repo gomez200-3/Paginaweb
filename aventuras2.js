@@ -98,7 +98,6 @@ const imagenesGaleria = [
   "Media/IMG_20250406_210730.jpg",
   "Media/IMG-mi reina.jpg",
   "Media/20250503_182247.jpg",
-  // Agrega más imágenes si tienes en media
 ];
 
 function abrirGaleria() {
@@ -166,10 +165,10 @@ function animarAvionPlatillo() {
     avion.style.display = platillo.style.display = 'none';
     avion.classList.remove('avion-fly');
     platillo.classList.remove('platillo-fly');
-  }, 700);
+  }, 730);
 }
 
-// Cierra modales con Escape o click fuera de la imagen
+// Cierra modales con Escape
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     cerrarMusica();
