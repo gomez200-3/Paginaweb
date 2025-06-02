@@ -1,46 +1,43 @@
-// Explosión de emojis románticos
-function explosionEmojisGraffiti(x, y, emojis = ["💖", "💞", "💌", "❤️‍🔥", "🌷"], duration = 800) {
+// --- EMOJI MODAL
+const emojiBtns = document.querySelectorAll('.emoji-btn');
+const modalBg = document.getElementById('modal-bg');
+const modalClose = document.getElementById('modal-close');
+const modalText = document.getElementById('modal-text');
+emojiBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    modalText.textContent = btn.getAttribute('data-texto');
+    modalBg.classList.add('active');
+  });
+});
+modalClose.addEventListener('click', () => {
+  modalBg.classList.remove('active');
+});
+modalBg.addEventListener('click', (e) => {
+  if (e.target === modalBg) modalBg.classList.remove('active');
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') modalBg.classList.remove('active');
+});
+
+// --- EXPLOSIÓN de EMOJIS y REDIRECCIÓN
+function explosionEmojis(emojis, duration=800) {
   const explosion = document.getElementById('explosion-emojis');
   explosion.innerHTML = '';
-  for (let i = 0; i < 18; i++) {
+  for (let i=0; i<22; ++i) {
     const em = document.createElement('span');
-    em.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    em.textContent = emojis[Math.floor(Math.random()*emojis.length)];
     em.className = 'explosion-emoji';
-    em.style.left = `${x + (Math.random() - 0.5) * 60}px`;
-    em.style.top = `${y + (Math.random() - 0.5) * 30 + window.scrollY}px`;
-    em.style.setProperty('--tx', ((Math.random() - 0.5) * 220) + 'px');
-    em.style.setProperty('--ty', ((Math.random() - 0.5) * 160) + 'px');
+    em.style.left = (window.innerWidth/2 + (Math.random()-0.5)*180) + 'px';
+    em.style.top = (window.innerHeight/2 + (Math.random()-0.5)*120 + window.scrollY) + 'px';
+    em.style.setProperty('--tx', ((Math.random()-0.5)*330)+'px');
+    em.style.setProperty('--ty', ((Math.random()-0.5)*220)+'px');
     explosion.appendChild(em);
   }
   explosion.style.display = "block";
-  setTimeout(() => {
-    explosion.innerHTML = '';
-    explosion.style.display = "none";
-  }, duration);
+  setTimeout(() => { explosion.innerHTML = ''; explosion.style.display = "none"; }, duration);
 }
-
-// Animación y redirección botón "Ir a Recuerdos"
-document.getElementById('ir-recuerdos').onclick = function (e) {
-  const rect = this.getBoundingClientRect();
-  explosionEmojisGraffiti(rect.left + rect.width / 2, rect.top + rect.height / 2, undefined, 800);
-  setTimeout(() => {
-    window.location.href = "aventuras.html#recuerdos";
-  }, 800);
-};
-
-// Emoji buttons estilo futurista
-document.querySelectorAll('.emoji-btn-futurista').forEach(btn => {
-  btn.onclick = function (e) {
-    const mensaje = btn.getAttribute('data-msg');
-    abrirFuturistaModal(mensaje);
-  }
+document.getElementById('irRecuerdosBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  explosionEmojis(['💖','💞','❤️','🌷','💌','💋','💘','😍','🥰','💕'],800);
+  setTimeout(() => { window.location = "aventuras.html"; }, 800);
 });
-
-// Modal futurista
-function abrirFuturistaModal(txt) {
-  document.getElementById('modal-futurista-txt').textContent = txt;
-  document.getElementById('futurista-modal').classList.add('active');
-}
-function cerrarFuturistaModal() {
-  document.getElementById('futurista-modal').classList.remove('active');
-}
