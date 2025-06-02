@@ -1,153 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestras Aventuras</title>
-    <link rel="stylesheet" href="site.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nuestras Aventuras</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header>
-        <h1>Nuestras Aventuras</h1>
-    </header>
-    <main>
-        <!-- Sección de emojis con imágenes -->
-        <section id="imageEmojis">
-            <div class="image-container">
-                <button class="emoji" data-text="Cada día que pasa eres motivo de mi felicidad. Eres mi guía en este mundo impuro y antagonista. Eres mi Princesa">😍</button>
-                <button class="ver-imagen" data-image="Media/gutierrez.jpg">veo esto y te pienso</button>
-            </div>
-            <div class="image-container">
-                <button class="emoji" data-text="Como podré olvidar un día tan especial y maravilloso como lo fue el 22/02/2025 Te amo">🥴</button>
-                <button class="ver-imagen" data-image="Media/andrea.jpg">Ver imagen y recuerda este momento</button>
-            </div>
-            <div class="image-container">
-                <button class="emoji" data-text="Sabes que loco pensar que inicie con un proyecto personal y ahora te pongo texticos de amor en botones de una página web">❤️</button>
-                <button class="ver-imagen" data-image="Media/20250503_182247.jpg">Ver imagen x que te amo</button>
-            </div>
-            <div class="image-container">
-                <button class="emoji" data-text="Mi locura causa una inigualable explosión de sensaciones y sentimientos por ti sabes que te amo y me encantas">🦕</button>
-                <button class="ver-imagen" data-image="Media/IMG-mi reina.jpg">Ver imagen y dime que piensas</button>
-            </div>
-        </section>
-
-        <!-- Otros botones personalizados (puedes quitar o adaptar estos si no los necesitas) -->
-        <section>
-          <div class="botones">
-            <button class="boton-personalizado" data-img="Media/IMG-mi reina.jpg">veo esto y te pienso</button>
-            <button class="boton-personalizado" data-img="Media/IMG_20250406_210730.jpg">ver imagen y recuerda este momento</button>
-            <button class="boton-personalizado" data-img="Media/Recuerdo2202.jpg">ver imagen x que te amo</button>
-            <button class="boton-personalizado" data-img="Media/andrea.jpg">ver imagen. Y dime que piensas</button>
-            <button class="boton-personalizado" data-img="Media/gutierrez.jpg">ESTE DIA FUE TAN HERMOSO</button>
-          </div>
-          <div id="imagen-container"></div>
-        </section>
-
-        <!-- Botón para ir a Aventuras -->
-        <section id="aventuras">
-            <button id="botonAventuras">Nuestras Aventuras Iniciaron Aquí</button>
-        </section>
-
-        <!-- Modal para imágenes -->
-        <div id="myModal" class="modal" style="display:none;">
-            <div class="modal-content">
-                <span class="close" tabindex="0">&times;</span>
-                <img class="modal-image" id="modalImage" src="" alt="Imagen grande">
-            </div>
-        </div>
-
-        <!-- Slideshow -->
-        <section id="slideshow-section">
-            <h2>Diapositiva Especial</h2>
-            <img id="slide-img" src="" alt="Foto especial" style="max-width:90%;display:block;margin:auto;">
-            <div style="text-align:center;">
-                <button onclick="prevSlide()">⏪ Anterior</button>
-                <button onclick="iniciarDiapositiva()">▶️ Iniciar Diapositiva</button>
-                <button onclick="nextSlide()">Siguiente ⏩</button>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <!-- Pie de página -->
-    </footer>
-    <div class="tooltip" id="emojiTooltip" style="display:none;"></div>
-    <script src="script.js"></script>
-    <script>
-    // Modal para mostrar imagen al hacer click en los botones "Ver imagen..."
-    document.addEventListener("DOMContentLoaded", function() {
-        // Modal imagen
-        var modal = document.getElementById("myModal");
-        var modalImg = document.getElementById("modalImage");
-        var closeBtn = document.querySelector(".close");
-
-        document.querySelectorAll(".ver-imagen").forEach(function(btn) {
-            btn.addEventListener("click", function() {
-                modal.style.display = "block";
-                modalImg.src = this.getAttribute("data-image");
-            });
-        });
-
-        closeBtn.onclick = function() {
-            modal.style.display = "none";
-            modalImg.src = "";
-        };
-        closeBtn.onkeydown = function(e) {
-            if (e.key === "Enter" || e.key === " ") {
-                modal.style.display = "none";
-                modalImg.src = "";
-            }
-        };
-
-        // Cierra el modal si se hace click fuera de la imagen
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-                modalImg.src = "";
-            }
-        };
-
-        // Tooltip personalizado para emojis
-        const tooltip = document.getElementById('emojiTooltip');
-        document.querySelectorAll('.emoji').forEach(function(btn) {
-            btn.addEventListener('mouseenter', function(e) {
-                tooltip.textContent = btn.getAttribute('data-text');
-                tooltip.style.display = 'block';
-                let rect = btn.getBoundingClientRect();
-                tooltip.style.left = rect.left + window.scrollX + "px";
-                tooltip.style.top = rect.bottom + window.scrollY + 8 + "px";
-            });
-            btn.addEventListener('mouseleave', function() {
-                tooltip.style.display = 'none';
-            });
-            btn.addEventListener('focus', function(e) {
-                tooltip.textContent = btn.getAttribute('data-text');
-                tooltip.style.display = 'block';
-                let rect = btn.getBoundingClientRect();
-                tooltip.style.left = rect.left + window.scrollX + "px";
-                tooltip.style.top = rect.bottom + window.scrollY + 8 + "px";
-            });
-            btn.addEventListener('blur', function() {
-                tooltip.style.display = 'none';
-            });
-        });
-
-        // Lógica para mostrar imagen al hacer click en los botones personalizados:
-        document.querySelectorAll('.boton-personalizado').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                const imgContainer = document.getElementById('imagen-container');
-                imgContainer.innerHTML = '';
-                const img = document.createElement('img');
-                img.src = btn.getAttribute('data-img');
-                img.alt = btn.textContent;
-                img.style.maxWidth = '340px';
-                img.style.maxHeight = '60vh';
-                img.style.display = 'block';
-                img.style.margin = '12px auto';
-                img.style.borderRadius = '12px';
-                imgContainer.appendChild(img);
-            });
-        });
-    });
-    </script>
+  <header>
+    <h1>Nuestras Aventuras</h1>
+  </header>
+  <main>
+    <section class="aventuras">
+      <div class="aventura">
+        <span class="emoji">😍</span>
+        <button class="boton-personalizado" data-img="media/1.jpg">veo esto y te pienso</button>
+      </div>
+      <div class="aventura">
+        <span class="emoji">🥲</span>
+        <button class="boton-personalizado" data-img="media/2.jpg">Ver imagen y recuerda este momento</button>
+      </div>
+      <div class="aventura">
+        <span class="emoji">❤️</span>
+        <button class="boton-personalizado" data-img="media/3.jpg">Ver imagen x que te amo</button>
+      </div>
+      <div class="aventura">
+        <span class="emoji">🦕</span>
+        <button class="boton-personalizado" data-img="media/4.jpg">Ver imagen y dime que piensas</button>
+      </div>
+    </section>
+    <div id="imagen-container"></div>
+  </main>
 </body>
+<script src="script.js"></script>
 </html>
