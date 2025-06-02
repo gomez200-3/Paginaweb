@@ -3,71 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aventuras Futuristas</title>
+  <title>NUESTRAS AVENTURAS</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;700&family=Orbitron:wght@700&display=swap" />
   <link rel="stylesheet" href="site.css" />
 </head>
 <body>
-  <div class="gradient-bar"></div>
   <main>
-    <h1 class="avent-title">Aventuras Futuristas</h1>
+    <h1 class="futurista-title anim-futurista">NUESTRAS AVENTURAS</h1>
     <div class="futurista-btns">
-      <button id="videos-btn" class="futurista-romantic-btn" onclick="abrirVideos()">
-        🎬 Videos
-      </button>
-      <button id="musica-btn" class="futurista-romantic-btn" onclick="abrirMusica()">
-        🎵 Música
-      </button>
-      <button id="album-btn" class="futurista-romantic-btn" onclick="animarAvionPlatillo(); setTimeout(abrirGaleria,800);">
-        <span class="btn-emoji">🛩</span> Álbum de Pasatiempos
+      <button id="videos-btn" class="futurista-btn videos-btn">🎬 Videos</button>
+      <button id="musica-btn" class="futurista-btn musica-btn">🎵 Música</button>
+      <button id="album-btn" class="futurista-btn album-btn">🛩 Álbum de Pasatiempos
         <span id="avion" class="avion-anim">🛩</span>
         <span id="platillo" class="platillo-anim">🛸</span>
       </button>
     </div>
-    <div style="text-align:center; margin:20px 0;">
-      <a href="aventuras.html" class="romantic-link-btn secondary">⬅ Regresar a Recuerdos</a>
-      <a href="index.html" class="romantic-link-btn secondary">🏡 Volver al Inicio</a>
+    <div class="futurista-volver">
+      <a class="avent-btn volver-btn" href="#">Volver al Inicio</a>
     </div>
-
-    <!-- Modal de Música -->
-    <div id="musica-modal" class="modal-bg">
-      <div class="modal-content galeria-content">
-        <span onclick="cerrarMusica()" class="modal-close">&times;</span>
-        <div class="galeria-titulo">🎵 Nuestra música especial</div>
-        <div id="lista-canciones" class="lista-canciones"></div>
-        <audio id="audio-player" controls style="width:100%;margin-top:10px;display:none;"></audio>
-      </div>
-    </div>
-
-    <!-- Modal de Videos -->
-    <div id="videos-modal" class="modal-bg">
-      <div class="modal-content galeria-content">
-        <span onclick="cerrarVideos()" class="modal-close">&times;</span>
-        <div class="galeria-titulo">🎬 Nuestros Videos Juntos</div>
-        <div id="lista-videos" class="lista-videos"></div>
-        <video id="video-player" controls style="width:100%;margin-top:10px;display:none;border-radius:10px;box-shadow:0 2px 16px #0003"></video>
-      </div>
-    </div>
-
-    <!-- Modal de Imagen emergente romántica -->
-    <div id="img-modal" class="modal-bg">
-      <div class="img-modal-inner">
-        <span onclick="cerrarImgModal()" class="modal-close">&times;</span>
-        <img id="img-modal-src" src="" alt="Recuerdo" />
-      </div>
-    </div>
-
-    <!-- Galería romántica -->
-    <div id="galeria-modal" class="modal-bg">
-      <div class="modal-content galeria-content">
-        <span onclick="cerrarGaleria()" class="modal-close">&times;</span>
-        <div class="galeria-titulo" id="galeria-titulo">
-          🌷 Nuestro Álbum de Pasatiempos 🌷
-        </div>
-        <div id="galeria-imgs" class="galeria-imgs"></div>
-      </div>
-    </div>
+    <div id="contenido-futurista"></div>
+    <footer>
+      esto es una muestra de mi amor infinito por tu exclusiva forma de ser
+    </footer>
     <div id="explosion-emojis"></div>
-    <div id="animaciones-extras"></div>
   </main>
   <script src="aventuras2.js"></script>
 </body>
