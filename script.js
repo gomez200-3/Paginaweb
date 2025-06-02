@@ -22,10 +22,15 @@ document.addEventListener('keydown', (e) => {
 
 // --- Slider/diapositiva especial ---
 const imagenes = [
-  "media/1.jpg",
-  "media/2.jpg",
-  "media/3.jpg",
-  "media/4.jpg"
+  "Media/vamos_atardecer.jpg",
+  "Media/imagen_besando.jpg",
+  "Media/gutierrez.jpg",
+  "Media/andrea.jpg",
+  "Media/Vamos_tmfotos.jpg",
+  "Media/Recuerdo2202.jpg",
+  "Media/IMG_20250406_210730.jpg",
+  "Media/IMG-mi reina.jpg",
+  "Media/20250503_182247.jpg",
   // Agrega más imágenes si tienes
 ];
 let sliderIndice = 0;
