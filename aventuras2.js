@@ -1,8 +1,10 @@
 // --- Música ---
 const canciones = [
-  { archivo: "media/song1.mp3", nombre: "Nuestra Canción 1" },
-  { archivo: "media/song2.mp3", nombre: "Recuerdo Musical 2" },
-  // Agrega más aquí si tienes, con nombres románticos!
+  { archivo: "Media/Shawn Mendes - There_s Nothing Holdin_ Me Back _ Traducida al Español(M4A_128K).m4a", nombre: "pop en inglés" },
+  { archivo: "Media/Gabry Ponte - Exotica (Official Visualizer)(M4A_128K).m4a", nombre: "exotica" },
+  { archivo: "Media/Billie Eilish - ilomilo (Official Audio)(M4A_128K).m4a" , nombre: "my princess" },
+  { archivo: "Media/8. Apaga el Cel - Doble Porción _ The Colombians Ft. ZetaZeta _ Deejohend(M4A_128K).m4a" ,nombre: "doble porción"}
+    // Agrega más aquí si tienes, con nombres románticos!
 ];
 let cancionActual = 0;
 
@@ -29,10 +31,15 @@ function cambiarCancion(dir) {
 
 // --- Galería romántica ---
 const imagenesGaleria = [
-  "media/1.jpg",
-  "media/2.jpg",
-  "media/3.jpg",
-  "media/4.jpg"
+  "Media/vamos_atardecer.jpg",
+  "Media/imagen_besando.jpg",
+  "Media/gutierrez.jpg",
+  "Media/andrea.jpg",
+  "Media/Vamos_tmfotos.jpg",
+  "Media/Recuerdo2202.jpg",
+  "Media/IMG_20250406_210730.jpg",
+  "Media/IMG-mi reina.jpg",
+  "Media/20250503_182247.jpg",
   // Agrega más imágenes si tienes en media
 ];
 function abrirGaleria() {
