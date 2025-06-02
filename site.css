@@ -110,6 +110,50 @@ footer {
 }
 
 /* Botones */
+
+/* Mejora visual para los botones con emoji */
+.emoji {
+  display: inline-block;
+  background: linear-gradient(135deg, #fff5f8 0%, #d0f1ff 100%);
+  color: #ba1841;
+  border: none;
+  border-radius: 20px;
+  font-size: 2.2em;
+  padding: 18px 38px;
+  margin: 18px 10px;
+  box-shadow: 0 4px 16px #ba184122, 0 1.5px 4px #1976d211;
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.15s;
+  outline: none;
+  font-family: inherit;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  min-width: 90vw;  /* Para que ocupen casi todo el ancho en móvil */
+  max-width: 97vw;
+  text-align: center;
+}
+
+.emoji:hover,
+.emoji:focus-visible {
+  background: linear-gradient(135deg, #ffe0ed 10%, #b4e6fc 100%);
+  transform: scale(1.07) rotate(-2deg);
+  box-shadow: 0 8px 24px #1976d233;
+  color: #1976d2;
+}
+
+.emoji:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 6px #ba184133;
+}
+
+@media (min-width: 700px) {
+  .emoji {
+    min-width: 300px;
+    max-width: 400px;
+    font-size: 2.4em;
+  }
+}
+
 .button-center {
   display: flex;
   justify-content: center;
