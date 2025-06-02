@@ -21,17 +21,18 @@ function explosionCorazones(btn) {
   }, 500);
 }
 
-// Audio global para la canción
-const audio = new Audio('Media/Afaz Natural - Deseo Saber (Video Oficial)(M4A_128K).m4a');
-audio.preload = "auto";
+// Audio global para la canción (se usa solo en index.html y aventuras.html)
+// Puedes eliminar esto si solo quieres el reproductor en aventuras2.html
+const audioBase = new Audio('Media/Afaz Natural - Deseo Saber (Video Oficial)(M4A_128K).m4a');
+audioBase.preload = "auto";
 
 // Play audio (reinicia si ya estaba sonando)
-function playSong() {
-  audio.currentTime = 0;
-  audio.play();
+function playSongBase() {
+  audioBase.currentTime = 0;
+  audioBase.play();
 }
 
-// SLIDESHOW (ahora con imágenes locales)
+// SLIDESHOW (index.html y aventuras.html, no afecta aventuras2.html)
 const slideImages = [
   'Media/andrea.jpg',
   'Media/gutierrez.jpg',
@@ -60,7 +61,7 @@ function nextSlide() {
 
 // Cuando se inicia la sección de diapositivas, reproduce el audio
 function iniciarDiapositiva() {
-  playSong();
+  playSongBase();
   const section = document.getElementById('slideshow-section');
   if (section) {
     section.scrollIntoView({ behavior: "smooth" });
@@ -68,7 +69,6 @@ function iniciarDiapositiva() {
   showSlide(currentSlide); // Para mostrar la imagen actual si no se ha mostrado aún
 }
 
-// ---- NUEVO: Enlazando la interactividad de la página ----
 document.addEventListener("DOMContentLoaded", function() {
   // Iniciar aventura en la página principal
   const botonAventuras = document.getElementById('botonAventuras');
@@ -76,12 +76,19 @@ document.addEventListener("DOMContentLoaded", function() {
     botonAventuras.addEventListener('click', function(e) {
       explosionCorazones(this);
       setTimeout(() => {
-        window.location.href = "aventuras2.html";
+        // Cambia según el archivo donde estés:
+        // En index.html va a aventuras.html
+        // En aventuras.html va a aventuras2.html
+        if (window.location.pathname.includes('aventuras.html')) {
+          window.location.href = "aventuras2.html";
+        } else {
+          window.location.href = "aventuras.html";
+        }
       }, 600); // Pequeño delay para ver la animación
-      playSong();
+      playSongBase();
     });
   }
 
-  // Mostrar primer slide al cargar la página
+  // Mostrar primer slide al cargar la página (solo si existe slideshow)
   showSlide(currentSlide);
 });
