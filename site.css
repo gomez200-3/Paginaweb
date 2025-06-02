@@ -5,446 +5,409 @@ body {
   color: #fff;
   min-height: 100vh;
 }
+
 main {
-  min-height: 96vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content:flex-start;
-}
-footer {
-  width: 100vw;
-  text-align: center;
-  color: #ffe6ff;
-  font-size: 1.1em;
-  margin-top: 30px;
-  padding: 14px 0 10px 0;
-  background: rgba(0,0,0,0.18);
-  letter-spacing: 0.4px;
-  font-family: 'Pacifico', cursive;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 15px 5px 60px 5px;
 }
 
-.emoji-section {
-  margin-top: 30px;
-  margin-bottom: 18px;
-  width: 95vw;
-}
-.emoji-btns {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-}
-.emoji-btn {
+.portada-titulo,
+.futurista-title,
+.anim-title {
   font-size: 2.2em;
-  background: linear-gradient(145deg, #ff80bf 25%, #80d0ff 70%);
-  border: none;
-  border-radius: 18px;
-  box-shadow: 0 2px 22px #ff00a860;
-  padding: 18px 18px;
+  text-align: center;
+  font-family: 'Orbitron', 'Permanent Marker', cursive, sans-serif;
   color: #fff;
-  cursor: pointer;
-  transition: box-shadow 0.18s, transform 0.18s;
-  outline: none;
-  position: relative;
-}
-.emoji-btn:hover, .emoji-btn:focus {
-  box-shadow: 0 6px 28px #fff;
-  transform: scale(1.15) rotate(-4deg);
+  margin: 25px 0 15px 0;
+  letter-spacing: 0.06em;
+  filter: drop-shadow(0 0 7px #80d0ff) drop-shadow(0 0 14px #ff80bf);
+  animation: neonPulse 1.8s infinite alternate;
 }
 
-.portada-section {
-  margin: 45px 0 0 0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-.portada-titulo {
-  font-family: 'Permanent Marker', cursive;
-  color: #fff;
-  font-size: 2.6em;
-  margin-bottom: 36px;
-  text-shadow: 2px 4px 14px #ff00a8a1, 0 0 6px #000;
-  letter-spacing: 2.5px;
+@keyframes neonPulse {
+  0% { text-shadow: 0 0 6px #ff80bf, 0 0 18px #80d0ff;}
+  100% { text-shadow: 0 0 16px #ff80bf, 0 0 26px #80d0ff;}
 }
 
 .graffiti {
   font-family: 'Permanent Marker', cursive;
-  letter-spacing: 3px;
-  color: #fff;
-  font-size: 2.1em;
-  text-shadow: 2px 3px 12px #ff00a880, 0 0 7px #00008b;
+  letter-spacing: 0.03em;
+  font-size: 1.4em;
+  color: #ff80bf;
+  text-shadow: 0 2px 9px #80d0ff, 0 0 18px #fff3;
 }
 
-.recuerdos-btn {
-  font-family: 'Permanent Marker', cursive;
-  background: #fff;
-  color: #000080;
-  font-size: 2em;
-  padding: 16px 38px;
-  border-radius: 45px;
-  margin-top: 25px;
-  box-shadow: 0 4px 32px #ff00a860;
-  border: 2.5px solid #ff80bf;
-  text-decoration: none;
-  transition: background 0.23s, color 0.23s, transform 0.18s;
-  display: inline-block;
-  cursor: pointer;
-  letter-spacing: 3.5px;
-  position: relative;
-  z-index:2;
-  overflow: hidden;
+.emoji-section {
+  margin: 20px 0 0 0;
+  text-align: center;
 }
-.recuerdos-btn:hover, .recuerdos-btn:focus {
-  background: #ff80bf;
+.emoji-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 13px;
+}
+.emoji-btn {
+  font-size: 1.7em;
+  padding: 7px 18px;
+  background: linear-gradient(90deg, #ff80bf 60%, #80d0ff 100%);
+  border: none;
+  border-radius: 22px;
   color: #fff;
-  transform: scale(1.09) rotate(-2deg);
+  cursor: pointer;
+  box-shadow: 0 2px 10px #ff00a840;
+  transition: background 0.22s, transform 0.14s;
+}
+.emoji-btn:hover,
+.emoji-btn:focus {
+  background: linear-gradient(90deg, #80d0ff 60%, #ff80bf 100%);
+  transform: scale(1.11);
+  outline: none;
+}
+
+.portada-section {
+  margin: 30px 0 18px 0;
+  text-align: center;
+}
+.recuerdos-btn {
+  display: inline-block;
+  padding: 14px 44px;
+  background: linear-gradient(90deg, #80d0ff 60%, #ff80bf 100%);
+  border-radius: 22px;
+  font-size: 1.23em;
+  color: #fff;
+  font-family: 'Pacifico', cursive;
+  margin: 18px 0 0 0;
+  box-shadow: 0 2px 10px #ff80bf70;
+  text-decoration: none;
+  transition: background 0.23s, color 0.13s, transform 0.15s;
+}
+.recuerdos-btn:hover {
+  background: linear-gradient(90deg, #ff80bf 60%, #80d0ff 100%);
+  color: #fff;
+  transform: scale(1.06);
+}
+
+footer {
+  font-family: 'Pacifico', cursive;
+  color: #fff;
+  background: #00005a70;
+  border-radius: 8px;
+  padding: 9px 20px;
+  margin: 38px 0 0 0;
+  text-align: center;
+  font-size: 1.07em;
+  letter-spacing: 0.03em;
+}
+
+#explosion-emojis {
+  position: absolute;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 399;
+  display: none;
+}
+.explosion-emoji {
+  position: absolute;
+  font-size: 2em;
+  will-change: transform;
+  animation: emojiExplode 0.8s cubic-bezier(.6,1.84,.47,-0.21);
+}
+@keyframes emojiExplode {
+  from { opacity: 1; transform: translate(0,0) scale(1);}
+  to {
+    opacity: 0;
+    transform: translate(var(--tx,0),var(--ty,0)) scale(1.7) rotate(-16deg);
+  }
 }
 
 .modal-bg {
-  display: none;
   position: fixed;
-  z-index: 1500;
-  left: 0; top: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.65);
-  align-items: center;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: #0007;
+  display: none;
+  z-index: 9999;
   justify-content: center;
+  align-items: center;
+  transition: background 0.22s;
 }
 .modal-bg.active {
   display: flex;
 }
 .modal-content {
-  background: #001145;
-  border-radius: 20px;
-  box-shadow: 0 2px 32px #ff00a8a8;
-  padding: 36px 24px 26px 24px;
-  max-width: 330px;
-  text-align: center;
+  background: linear-gradient(135deg, #80d0ff54 0%, #ff80bf54 100%);
+  border-radius: 18px;
+  padding: 24px 21px 18px 21px;
+  min-width: 250px;
+  min-height: 60px;
+  box-shadow: 0 2px 18px #ff80bf40;
   position: relative;
-  animation: modalIn 0.32s cubic-bezier(.57,1.7,.6,1);
-  color: #ff84c4;
-  border: 2px solid #80d0ff;
+  animation: modalShow 0.22s;
 }
-@keyframes modalIn {
-  0% {transform: scale(0.7) translateY(70px);}
-  100% {transform: scale(1) translateY(0);}
+@keyframes modalShow {
+  from { opacity: 0; transform: scale(0.7);}
+  to { opacity: 1; transform: scale(1);}
 }
 .modal-close {
   position: absolute;
-  top: 11px;
-  right: 20px;
-  font-size: 1.6em;
+  right: 8px; top: 8px;
+  font-size: 1.2em;
   cursor: pointer;
-  color: #ff80bf;
-  opacity: 0.76;
-  transition: color 0.15s;
+  color: #fff;
+  background: #ff80bf;
+  border-radius: 50%;
+  padding: 2px 9px;
+  transition: background 0.18s;
 }
-.modal-close:hover { color: #fff; }
-#modal-text {
-  color: #a4f6ff;
-  font-size: 1.22rem;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: bold;
-  margin-top: 10px;
-  text-shadow: 0 0 10px #80d0ff;
+.modal-close:hover {
+  background: #80d0ff;
+  color: #fff;
 }
 
-.anim-title {
-  font-size: 2.7em;
+.modal-futurista {
+  font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+  background: linear-gradient(135deg, #80d0ff38 0%, #ff80bf38 100%);
   color: #fff;
+}
+
+.img-modal-inner {
   text-align: center;
-  margin-top: 40px;
-  font-family: 'Pacifico', cursive;
-  animation: titleFadeIn 1.2s cubic-bezier(.5,1.9,.7,1.05);
-  letter-spacing: 3px;
 }
-@keyframes titleFadeIn {
-  0% {opacity:0;transform:translateY(-60px) scale(0.7);}
-  100% {opacity:1;transform:translateY(0) scale(1);}
-}
-.avent-subtext {
-  text-align:center;
-  font-size: 1.3em;
-  color: #d3eaff;
-  font-family: 'Orbitron', sans-serif;
-  margin-bottom: 35px;
-  margin-top: 12px;
-  letter-spacing: 1.2px;
-  animation: fadeIn 1.6s cubic-bezier(.5,1.1,.8,1.05);
-}
-@keyframes fadeIn {
-  0% {opacity:0;}
-  100%{opacity:1;}
+.img-modal-inner img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 18px;
+  margin: 0 0 8px 0;
 }
 
-/* Aventuras botones */
-.avent-btns {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  margin-top: 55px;
-}
-.avent-btn {
-  font-size: 1.7em;
-  font-family: 'Pacifico', cursive;
-  background: linear-gradient(90deg, #ff80bf 60%, #80d0ff 100%);
+/* --- Sección Futurista (aventuras2.html) --- */
+.futurista-title, .anim-futurista {
+  font-size: 2.25em;
+  letter-spacing: 0.08em;
+  margin-top: 25px;
+  text-shadow: 0 2px 20px #80d0ff, 0 0 24px #ff80bf;
   color: #fff;
-  border: none;
-  border-radius: 2em;
-  padding: 14px 34px;
-  box-shadow: 0 2px 26px #ff00a850;
-  text-decoration: none;
-  cursor: pointer;
-  letter-spacing: 2px;
-  margin: 0 0 0 0;
-  display: block;
-  transition: background 0.18s, color 0.18s, transform 0.15s;
-  position: relative;
-  z-index:2;
-  outline: none;
-}
-.avent-btn:hover, .avent-btn:focus {
-  background: linear-gradient(90deg, #80d0ff 60%, #ff80bf 100%);
-  color: #fff;
-  transform: scale(1.08) rotate(-2deg);
-}
-.continuar-btn { margin-bottom: 20px; }
-.volver-btn   { background: linear-gradient(90deg, #80d0ff 60%, #ff80bf 100%); color:#fff;}
-.volver-btn:hover { background: linear-gradient(90deg, #ff80bf 60%, #80d0ff 100%); color:#fff; }
-
-/* NUESTRAS AVENTURAS */
-.futurista-title {
-  font-size: 2.8em;
-  color: #ff80bf;
-  font-family: 'Orbitron', cursive;
-  text-align:center;
-  margin-top: 38px;
-  margin-bottom: 34px;
-  letter-spacing: 6px;
-  text-shadow: 0 0 22px #80d0ff, 0 0 14px #fff, 0 0 6px #00008b;
-  background: linear-gradient(90deg,#ff80bf 30%, #80d0ff 70%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: titleGlow 2.5s infinite alternate;
-}
-@keyframes titleGlow {
-  0% {text-shadow: 0 0 12px #80d0ff, 0 0 7px #fff;}
-  100% {text-shadow: 0 0 32px #80d0ff, 0 0 21px #fff;}
-}
-.anim-futurista {animation: futuristaIntro 1.3s cubic-bezier(.6,2,.7,1);}
-@keyframes futuristaIntro {
-  0% {opacity:0;transform:scale(0.6) rotate(-8deg);}
-  100%{opacity:1;transform:scale(1) rotate(0);}
+  font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
 }
 .futurista-btns {
   display: flex;
   justify-content: center;
+  gap: 18px;
+  margin: 30px 0 24px 0;
   flex-wrap: wrap;
-  gap: 22px;
-  margin: 35px 0 10px 0;
 }
 .futurista-btn {
-  font-size: 1.3em;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  background: linear-gradient(120deg, #ff80bf 60%, #80d0ff 100%);
+  background: linear-gradient(90deg, #ff80bf 60%, #80d0ff 100%);
   color: #fff;
+  border-radius: 18px;
+  padding: 13px 26px;
+  font-size: 1.12em;
   border: none;
-  border-radius: 2em;
-  padding: 16px 36px;
-  box-shadow: 0 2px 26px #ff00a840;
+  font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+  text-shadow: 0 1px 10px #fff7, 0 0 7px #ff80bf;
   cursor: pointer;
-  margin: 0 8px;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.22s, color 0.22s, transform 0.18s;
-  outline: none;
-  letter-spacing: 2px;
-  z-index:2;
+  margin: 0 0 12px 0;
+  box-shadow: 0 2px 10px #ff80bf70;
+  transition: background 0.19s, color 0.16s, transform 0.14s;
 }
-.futurista-btn:hover, .futurista-btn:focus {
-  background: linear-gradient(120deg, #80d0ff 56%, #ff80bf 100%);
+.futurista-btn:hover,
+.futurista-btn:focus {
+  background: linear-gradient(90deg, #80d0ff 60%, #ff80bf 100%);
   color: #fff;
-  transform: scale(1.10) rotate(-2deg);
+  transform: scale(1.07);
+  outline: none;
 }
 
 .futurista-volver {
-  margin: 38px 0 0 0;
-  display:flex; justify-content:center;
+  margin: 26px auto 20px auto;
+  text-align: center;
 }
 
-#contenido-futurista {
-  width: 95vw;
-  max-width: 600px;
-  margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  min-height: 150px;
+.galeria-titulo {
+  font-family: 'Pacifico', cursive;
+  color: #ff80bf;
+  font-size: 1.29em;
+  margin: 14px 0 19px 0;
+  letter-spacing: 0.03em;
+  text-align: center;
+  text-shadow: 0 1px 12px #80d0ff;
 }
 
-/* Explosión de emojis */
-#explosion-emojis {
-  position: fixed;
-  left:0; top:0; width:100vw; height:100vh;
-  pointer-events: none;
-  z-index: 2000;
-}
-.explosion-emoji {
-  position: absolute;
-  font-size: 2.2em;
-  opacity: 0.87;
-  animation: explote 0.7s cubic-bezier(.5,2,.6,1) forwards;
-}
-@keyframes explote {
-  0% { transform: scale(0.5) translate(0,0); opacity:1;}
-  90% { opacity: 1;}
-  100% { transform: scale(1.5) translate(var(--tx), var(--ty)); opacity:0;}
-}
-
-/* Animación avión y platillo */
-#avion, #platillo {
-  position: absolute;
-  pointer-events: none;
-  font-size: 1.7em;
-  left: 14px;
-  top: 12px;
-  z-index: 10;
-  display: none;
-}
-#platillo {left: 55px; top: 22px;}
-.avion-fly {
-  animation: flyAvion 0.7s cubic-bezier(.8,2,.4,1) forwards;
-}
-.platillo-fly {
-  animation: flyPlatillo 0.7s cubic-bezier(.8,2,.4,1) forwards;
-}
-@keyframes flyAvion {
-  0% {left:14px; top:12px;}
-  90%{ opacity:1;}
-  100% {left:52vw; top:18vh; opacity:0;}
-}
-@keyframes flyPlatillo {
-  0% {left:55px; top:22px;}
-  90%{ opacity:1;}
-  100% {left:54vw; top:19vh; opacity:0;}
-}
-
-/* Lista de canciones y videos */
 .lista-canciones, .lista-videos {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-bottom: 18px;
-  align-items:center;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 12px;
 }
 .cancion-list-btn, .video-list-btn {
   background: linear-gradient(90deg, #ff80bf 60%, #80d0ff 100%);
   color: #fff;
+  border-radius: 14px;
+  font-size: 1em;
   border: none;
-  border-radius: 20px;
-  font-size: 1.11rem;
-  font-weight: bold;
-  padding: 13px 28px;
-  box-shadow: 0 2px 12px #ff00a820;
+  padding: 9px 20px;
+  font-family: 'Montserrat', cursive, sans-serif;
+  margin: 0;
+  box-shadow: 0 1px 5px #80d0ff4a;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, transform 0.14s;
-  letter-spacing: 0.7px;
-  text-align:left;
-  font-family: 'Orbitron', sans-serif;
-  outline: none;
+  letter-spacing: 0.01em;
+  transition: background 0.19s, color 0.13s, transform 0.13s;
+  display: flex;
+  align-items: center;
+}
+.cancion-list-btn span, .video-list-btn span {
+  margin-right: 8px;
 }
 .cancion-list-btn:hover, .video-list-btn:hover {
-  background: linear-gradient(90deg, #80d0ff 56%, #ff80bf 100%);
-  color: #fff;
-  transform: scale(1.10);
+  background: linear-gradient(90deg, #80d0ff 60%, #ff80bf 100%);
+  transform: scale(1.07);
 }
 
-/* Album Galería */
-.galeria-titulo {
-  color: #ff80bf;
-  text-align: center;
-  margin-bottom: 18px;
-  font-size: 1.22rem;
-  font-family: 'Pacifico', cursive;
-  font-weight: bold;
-  letter-spacing: 1.3px;
+.music-controls, .video-controls {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin: 20px 0 8px 0;
 }
+.music-btn {
+  background: linear-gradient(135deg, #ff80bf 40%, #80d0ff 100%);
+  border: none;
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  font-size: 2em;
+  color: #fff;
+  box-shadow: 0 2px 18px #ff00a870;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.16s, box-shadow 0.22s;
+  margin: 0;
+  outline: none;
+}
+.music-btn:active {
+  transform: scale(0.92);
+  box-shadow: 0 1px 3px #fff;
+  animation: pulseBtn 0.3s;
+}
+@keyframes pulseBtn {
+  0% { box-shadow: 0 0 0 0 #fff3; }
+  100% { box-shadow: 0 0 18px 12px transparent; }
+}
+
+/* Botón para agregar archivos de música, video, imagen */
+.add-file-control {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 0 0;
+}
+.add-file-label {
+  background: linear-gradient(90deg, #80d0ff 60%, #ff80bf 100%);
+  color: #fff;
+  border-radius: 18px;
+  padding: 10px 22px;
+  font-size: 1.05em;
+  box-shadow: 0 2px 12px #ff00a840;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: background 0.18s, color 0.18s, transform 0.15s;
+}
+.add-file-label:hover {
+  background: linear-gradient(90deg, #ff80bf 60%, #80d0ff 100%);
+  color: #fff;
+  transform: scale(1.09);
+}
+
 .galeria-imgs {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 13px;
   justify-content: center;
-  margin: 0 auto;
+  margin: 0 0 18px 0;
 }
 .galeria-img-romantica {
-  background: linear-gradient(120deg, #ff80bf 30%, #80d0ff 100%);
-  border-radius: 16px;
-  box-shadow: 0 2px 18px #ff00a828;
-  padding: 8px 8px 18px 8px;
   position: relative;
-  width: 120px;
-  transition: transform 0.17s, box-shadow 0.2s;
-  margin-bottom: 6px;
+  background: linear-gradient(135deg, #ff80bf29 0%, #80d0ff25 100%);
+  border-radius: 14px;
+  padding: 8px 8px 1px 8px;
+  box-shadow: 0 2px 10px #ff80bf33;
+  cursor: pointer;
+  margin-bottom: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.15s, transform 0.13s;
 }
 .galeria-img-romantica:hover {
-  transform: scale(1.10) rotate(-3deg);
-  box-shadow: 0 8px 32px #ff00a850;
+  box-shadow: 0 4px 18px #ff80bf60;
+  transform: scale(1.07);
 }
 .galeria-img-romantica img {
-  width: 100%;
-  height: 90px;
-  border-radius: 12px;
-  object-fit: cover;
-  box-shadow: 0 2px 8px #ff00a820;
+  max-width: 95px;
+  max-height: 90px;
+  border-radius: 10px;
+  display: block;
 }
-.galeria-img-romantica .corazon {
-  text-align: center;
-  width: 100%;
-  font-size: 1.2em;
-  color: #ff0080;
-  margin-top: 7px;
-  animation: lateHeart .7s cubic-bezier(.5,2,.5,1) 1;
-}
-@keyframes lateHeart {
-  0% {transform: scale(0.2);}
-  100% {transform: scale(1);}
+.corazon {
+  font-size: 1.12em;
+  color: #ff80bf;
+  margin: 4px 0 2px 0;
 }
 .galeria-img-agregar {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
-  height: 90px;
-  border-radius: 12px;
-  background: #fff2fa;
-  box-shadow: 0 2px 8px #ff00a820;
-  cursor: pointer;
-  color: #ff80bf;
-  font-size: 2em;
-  border: 2px dashed #ff80bf;
-  margin-top: 6px;
-  transition: background 0.2s, color 0.2s, transform 0.17s;
-}
-.galeria-img-agregar:hover {
-  background: #ff80bf;
-  color: #fff;
-  transform: scale(1.09);
-}
-.galeria-img-agregar input[type="file"] {
-  display: none;
 }
 .galeria-img-agregar-label {
+  background: linear-gradient(90deg, #ff80bf 60%, #80d0ff 100%);
+  color: #fff;
+  border-radius: 18px;
+  padding: 10px 20px;
+  font-size: 1em;
+  box-shadow: 0 1px 6px #ff80bf5a;
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1em;
-  color: #ff80bf;
-  margin-left: 6px;
+  margin: 0 0 0 0;
+  transition: background 0.15s, color 0.15s, transform 0.13s;
+}
+.galeria-img-agregar-label:hover {
+  background: linear-gradient(90deg, #80d0ff 60%, #ff80bf 100%);
+  color: #fff;
+  transform: scale(1.07);
 }
 
-/* Modal de Imagen romántica */
-#img-modal.active{display:flex;}
-#img-modal {display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.37);z-index:1100;align-items:center;justify-content:center;}
-.img-modal-inner{position:relative;background:#001145;border-radius:22px;box-shadow:0 2px 32px #ff00a8a8;padding:18px 8px;text-align:center;max-width:98vw;}
-.img-modal-inner img{max-width:90vw;max-height:70vh;border-radius:18px;box-shadow:0 2px 32px #ff00a865;}
+/* Notas estilo blog */
+.nota-item {
+  background: linear-gradient(90deg,#ff80bf2c 60%, #80d0ff2c 100%);
+  margin: 5px 0;
+  border-radius: 8px;
+  padding: 7px 9px;
+  color:#fff;
+  font-size:1em;
+  font-family: 'Montserrat', sans-serif;
+  word-break: break-word;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  main {
+    padding: 12px 1vw 50px 1vw;
+  }
+  .portada-titulo, .futurista-title, .anim-title {
+    font-size: 1.2em;
+  }
+  .galeria-img-romantica img {
+    max-width: 65px;
+    max-height: 60px;
+  }
+  .futurista-btn, .recuerdos-btn {
+    font-size: 1em;
+    padding: 11px 9vw;
+  }
+  .emoji-btn {
+    font-size: 1.22em;
+  }
+    }
