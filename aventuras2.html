@@ -1,111 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Más Aventuras</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="site.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aventuras Futuristas</title>
+  <link rel="stylesheet" href="site.css" />
 </head>
 <body>
-  <header>
-    <h1>Más Aventuras</h1>
-    <p>¡Sigue explorando nuevas emociones!</p>
-  </header>
+  <div class="gradient-bar"></div>
   <main>
-    <ul class="adventure-list">
-      <li>
-        <img src="Media/andrea.jpg" alt="Andrea" class="adventure-img">
-        <div>
-          <div class="adventure-title">Exploración de Glaciares</div>
-          <p class="adventure-desc">Camina sobre el hielo y disfruta de paisajes únicos en los glaciares más impresionantes del mundo.</p>
-          <button class="start-btn" onclick="explosionCorazones(this)">Iniciar aventura</button>
-        </div>
-      </li>
-      <li>
-        <img src="Media/gutierrez.jpg" alt="Gutierrez" class="adventure-img">
-        <div>
-          <div class="adventure-title">Senderismo en el Bosque</div>
-          <p class="adventure-desc">Recorre senderos rodeados de naturaleza y respira aire puro en los bosques más hermosos.</p>
-          <button class="start-btn" onclick="explosionCorazones(this)">Iniciar aventura</button>
-        </div>
-      </li>
-      <li>
-        <img src="Media/IMG-mi reina.jpg" alt="Mi Reina" class="adventure-img">
-        <div>
-          <div class="adventure-title">Aventura en la Isla</div>
-          <p class="adventure-desc">Descubre islas paradisíacas y vive una experiencia inolvidable entre playas y palmeras.</p>
-          <button class="start-btn" onclick="explosionCorazones(this)">Iniciar aventura</button>
-        </div>
-      </li>
-    </ul>
+    <h1 class="avent-title">Aventuras Futuristas</h1>
+    <div class="futurista-btns">
+      <button class="futurista-romantic-btn" onclick="alert('¡Pronto podrás ver nuestros videos aquí! 💫')">
+        🎬 Videos
+      </button>
+      <button class="futurista-romantic-btn" onclick="abrirMusica()">
+        🎵 Música
+      </button>
+      <button class="futurista-romantic-btn" onclick="abrirGaleria()">
+        📸 Álbum de Pasatiempos
+      </button>
+    </div>
+    <div style="text-align:center; margin:20px 0;">
+      <a href="aventuras.html" class="romantic-link-btn secondary">⬅ Regresar a Recuerdos</a>
+      <a href="index.html" class="romantic-link-btn secondary">🏡 Volver al Inicio</a>
+    </div>
 
-    <!-- REPRODUCTOR DE MÚSICA CON IMAGEN DE PORTADA -->
-    <section id="music-section">
-      <h2>Música Especial</h2>
-      <img id="cover-img" src="Media/IMG-mi reina.jpg" alt="Portada especial" style="width:100%;max-width:300px;display:block;margin:auto;border-radius:12px;box-shadow:0 2px 8px #ba184120;">
-      <div style="text-align:center; margin:18px 0;">
-        <button class="slide-btn" onclick="prevSong()">⏮️ Anterior</button>
-        <button class="slide-btn" onclick="playRandomSong()">▶️ Iniciar Música</button>
-        <button class="slide-btn" onclick="nextSong()">Siguiente ⏭️</button>
+    <!-- Reproductor de música oculto -->
+    <div id="musica-modal" class="modal-bg">
+      <div class="modal-content">
+        <span onclick="cerrarMusica()" class="modal-close">&times;</span>
+        <div style="margin-bottom:10px; color:#c80054; font-weight:bold;">Nuestra música especial</div>
+        <audio id="audio-player" controls style="width:100%;">
+          Tu navegador no soporta el audio.
+        </audio>
+        <div style="margin-top:8px;">
+          <button onclick="cambiarCancion(-1)">⏮</button>
+          <span id="cancion-nombre" style="color:#c80054; font-weight:bold;"></span>
+          <button onclick="cambiarCancion(1)">⏭</button>
+        </div>
       </div>
-      <div style="text-align:center;margin-bottom:10px;">
-        <span id="now-playing" style="color:#ba1841;font-weight:bold;"></span>
-      </div>
-      <audio id="audio-player" controls style="display:none;"></audio>
-    </section>
+    </div>
 
-    <div class="button-center">
-      <button class="next-btn" onclick="window.location.href='index.html'">Volver al inicio</button>
-      <button class="back-btn" onclick="window.history.back()">Retroceder</button>
+    <!-- Galería romántica -->
+    <div id="galeria-modal" class="modal-bg">
+      <div class="modal-content galeria-content">
+        <span onclick="cerrarGaleria()" class="modal-close">&times;</span>
+        <div class="galeria-titulo">🌹 Nuestro Álbum de Pasatiempos 🌹</div>
+        <div id="galeria-imgs" class="galeria-imgs"></div>
+      </div>
     </div>
   </main>
-  <footer>
-    &copy; 2025 Aventuras Increíbles. Todos los derechos reservados.
-  </footer>
-  <script src="script.js"></script>
-  <script>
-    // Lista de canciones (agrega más si quieres)
-    const songs = [
-      { file: 'Media/Afaz Natural - Deseo Saber (Video Oficial)(M4A_128K).m4a', title: 'Afaz Natural - Deseo Saber' },
-      { file: 'Media/otra-cancion1.mp3', title: 'Canción Especial 1' },
-      { file: 'Media/otra-cancion2.mp3', title: 'Canción Especial 2' }
-      // Agrega aquí más canciones si lo deseas
-    ];
-    let currentSong = Math.floor(Math.random() * songs.length);
-
-    const audio = document.getElementById('audio-player');
-    const nowPlaying = document.getElementById('now-playing');
-
-    function playSong(index) {
-      currentSong = (index + songs.length) % songs.length;
-      audio.src = songs[currentSong].file;
-      audio.play();
-      nowPlaying.textContent = 'Reproduciendo: ' + songs[currentSong].title;
-    }
-
-    function playRandomSong() {
-      let randomIndex = Math.floor(Math.random() * songs.length);
-      playSong(randomIndex);
-    }
-
-    function prevSong() {
-      playSong(currentSong - 1);
-    }
-
-    function nextSong() {
-      playSong(currentSong + 1);
-    }
-
-    // Muestra el nombre al cargar si ya hay una canción
-    document.addEventListener("DOMContentLoaded", function() {
-      nowPlaying.textContent = '';
-    });
-
-    // Opcional: efecto para botones de opciones especiales
-    function accionEspecial(btn) {
-      document.querySelectorAll('.opciones-btn').forEach(b => b.classList.remove('btn-active'));
-      btn.classList.add('btn-active');
-    }
-  </script>
+  <script src="aventuras2.js"></script>
 </body>
 </html>
