@@ -378,7 +378,29 @@ footer {
   color: #fff;
   transform: scale(1.07);
 }
-
+/* Botones ovalados para Recuerdos */
+.avent-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff80bf 60%, #80d0ff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 2em;
+  padding: 12px 34px;
+  margin: 12px 10px 0 0;
+  font-size: 1.2em;
+  font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+  font-weight: bold;
+  box-shadow: 0 2px 26px #ff00a850;
+  text-decoration: none;
+  cursor: pointer;
+  letter-spacing: 1.2px;
+  transition: background 0.18s, color 0.18s, transform 0.14s;
+}
+.avent-btn:hover, .avent-btn:focus {
+  background: linear-gradient(90deg, #80d0ff 60%, #ff80bf 100%);
+  color: #fff;
+  transform: scale(1.08);
+}
 /* Notas estilo blog */
 .nota-item {
   background: linear-gradient(90deg,#ff80bf2c 60%, #80d0ff2c 100%);
@@ -390,6 +412,7 @@ footer {
   font-family: 'Montserrat', sans-serif;
   word-break: break-word;
 }
+
 
 /* Responsive */
 @media (max-width: 600px) {
