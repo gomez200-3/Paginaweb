@@ -11,19 +11,8 @@
   <main>
     <h1 class="avent-title">Aventuras Futuristas</h1>
     <div class="futurista-btns">
-      <!-- Modal de Videos -->
-<div id="videos-modal" class="modal-bg">
-  <div class="modal-content galeria-content">
-    <span onclick="cerrarVideos()" class="modal-close">&times;</span>
-    <div class="galeria-titulo">🎬 Nuestros Videos Juntos</div>
-    <div id="videos-galeria" class="galeria-videos"></div>
-    <div style="margin-top:10px;">
-      <button onclick="cambiarVideo(-1)">⏮ Anterior</button>
-      <span id="nombre-video" style="color:#c80054; font-weight:bold;"></span>
-      <button onclick="cambiarVideo(1)">Siguiente ⏭</button>
-    </div>
-  </div>
-</div>
+      <button class="futurista-romantic-btn" onclick="abrirVideos()">
+        🎬 Videos
       </button>
       <button class="futurista-romantic-btn" onclick="abrirMusica()">
         🎵 Música
@@ -59,6 +48,20 @@
         <span onclick="cerrarGaleria()" class="modal-close">&times;</span>
         <div class="galeria-titulo">🌹 Nuestro Álbum de Pasatiempos 🌹</div>
         <div id="galeria-imgs" class="galeria-imgs"></div>
+      </div>
+    </div>
+
+    <!-- Modal de Videos -->
+    <div id="videos-modal" class="modal-bg">
+      <div class="modal-content galeria-content">
+        <span onclick="cerrarVideos()" class="modal-close">&times;</span>
+        <div class="galeria-titulo">🎬 Nuestros Videos Juntos</div>
+        <div id="videos-galeria" class="galeria-videos"></div>
+        <div style="margin-top:10px;">
+          <button onclick="cambiarVideo(-1)">⏮ Anterior</button>
+          <span id="nombre-video" style="color:#c80054; font-weight:bold;"></span>
+          <button onclick="cambiarVideo(1)">Siguiente ⏭</button>
+        </div>
       </div>
     </div>
   </main>
