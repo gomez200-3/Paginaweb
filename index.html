@@ -10,7 +10,6 @@
     <header>
         <h1>Nuestras Aventuras</h1>
     </header>
-
     <main>
         <!-- Sección de emojis con imágenes -->
         <section id="imageEmojis">
@@ -30,56 +29,18 @@
                 <button class="emoji" data-text="Mi locura causa una inigualable explosión de sensaciones y sentimientos por ti sabes que te amo y me encantas">🦕</button>
                 <button class="ver-imagen" data-image="Media/IMG-mi reina.jpg">Ver imagen y dime que piensas</button>
             </div>
-            
         </section>
-        <div class="botonera">
-  <button>🧡 veo esto y te pienso</button>
-  <button>Ver imagen y recuerda este momento</button>
-  <button>💗 Ver imagen x que te amo</button>
-  <button>💬 Ver imagen y dime que piensas</button>
-</div>
 
-<section class="slider-contenedor">
-  <h2>Diapositiva especial</h2>
-  <div class="slider">
-    <img src="Media/Recuerdo2202. jpg" alt="Imagen especial">
-    <!-- Agrega más imágenes aquí si tu slider es múltiple -->
-  </div>
-  <div class="slider-controles">
-    <button class="slider-anterior">💔Ant</button>
-    <button class="slider-iniciar">🙊 Reproduce y Disfruta</button>
-    <button class="slider-siguiente">Sig ❤️‍🩹</button>
-  </div>
-</section><div class="botonera">
-  <button>🧡 veo esto y te pienso</button>
-  <button>Ver imagen y recuerda este momento</button>
-  <button>💗 Ver imagen x que te amo</button>
-  <button>💬 Ver imagen y dime que piensas</button>
-</div>
-
-<section class="slider-contenedor">
-  <h2>Diapositiva especial</h2>
-  <div class="slider">
-    <img src="Media/Recuerdo2202.jpg" alt="Imagen especial">
-    <!-- Agrega más imágenes aquí si tu slider es múltiple -->
-  </div>
-  <div class="slider-controles">
-    <button class="slider-anterior">💔 Ant</button>
-    <button class="slider-iniciar">🙊 Reproduce y Disfruta</button>
-    <button class="slider-siguiente">sig ❤️‍🩹</button>
-  </div>
-    </section>
-
-        <!-- Sección del botón "Nuestras Aventuras Iniciaron Aquí" -->
+        <!-- Botón para ir a Aventuras -->
         <section id="aventuras">
             <button id="botonAventuras">Nuestras Aventuras Iniciaron Aquí</button>
         </section>
 
-        <!-- Modal -->
+        <!-- Modal para imágenes -->
         <div id="myModal" class="modal" style="display:none;">
             <div class="modal-content">
-                <span class="close">&times;</span>
-                <img class="modal-image" id="modalImage" src="" alt="Modal Image">
+                <span class="close" tabindex="0">&times;</span>
+                <img class="modal-image" id="modalImage" src="" alt="Imagen grande">
             </div>
         </div>
 
@@ -94,15 +55,15 @@
             </div>
         </section>
     </main>
-
     <footer>
         <!-- Pie de página -->
     </footer>
-
+    <div class="tooltip" id="emojiTooltip" style="display:none;"></div>
     <script src="script.js"></script>
     <script>
     // Modal para mostrar imagen al hacer click en los botones "Ver imagen..."
     document.addEventListener("DOMContentLoaded", function() {
+        // Modal imagen
         var modal = document.getElementById("myModal");
         var modalImg = document.getElementById("modalImage");
         var closeBtn = document.querySelector(".close");
@@ -118,6 +79,12 @@
             modal.style.display = "none";
             modalImg.src = "";
         };
+        closeBtn.onkeydown = function(e) {
+            if (e.key === "Enter" || e.key === " ") {
+                modal.style.display = "none";
+                modalImg.src = "";
+            }
+        };
 
         // Cierra el modal si se hace click fuera de la imagen
         window.onclick = function(event) {
@@ -126,6 +93,31 @@
                 modalImg.src = "";
             }
         };
+
+        // Tooltip personalizado para emojis
+        const tooltip = document.getElementById('emojiTooltip');
+        document.querySelectorAll('.emoji').forEach(function(btn) {
+            btn.addEventListener('mouseenter', function(e) {
+                tooltip.textContent = btn.getAttribute('data-text');
+                tooltip.style.display = 'block';
+                let rect = btn.getBoundingClientRect();
+                tooltip.style.left = rect.left + window.scrollX + "px";
+                tooltip.style.top = rect.bottom + window.scrollY + 8 + "px";
+            });
+            btn.addEventListener('mouseleave', function() {
+                tooltip.style.display = 'none';
+            });
+            btn.addEventListener('focus', function(e) {
+                tooltip.textContent = btn.getAttribute('data-text');
+                tooltip.style.display = 'block';
+                let rect = btn.getBoundingClientRect();
+                tooltip.style.left = rect.left + window.scrollX + "px";
+                tooltip.style.top = rect.bottom + window.scrollY + 8 + "px";
+            });
+            btn.addEventListener('blur', function() {
+                tooltip.style.display = 'none';
+            });
+        });
     });
     </script>
 </body>
