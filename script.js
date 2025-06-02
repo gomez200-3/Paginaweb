@@ -1,40 +1,51 @@
+// Selecciona todos los botones personalizados y el contenedor de la imagen animada
 const botones = document.querySelectorAll(".boton-personalizado");
 const imagenContainer = document.getElementById("imagen-container");
 
-botones.forEach(boton => {
-  boton.addEventListener("click", (e) => {
-    // Quitar imagen anterior si existe
-    imagenContainer.innerHTML = '';
-    const imgSrc = boton.dataset.img;
-    const img = document.createElement("img");
-    img.src = imgSrc;
-    img.className = "imagen-animada";
-    imagenContainer.appendChild(img);
+// Si hay menos imágenes, ajusta aquí los nombres según tu carpeta "media"
+const imagenesDisponibles = [
+    "Media/gutierrez.jpg",
+    "Media/andrea.jpg",
+    "Media/IMG-mi reina.jpg",
+    "Media/bañando_perro.jpg."
+];
 
-    // Obtener posición y tamaño del botón
-    const rect = boton.getBoundingClientRect();
-    // Centrar la imagen sobre el botón
-    const imgWidth = 300;
-    const imgHeight = 200;
-    img.style.left = `${rect.left + rect.width/2 - imgWidth/2}px`;
-    img.style.top = `${rect.top + rect.height/2 - imgHeight/2}px`;
-    img.style.width = `${imgWidth}px`;
-    img.style.height = `${imgHeight}px`;
+botones.forEach((boton, idx) => {
+    // Si algún botón no tiene data-img, asígnale una aleatoria de media
+    if(!boton.dataset.img) {
+        boton.dataset.img = imagenesDisponibles[idx % imagenesDisponibles.length];
+    }
+    boton.addEventListener("click", (e) => {
+        // Elimina imagen anterior
+        imagenContainer.innerHTML = '';
+        const imgSrc = boton.dataset.img;
+        const img = document.createElement("img");
+        img.src = imgSrc;
+        img.alt = "Foto especial";
+        img.className = "imagen-animada";
+        imagenContainer.appendChild(img);
 
-    // Forzar layout y activar animación
-    setTimeout(() => {
-      img.classList.add("visible");
-    }, 10);
+        // Calcula la posición del botón y centra la imagen emergente allí
+        const rect = boton.getBoundingClientRect();
+        // Tamaño de la imagen emergente
+        const imgWidth = Math.min(window.innerWidth * 0.8, 320);
+        const imgHeight = Math.min(window.innerHeight * 0.4, 220);
+        img.style.width = `${imgWidth}px`;
+        img.style.height = `${imgHeight}px`;
+        img.style.left = `${rect.left + rect.width/2 - imgWidth/2}px`;
+        img.style.top = `${rect.top + rect.height/2 - imgHeight/2}px`;
 
-    // Cerrar la imagen al hacer clic fuera de ella o tras 4s
-    setTimeout(() => {
-      img.classList.remove("visible");
-      setTimeout(() => { img.remove(); }, 400);
-    }, 4000);
+        // Activa la animación después de insertar la imagen
+        setTimeout(() => {
+            img.classList.add("visible");
+        }, 10);
 
-    img.addEventListener("click", () => {
-      img.classList.remove("visible");
-      setTimeout(() => { img.remove(); }, 400);
+        // Cierra imagen tras 4 segundos o si se hace click en la imagen
+        const cerrar = () => {
+            img.classList.remove("visible");
+            setTimeout(() => { img.remove(); }, 400);
+        };
+        setTimeout(cerrar, 4000);
+        img.addEventListener("click", cerrar);
     });
-  });
 });
