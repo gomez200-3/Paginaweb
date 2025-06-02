@@ -4,22 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nuestras Aventuras</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Montserrat:wght@400;700&family=Orbitron:wght@700&family=Pacifico&display=swap" />
   <link rel="stylesheet" href="site.css" />
 </head>
 <body>
-  <div class="gradient-bar"></div>
   <main>
-    <section class="aventuras">
-      <!-- ...tus botones y slider como antes... -->
+    <section class="emoji-section">
+      <div class="emoji-btns">
+        <button class="emoji-btn" data-texto="¡Eres como una 🌷 en mi jardín digital!">🌷</button>
+        <button class="emoji-btn" data-texto="¡Nuestro amor brilla como 💖!">💖</button>
+        <button class="emoji-btn" data-texto="¡Vamos a conquistar galaxias juntos! 🛸">🛸</button>
+        <button class="emoji-btn" data-texto="¡Siempre listos para despegar en nuevas aventuras! 🛩">🛩</button>
+        <button class="emoji-btn" data-texto="¡Nuestro amor es de otro mundo! 🚀">🚀</button>
+      </div>
     </section>
-    <div class="inicio-text">Nuestras Aventuras Iniciaron Aquí</div>
-
-    <!-- Botón romántico para ir a Recuerdos -->
-    <div style="text-align:center; margin:32px 0;">
-      <a href="aventuras.html" class="romantic-link-btn">Ir a Recuerdos 💌</a>
+    <section class="portada-section">
+      <h1 class="portada-titulo graffiti">Nuestras Aventuras Iniciaron Aquí</h1>
+      <a id="irRecuerdosBtn" class="recuerdos-btn graffiti" href="#">Ir a Recuerdos 💌</a>
+    </section>
+    <footer>
+      esto es una muestra de mi amor infinito por tu exclusiva forma de ser
+    </footer>
+    <div id="explosion-emojis"></div>
+    <!-- Modal futurista texto emoji -->
+    <div id="modal-bg" class="modal-bg">
+      <div class="modal-content modal-futurista">
+        <span id="modal-close" class="modal-close">&times;</span>
+        <div id="modal-text"></div>
+      </div>
     </div>
   </main>
-  <!-- ...modal y script igual... -->
-  <script src="script.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
