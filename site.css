@@ -1,9 +1,31 @@
 body {
-  background: #000080;
-  margin: 0;
-  font-family: 'Montserrat', Arial, sans-serif;
-  color: #fff;
-  min-height: 100vh;
+  background: #00ffbf; /* Verde Agua Marina intenso */
+  .emoji-btn,
+.recuerdos-btn,
+.futurista-btn,
+.avent-btn,
+.cancion-list-btn,
+.video-list-btn,
+.music-btn,
+.add-file-label,
+.galeria-img-agregar-label {
+  background: linear-gradient(90deg, #92ff36 0%, #38d600 100%) !important;
+  color: #fff !important;
+}
+
+/* HOVER */
+.emoji-btn:hover, .emoji-btn:focus,
+.recuerdos-btn:hover,
+.futurista-btn:hover, .futurista-btn:focus,
+.avent-btn:hover, .avent-btn:focus,
+.cancion-list-btn:hover, .video-list-btn:hover,
+.music-btn:active,
+.add-file-label:hover, .galeria-img-agregar-label:hover {
+  background: linear-gradient(90deg, #38d600 0%, #92ff36 100%) !important;
+  color: #fff !important;
+  transform: scale(1.08);
+  outline: none;
+}
 }
 
 main {
