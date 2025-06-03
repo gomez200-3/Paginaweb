@@ -1,137 +1,194 @@
+/* Fondo general para cada página */
 body {
-  background: #19686b; /* Fondo de pantalla verde agua marina oscuro */
-  margin: 0;
+  background: #19686b;
   font-family: 'Montserrat', Arial, sans-serif;
   color: #fff;
+  margin: 0;
   min-height: 100vh;
 }
 
-main {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 15px 5px 60px 5px;
+/* ========== FOOTER ELEGANTE EN TODAS LAS PÁGINAS ========== */
+footer {
+  background: #19686b;
+  color: #fff;
+  font-family: 'Dancing Script', 'Pacifico', cursive, sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  border-radius: 14px 14px 0 0;
+  padding: 18px 0 15px 0;
+  text-align: center;
+  font-size: 1.18em;
+  letter-spacing: 0.07em;
+  margin-top: 38px;
+  box-shadow: 0 -3px 18px #0005;
 }
 
-/* -------------------- BOTONES -------------------- */
-.emoji-btn,
-.recuerdos-btn,
-.futurista-btn,
-.avent-btn,
-.cancion-list-btn,
-.video-list-btn,
-.music-btn,
-.add-file-label,
-.galeria-img-agregar-label {
-  font-size: 1.1em;
-  padding: 12px 28px;
-  background: linear-gradient(90deg, #2eb6d1 60%, #80d0ff 100%);
+/* ========== BOTONES GENERALES ROMÁNTICOS ========== */
+button, .emoji-btn, .recuerdos-btn, .avent-btn, .cancion-list-btn, .video-list-btn, .add-file-label, .galeria-img-agregar-label {
+  background: #008080;
+  color: #fff;
   border: none;
-  border-radius: 22px;
-  color: #fff;
+  border-radius: 32px;
+  padding: 13px 36px;
+  font-family: 'Montserrat', 'Dancing Script', cursive, sans-serif;
+  font-size: 1.15em;
+  font-weight: bold;
+  box-shadow: 0 2px 15px #00808044;
   cursor: pointer;
-  box-shadow: 0 2px 10px #2eb6d180;
-  text-decoration: none;
-  font-family: 'Montserrat', Arial, sans-serif;
-  margin: 8px 4px 8px 0;
-  transition: background 0.22s, color 0.14s, transform 0.14s;
+  margin: 10px 10px 10px 0;
+  transition: background 0.18s, transform 0.12s, box-shadow 0.15s;
   display: inline-block;
+  text-decoration: none !important;
 }
-
-.emoji-btn:hover,
-.emoji-btn:focus,
-.recuerdos-btn:hover,
-.futurista-btn:hover,
-.futurista-btn:focus,
-.avent-btn:hover,
-.avent-btn:focus,
-.cancion-list-btn:hover,
-.video-list-btn:hover,
-.music-btn:active,
-.add-file-label:hover,
-.galeria-img-agregar-label:hover {
-  background: linear-gradient(90deg, #80d0ff 60%, #2eb6d1 100%);
-  color: #fff;
+button:hover, .emoji-btn:hover, .recuerdos-btn:hover, .avent-btn:hover, .cancion-list-btn:hover, .video-list-btn:hover, .add-file-label:hover, .galeria-img-agregar-label:hover {
+  background: #00b3b3;
   transform: scale(1.08);
-  outline: none;
+  box-shadow: 0 4px 22px #00808099;
 }
 
-/* Ejemplo para botones circulares de música si los tienes */
-.music-btn {
-  width: 54px;
-  height: 54px;
-  font-size: 2em;
+/* ========== BOTONES FUTURISTAS (AVENTURAS) ========== */
+.futurista-btn {
+  background: linear-gradient(90deg, #008080 60%, #19686b 100%);
+  font-family: 'Orbitron', 'Montserrat', sans-serif;
+  letter-spacing: 0.10em;
+  border-radius: 25px;
+  font-size: 1.15em;
+  padding: 15px 36px;
+  box-shadow: 0 2px 20px #00fff777, 0 0 18px #19686b33;
+  text-shadow: 0 1px 7px #fff8, 0 0 7px #80d0ff;
+  transition: background 0.18s, box-shadow 0.15s, color 0.15s;
+  font-weight: bold;
+}
+.futurista-btn:hover, .futurista-btn:focus {
+  background: linear-gradient(90deg, #00fff7 40%, #008080 100%);
+  color: #fff;
+  box-shadow: 0 2px 30px #00fff799, 0 0 18px #80d0ff;
+  outline: none;
+  transform: scale(1.07);
+}
+
+/* ========== BOTONES DE MÚSICA Y VIDEO GLOW REDONDOS ========== */
+.music-btn, .video-control-btn {
+  background: #008080;
+  color: #fff;
+  border: none;
   border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  font-size: 2.1em;
+  box-shadow: 0 2px 18px #00fff777;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  margin: 0 14px 12px 0;
+  transition: background 0.15s, box-shadow 0.14s, transform 0.13s;
+}
+.music-btn:hover, .video-control-btn:hover {
+  background: #00b3b3;
+  box-shadow: 0 4px 26px #00fff799, 0 0 14px #fff7;
+  transform: scale(1.13);
 }
 
-/* -------------------- RESTO DE TU CSS ORIGINAL -------------------- */
+/* ========== GALERÍA DE IMÁGENES ORDENADA ========== */
+.galeria-imgs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin: 14px 0 18px 0;
+}
+.galeria-img-romantica {
+  background: #19686b33;
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: 0 2px 10px #19686b33;
+  margin-bottom: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.14s, transform 0.12s;
+  max-width: 110px;
+}
+.galeria-img-romantica img {
+  max-width: 95px;
+  max-height: 90px;
+  border-radius: 10px;
+  display: block;
+  object-fit: cover;
+}
 
+/* ========== BLOG DE NOTAS ARMÓNICO ========== */
+.nota-item, .blog-notas {
+  background: #19686bcc;
+  margin: 8px 0;
+  border-radius: 10px;
+  padding: 10px 15px;
+  color: #fff;
+  font-size:1em;
+  font-family: 'Montserrat', 'Dancing Script', cursive;
+  word-break: break-word;
+  max-width: 340px;
+  box-shadow: 0 2px 8px #19686b33;
+  overflow-y: auto;
+  max-height: 120px;
+}
+
+/* ========== TEXTO DESTACADO ROMÁNTICO ========== */
+.texto-destacado, .recuerdo-intro {
+  background: #123357cc;
+  color: #fff;
+  font-family: 'Dancing Script', cursive, 'Montserrat', sans-serif;
+  font-size: 1.2em;
+  font-style: italic;
+  border-radius: 18px;
+  padding: 15px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 18px #19686b33;
+  text-align: center;
+  max-width: 90vw;
+  margin-left: auto; margin-right: auto;
+}
+
+/* ========== EXPLOSIÓN DE EMOJIS MÁS IMPACTANTE ========== */
+.explosion-emoji {
+  font-size: 2.4em !important;
+  filter: drop-shadow(0 0 12px #fff7) drop-shadow(0 0 26px #00808080);
+  animation: emojiExplode 1s cubic-bezier(.6,1.84,.47,-0.21);
+}
+@keyframes emojiExplode {
+  from { opacity: 1; transform: translate(0,0) scale(1);}
+  to {
+    opacity: 0;
+    transform: translate(var(--tx,0),var(--ty,0)) scale(1.8) rotate(-18deg);
+  }
+}
+
+/* ========== ESTILO PARA TITULOS PRINCIPALES ========== */
 .portada-titulo,
 .futurista-title,
 .anim-title {
-  font-size: 2.2em;
+  font-size: 2.3em;
   text-align: center;
   font-family: 'Orbitron', 'Permanent Marker', cursive, sans-serif;
   color: #fff;
-  margin: 25px 0 15px 0;
-  letter-spacing: 0.06em;
-  filter: drop-shadow(0 0 7px #80d0ff) drop-shadow(0 0 14px #ff80bf);
+  margin: 28px 0 17px 0;
+  letter-spacing: 0.08em;
+  filter: drop-shadow(0 0 8px #80d0ff) drop-shadow(0 0 15px #ff80bf);
   animation: neonPulse 1.8s infinite alternate;
 }
-
 @keyframes neonPulse {
   0% { text-shadow: 0 0 6px #ff80bf, 0 0 18px #80d0ff;}
   100% { text-shadow: 0 0 16px #ff80bf, 0 0 26px #80d0ff;}
 }
 
-.graffiti {
-  font-family: 'Permanent Marker', cursive;
-  letter-spacing: 0.03em;
-  font-size: 1.4em;
-  color: #ff80bf;
-  text-shadow: 0 2px 9px #80d0ff, 0 0 18px #fff3;
-}
-
-.emoji-section {
-  margin: 20px 0 0 0;
-  text-align: center;
-}
-.emoji-btns {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 13px;
-}
-.emoji-btn {
-  font-size: 1.7em;
-  padding: 7px 18px;
-  /* background modificado arriba */
-  border: none;
-  border-radius: 22px;
-  color: #fff;
-  cursor: pointer;
-  box-shadow: 0 2px 10px #2eb6d180;
-  transition: background 0.22s, transform 0.14s;
-}
-
-.portada-section {
-  margin: 30px 0 18px 0;
-  text-align: center;
-}
-
-footer {
-  font-family: 'Pacifico', cursive;
-  color: #fff;
-  background: #00005a70;
-  border-radius: 8px;
-  padding: 9px 20px;
-  margin: 38px 0 0 0;
-  text-align: center;
-  font-size: 1.07em;
-  letter-spacing: 0.03em;
-}
-
-/* ... (continúa el resto de tu CSS original, no cambies nada más) ... */
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+  .futurista-btn, .recuerdos-btn, .avent-btn, .cancion-list-btn, .video-list-btn, .emoji-btn {
+    font-size: 1em;
+    padding: 11px 8vw;
+  }
+  .galeria-img-romantica img {
+    max-width: 62px;
+    max-height: 56px;
+  }
+  }
