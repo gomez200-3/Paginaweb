@@ -205,6 +205,7 @@ function mostrarGaleria() {
 
 // Modal bonito para imagen ampliada
 function abrirImgModal(src) {
+  if (!src) return; // <-- CORRECCIÓN: No abrir modal si no hay imagen
   let modal = document.getElementById('img-modal');
   if(!modal){
     modal = document.createElement('div');
