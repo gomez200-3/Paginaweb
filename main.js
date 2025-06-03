@@ -1,3 +1,30 @@
+// ------ Intro Animada para cada página ------
+window.addEventListener("DOMContentLoaded", function () {
+    let introTitle = "Bienvenida";
+    let introEmojis = "💞✨";
+    if (window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("/")) {
+        introTitle = "Aquí inician nuestras aventuras";
+        introEmojis = "🥵🥺🥴😻✈️💖";
+    } else if (window.location.pathname.endsWith("aventuras.html")) {
+        introTitle = "¡Nueva Aventura!";
+        introEmojis = "📸🎶💞🦕";
+    } else if (window.location.pathname.endsWith("aventuras2.html")) {
+        introTitle = "Sueños, música y recuerdos";
+        introEmojis = "🎶🎥🖼️📝💍";
+    }
+    const introDiv = document.createElement("div");
+    introDiv.className = "intro-anim";
+    introDiv.innerHTML = `
+        <div class="intro-title">${introTitle}</div>
+        <div class="intro-emojis">${introEmojis}</div>
+    `;
+    document.body.appendChild(introDiv);
+
+    setTimeout(() => {
+        introDiv.classList.add("hide");
+        setTimeout(() => introDiv.remove(), 700);
+    }, 1800); // Duración visible de la intro
+});
 // ----- Explosión de emojis (ya definido para todas las páginas) -----
 function explodeEmojis(emojis, count = 20) {
     const explosion = document.getElementById('emoji-explosion');
