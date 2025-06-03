@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Álbum de pasatiempos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body class="emerald-bg">
+  <div class="container">
+    <h1 class="galeria-titulo">Álbum de pasatiempos</h1>
+    <form id="foto-upload-form" class="add-file-control">
+      <label class="add-file-label">
+        + Añadir foto
+        <input type="file" id="foto-input" accept="image/*" style="display:none" multiple>
+      </label>
+    </form>
+    <div id="galeria-lista" class="galeria-lista"></div>
+    <button class="btn-romantic" id="volver-aventuras" style="margin-top:2rem;">Volver al menú</button>
+  </div>
+  <!-- Modal para ver imagen y editar título -->
+  <div id="modal-foto" class="modal-hidden">
+    <div class="modal-content" style="max-width:96vw; max-height:92vh;">
+      <span id="cerrar-foto-modal">&times;</span>
+      <img id="foto-grande" src="" alt="Foto" style="width:100%; max-width:420px; max-height:45vh; border-radius:15px; box-shadow:0 4px 24px #43e97b66;">
+      <input id="titulo-foto" type="text" maxlength="60" style="width:95%; margin-top:1em; font-size:1.12em; border-radius:8px; border:1px solid #43e97b; padding:0.5em 0.7em;" placeholder="Agrega o edita el título de la foto"/>
+      <button class="btn-romantic" id="guardar-titulo-foto" style="margin-top:0.7em;">Guardar título</button>
+    </div>
+  </div>
+  <script src="galeria.js"></script>
+</body>
+</html>
