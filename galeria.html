@@ -19,20 +19,19 @@
     <div id="galeria-lista" class="galeria-lista"></div>
     <button class="btn-romantic" id="volver-aventuras" style="margin-top:2rem;">Volver al menú</button>
   </div>
-  <!-- Modal para ver imagen y editar título -->
+  <!-- Modal para ver imagen y navegar -->
   <div id="modal-foto" class="modal-hidden">
     <div class="modal-content" style="max-width:96vw; max-height:92vh;">
-      <span id="cerrar-foto-modal">&times;</span>
-      <img id="foto-grande" src="" alt="Foto" style="width:100%; max-width:420px; max-height:45vh; border-radius:15px; box-shadow:0 4px 24px #18d97d66;">
-      <input id="titulo-foto" type="text" maxlength="60" style="width:95%; margin-top:1em; font-size:1.12em; border-radius:8px; border:1px solid #18d97d; padding:0.5em 0.7em;" placeholder="Agrega un título...">
-      <button class="btn-romantic" id="guardar-titulo-foto" style="margin-top:0.7em;">Guardar título</button>
+      <button class="cerrar-modal" id="cerrar-foto-modal" title="Cerrar">😵‍💫</button>
+      <img id="foto-grande" src="" alt="Foto romántica" />
+      <div id="titulo-foto-modal" style="color:#e53935; font-size:1.1em; font-family:'Pacifico',cursive; margin:0.7em 0 0.2em 0;"></div>
+      <div class="controles-galeria">
+        <button id="prev-foto" class="boton-emoji" title="Anterior">💔</button>
+        <button id="playpause-foto" class="boton-emoji" title="Slideshow">🚀</button>
+        <button id="next-foto" class="boton-emoji" title="Siguiente">🛸</button>
+      </div>
     </div>
   </div>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('modal-foto').classList.add('modal-hidden');
-    });
-  </script>
   <script src="galeria.js"></script>
 </body>
 </html>
