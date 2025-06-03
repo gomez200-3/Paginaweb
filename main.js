@@ -19,6 +19,16 @@ function explosionEmojis(emojis, duration = 900) {
   }, duration);
 }
 
+// Modal romántico para textos de los emojis
+const romanticModal = document.getElementById('modal-romantic');
+const closeModal = document.getElementById('close-modal');
+const modalMessage = document.getElementById('modal-message');
+
+// Extra: asegúrate de ocultar el modal al cargar
+window.addEventListener("DOMContentLoaded", function() {
+  romanticModal.classList.add('modal-hidden');
+});
+
 // Navegación
 document.getElementById('irRecuerdosBtn').onclick = function (e) {
   e.preventDefault();
@@ -26,16 +36,15 @@ document.getElementById('irRecuerdosBtn').onclick = function (e) {
   setTimeout(() => { window.location = "aventuras.html"; }, 900);
 };
 
-// Modal romántico para textos de los emojis
-const romanticModal = document.getElementById('modal-romantic');
-const closeModal = document.getElementById('close-modal');
-const modalMessage = document.getElementById('modal-message');
-
+// Muestra el modal solo si hay texto romántico
 document.querySelectorAll('.emoji-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    modalMessage.textContent = btn.getAttribute('data-texto');
-    romanticModal.classList.remove('modal-hidden');
-    explosionEmojis(['💖', '💞', '❤️', '🌷', '💌', '💋', '💘', '😍', '🥰', '💕'], 800);
+    const texto = btn.getAttribute('data-texto');
+    if (texto && texto.trim() !== "") {
+      modalMessage.textContent = texto;
+      romanticModal.classList.remove('modal-hidden');
+      explosionEmojis(['💖', '💞', '❤️', '🌷', '💌', '💋', '💘', '😍', '🥰', '💕'], 800);
+    }
   });
 });
 
