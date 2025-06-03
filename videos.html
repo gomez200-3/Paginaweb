@@ -24,9 +24,14 @@
     <div class="modal-content" style="max-width: 96vw; max-height: 90vh;">
       <span id="close-video-modal">&times;</span>
       <h2 id="video-title"></h2>
-      <video id="video-player" controls style="width: 100%; max-height: 60vh; margin-top:1em; border-radius:12px; box-shadow:0 4px 24px #43e97b55;"></video>
+      <video id="video-player" controls style="width: 100%; max-height: 60vh; margin-top:1em; border-radius:12px; box-shadow:0 4px 24px #18d97d55;"></video>
     </div>
   </div>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('modal-video-player').classList.add('modal-hidden');
+    });
+  </script>
   <script src="videos.js"></script>
 </body>
 </html>
