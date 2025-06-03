@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Videos de nuestras aventuras</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body class="emerald-bg">
+  <div class="container">
+    <h1 class="romantic-title">Nuestros Videos</h1>
+    <form id="video-upload-form" class="add-file-control">
+      <label class="add-file-label">
+        + Añadir video
+        <input type="file" id="video-input" accept="video/*" style="display:none" multiple>
+      </label>
+    </form>
+    <div id="video-list" class="video-list"></div>
+    <button class="btn-romantic" id="volver-aventuras" style="margin-top:2rem;">Volver al menú</button>
+  </div>
+  <!-- Modal para reproductor de video -->
+  <div id="modal-video-player" class="modal-hidden">
+    <div class="modal-content" style="max-width: 96vw; max-height: 90vh;">
+      <span id="close-video-modal">&times;</span>
+      <h2 id="video-title"></h2>
+      <video id="video-player" controls style="width: 100%; max-height: 60vh; margin-top:1em; border-radius:12px; box-shadow:0 4px 24px #43e97b55;"></video>
+    </div>
+  </div>
+  <script src="videos.js"></script>
+</body>
+</html>
