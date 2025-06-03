@@ -20,7 +20,7 @@ function renderGaleria() {
     const item = document.createElement('div');
     item.className = 'nota-item';
     item.innerHTML = `
-      <img src="${foto.data}" alt="Foto" style="width:100px;height:100px;object-fit:cover;border-radius:12px;box-shadow:0 2px 8px #43e97b44;cursor:pointer;" data-idx="${idx}">
+      <img src="${foto.data}" alt="Foto" style="width:100px;height:100px;object-fit:cover;border-radius:12px;box-shadow:0 2px 8px #18d97d44;cursor:pointer;" data-idx="${idx}">
       <span style="display:block;font-weight:bold;color:#2196f3;cursor:pointer;" data-idx="${idx}">${foto.titulo ? '📸 '+foto.titulo : '(Sin título)'}</span>
       <button class="borrar-nota" data-idx="${idx}">Borrar</button>
     `;
@@ -92,5 +92,8 @@ document.getElementById('volver-aventuras').onclick = function() {
   window.location = "aventuras.html";
 };
 
-// Al cargar, renderizar galería
-window.addEventListener('DOMContentLoaded', renderGaleria);
+// Al cargar, renderizar galería y asegurar modal oculto
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('modal-foto').classList.add('modal-hidden');
+  renderGaleria();
+});
