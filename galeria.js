@@ -1,13 +1,13 @@
-// Guardar fotos en localStorage
 function getFotos() {
   return JSON.parse(localStorage.getItem('fotos') || '[]');
 }
-
 function saveFotos(fotos) {
   localStorage.setItem('fotos', JSON.stringify(fotos));
 }
 
-// Mostrar la galería
+let currentFotoIdx = 0;
+let slideshowInterval = null;
+
 function renderGaleria() {
   const galeria = document.getElementById('galeria-lista');
   galeria.innerHTML = '';
@@ -18,81 +18,98 @@ function renderGaleria() {
   }
   fotos.forEach((foto, idx) => {
     const item = document.createElement('div');
-    item.className = 'nota-item';
+    item.className = 'galeria-item';
     item.innerHTML = `
-      <img src="${foto.data}" alt="Foto" style="width:100px;height:100px;object-fit:cover;border-radius:12px;box-shadow:0 2px 8px #18d97d44;cursor:pointer;" data-idx="${idx}">
-      <span style="display:block;font-weight:bold;color:#2196f3;cursor:pointer;" data-idx="${idx}">${foto.titulo ? '📸 '+foto.titulo : '(Sin título)'}</span>
-      <button class="borrar-nota" data-idx="${idx}">Borrar</button>
+      <img src="${foto.data}" alt="Foto" class="galeria-thumb" data-idx="${idx}">
+      <div class="galeria-titulo">${foto.titulo ? foto.titulo : '(Sin título)'}</div>
     `;
     galeria.appendChild(item);
   });
 }
 
-// Subir fotos
 document.getElementById('foto-input').addEventListener('change', function(e) {
   const files = Array.from(e.target.files);
   if (files.length === 0) return;
   let fotos = getFotos();
+  let filesToLoad = files.length;
   files.forEach(file => {
     const reader = new FileReader();
     reader.onload = function(evt) {
       fotos.push({
         data: evt.target.result,
-        titulo: ''
+        titulo: file.name.replace(/\.\w+$/, '')
       });
-      saveFotos(fotos);
-      renderGaleria();
+      filesToLoad--;
+      if (filesToLoad === 0) {
+        saveFotos(fotos);
+        renderGaleria();
+      }
     };
     reader.readAsDataURL(file);
   });
-  // Reset input
   e.target.value = "";
 });
 
-// Ver y editar foto en modal
-let fotoActual = -1;
 document.getElementById('galeria-lista').addEventListener('click', function(e) {
-  if (e.target.dataset.idx !== undefined) {
-    fotoActual = parseInt(e.target.dataset.idx);
-    const fotos = getFotos();
-    const foto = fotos[fotoActual];
-    if (foto) {
-      document.getElementById('foto-grande').src = foto.data;
-      document.getElementById('titulo-foto').value = foto.titulo || '';
-      document.getElementById('modal-foto').classList.remove('modal-hidden');
-    }
-  }
-  // Borrar foto
-  if (e.target.classList.contains('borrar-nota')) {
-    const idx = parseInt(e.target.dataset.idx);
-    let fotos = getFotos();
-    fotos.splice(idx, 1);
-    saveFotos(fotos);
-    renderGaleria();
+  if (e.target.classList.contains('galeria-thumb')) {
+    currentFotoIdx = parseInt(e.target.dataset.idx);
+    openFotoModal(currentFotoIdx);
   }
 });
 
-// Guardar título de foto
-document.getElementById('guardar-titulo-foto').onclick = function() {
-  if (fotoActual === -1) return;
-  let fotos = getFotos();
-  fotos[fotoActual].titulo = document.getElementById('titulo-foto').value.trim();
-  saveFotos(fotos);
-  renderGaleria();
+function openFotoModal(idx) {
+  const fotos = getFotos();
+  if (!fotos[idx]) return;
+  document.getElementById('foto-grande').src = fotos[idx].data;
+  document.getElementById('titulo-foto-modal').textContent = fotos[idx].titulo || '(Sin título)';
+  document.getElementById('modal-foto').classList.remove('modal-hidden');
+}
+function closeFotoModal() {
   document.getElementById('modal-foto').classList.add('modal-hidden');
-};
+  stopSlideshow();
+}
+document.getElementById('cerrar-foto-modal').onclick = closeFotoModal;
 
-// Cerrar modal
-document.getElementById('cerrar-foto-modal').onclick = () => {
-  document.getElementById('modal-foto').classList.add('modal-hidden');
-};
+function changeFoto(delta) {
+  const fotos = getFotos();
+  if (fotos.length === 0) return;
+  currentFotoIdx = (currentFotoIdx + delta + fotos.length) % fotos.length;
+  openFotoModal(currentFotoIdx);
+}
+document.getElementById('prev-foto').onclick = () => changeFoto(-1);
+document.getElementById('next-foto').onclick = () => changeFoto(1);
 
-// Volver al menú
+function startSlideshow() {
+  stopSlideshow();
+  slideshowInterval = setInterval(() => {
+    changeFoto(1);
+  }, 1700);
+}
+function stopSlideshow() {
+  if (slideshowInterval) {
+    clearInterval(slideshowInterval);
+    slideshowInterval = null;
+  }
+}
+let isSlideshow = false;
+document.getElementById('playpause-foto').onclick = function() {
+  if (isSlideshow) {
+    stopSlideshow();
+    isSlideshow = false;
+    this.style.background = "#e53935";
+  } else {
+    startSlideshow();
+    isSlideshow = true;
+    this.style.background = "#ab2320";
+  }
+};
+document.getElementById('modal-foto').addEventListener('click', function(e){
+  if (e.target === this) closeFotoModal();
+});
 document.getElementById('volver-aventuras').onclick = function() {
   window.location = "aventuras.html";
 };
 
-// Al cargar, renderizar galería y asegurar modal oculto
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('modal-foto').classList.add('modal-hidden');
   renderGaleria();
