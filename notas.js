@@ -20,7 +20,7 @@ function renderNotas() {
     const item = document.createElement('div');
     item.className = 'nota-item';
     item.innerHTML = `
-      <span style="color:#43e97b; font-weight:bold; cursor:pointer;" data-idx="${idx}">💌 Ver nota</span>
+      <span style="color:#18d97d; font-weight:bold; cursor:pointer;" data-idx="${idx}">💌 Ver nota</span>
       <span style="padding-left:1em; color:#888; font-size:0.94em;">${nota.texto.substring(0, 36)}${nota.texto.length > 36 ? '...' : ''}</span>
       <button class="borrar-nota" data-idx="${idx}">Borrar</button>
     `;
@@ -72,5 +72,8 @@ document.getElementById('volver-aventuras').onclick = function() {
   window.location = "aventuras.html";
 };
 
-// Al cargar, mostrar las notas
-window.addEventListener('DOMContentLoaded', renderNotas);
+// Al cargar, mostrar las notas y asegurar modal oculto
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('modal-nota').classList.add('modal-hidden');
+  renderNotas();
+});
