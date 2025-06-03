@@ -1,113 +1,55 @@
-// --- Contenido dinámico de NUESTRAS AVENTURAS ---
-const contenido = document.getElementById('contenido-futurista');
-const videosBtn = document.getElementById('videos-btn');
-const musicaBtn = document.getElementById('musica-btn');
-const albumBtn = document.getElementById('album-btn');
-const volverBtn = document.querySelector('.volver-btn');
-const explosion = document.getElementById('explosion-emojis');
-
-// Inicializar arrays con datos por defecto o cargados
-let canciones = JSON.parse(localStorage.getItem('canciones') || '[]');
-if (canciones.length === 0) {
-  canciones = [
-    { archivo: "Media/Afaz Natural - Deseo Saber (Video Oficial)(M4A_128K).m4a", nombre: "cada vez siento" },
-  { archivo: "Media/Alok - Alive (It Feels Like) [Official Visualizer](M4A_128K).m4a", nombre: "que te amo mucho" },
-  { archivo: "Media/Billie Eilish - ilomilo (Official Audio)(M4A_128K).m4a", nombre: "mas de lo que te imaginas" },
-  { archivo: "Media/DISHYPE_ OT-TO - AURA (Visualizer)(M4A_128K).m4a", nombre: "somos tu y yo" },
-  { archivo: "Media/Don Omar - Dutty Love (Lyric Video) ft. Natti Natasha(M4A_128K).m4a", nombre: "nuestra historiaes una locura" },
-  { archivo: "Media/Shawn Mendes - There_s Nothing Holdin_ Me Back _ Traducida al Español(M4A_128K).m4a", nombre: "Te extraño" },
-{ archivo: "Media/Wolverave - Vielleicht Vielleicht (Hardtekk Edit)(M4A_128K).m4a", nombre: "TE AMO" },
- ];
-}
-let videos = JSON.parse(localStorage.getItem('videos') || '[]');
-if (videos.length === 0) {
-  videos = [
-  { archivo: "Media/Nuestro_mundo.mp4", nombre: "TE AMO" },
-  { archivo: "Media/Video_juntos.mp4", nombre: "CORAZON" }
-  ];
-}
-let imagenesGaleria = JSON.parse(localStorage.getItem('imagenesGaleria') || '[]');
-if (imagenesGaleria.length === 0) {
-  imagenesGaleria = [
-"Media/vamos_atardecer.jpg",
-  "Media/imagen_besando.jpg",
-  "Media/gutierrez.jpg",
-  "Media/andrea.jpg",
-  "Media/Vamos_tmfotos.jpg",
-  "Media/Recuerdo2202.jpg",
-  "Media/IMG_20250406_210730.jpg",
-  "Media/IMG-mi reina.jpg",
-  "Media/20250503_182247.jpg",
-  ];
-}
-
-function guardarEnLocal(key, arr) {
-  localStorage.setItem(key, JSON.stringify(arr));
-}
-
-// Explosión emojis
-function explosionEmojis(emojis, duration=700) {
+// Explosión de emojis (misma función para coherencia visual)
+function explosionEmojis(emojis, duration = 900) {
+  const explosion = document.getElementById('explosion-emojis');
   explosion.innerHTML = '';
-  for (let i=0; i<22; ++i) {
+  for (let i = 0; i < 20; ++i) {
     const em = document.createElement('span');
-    em.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    em.textContent = emojis[Math.floor(Math.random() * emojis.length)];
     em.className = 'explosion-emoji';
-    em.style.left = (window.innerWidth/2 + (Math.random()-0.5)*160) + 'px';
-    em.style.top = (window.innerHeight/2 + (Math.random()-0.5)*120 + window.scrollY) + 'px';
-    em.style.setProperty('--tx', ((Math.random()-0.5)*330)+'px');
-    em.style.setProperty('--ty', ((Math.random()-0.5)*220)+'px');
+    em.style.left = (window.innerWidth / 2 + (Math.random() - 0.5) * 180) + 'px';
+    em.style.top = (window.innerHeight / 2 + (Math.random() - 0.5) * 120 + window.scrollY) + 'px';
+    em.style.setProperty('--tx', ((Math.random() - 0.5) * 330) + 'px');
+    em.style.setProperty('--ty', ((Math.random() - 0.5) * 220) + 'px');
     explosion.appendChild(em);
   }
   explosion.style.display = "block";
-  setTimeout(() => { explosion.innerHTML = ''; explosion.style.display = "none"; }, duration);
+  setTimeout(() => {
+    explosion.innerHTML = '';
+    explosion.style.display = "none";
+  }, duration);
 }
 
-// Navegación con animaciones
-volverBtn.addEventListener('click', function(e){
-  e.preventDefault();
-  explosionEmojis(['🥺','🐿','💞'], 600);
-  setTimeout(() => { window.location = "index.html"; }, 600);
-});
-videosBtn.addEventListener('click', () => { mostrarVideos(); });
-musicaBtn.addEventListener('click', () => { mostrarMusica(); });
-albumBtn.addEventListener('click', () => {
-  animarAvionPlatillo();
-  setTimeout(() => mostrarGaleria(), 800);
-});
+// Navegación básica romántica
+document.getElementById('volver-inicio').onclick = function () {
+  explosionEmojis(['💖','💞','❤️','🌷','💌','💋','💘','😍','🥰','💕']);
+  setTimeout(() => { window.location = "index.html"; }, 900);
+};
+document.getElementById('volver-aventuras').onclick = function () {
+  explosionEmojis(['💖','💞','❤️','🌷','💌','💋','💘','😍','🥰','💕']);
+  setTimeout(() => { window.location = "aventuras.html"; }, 900);
+};
 
-// Animación avión y platillo
-function animarAvionPlatillo() {
-  const avion = document.getElementById('avion');
-  const platillo = document.getElementById('platillo');
-  avion.style.display = 'block';
-  setTimeout(() => {
-    avion.classList.add('avion-fly');
-    setTimeout(() => { platillo.style.display = 'block'; platillo.classList.add('platillo-fly'); }, 300);
-  }, 10);
-  setTimeout(() => {
-    avion.style.display = platillo.style.display = 'none';
-    avion.classList.remove('avion-fly');
-    platillo.classList.remove('platillo-fly');
-  }, 1200);
-}
-
-// MUSICA
+// --- SECCIÓN MÚSICA ---
+const musicEmojis = ['🎶','💞','💖','💕','🎹','🎧','🎷'];
+let canciones = JSON.parse(localStorage.getItem('canciones') || '[]');
 function mostrarMusica() {
-  contenido.innerHTML = `
+  explosionEmojis(musicEmojis, 1000);
+  limpiarSecciones();
+  const sec = document.getElementById('seccion-musica');
+  sec.innerHTML = `
     <div class="galeria-titulo">🎵 Nuestra música especial</div>
     <div id="lista-canciones" class="lista-canciones"></div>
     <div class="add-file-control">
       <label class="add-file-label" for="add-music">➕ Agregar Canción</label>
       <input id="add-music" type="file" accept="audio/*" style="display:none;">
     </div>
-    <audio id="audio-player" controls style="width:100%;margin-top:10px;display:none;"></audio>
-    <div class="music-controls">
+    <audio id="audio-player" controls style="width:100%;margin-top:10px;display:none;border-radius:10px;box-shadow:0 2px 16px #0003"></audio>
+    <div class="music-controls" style="margin-top:12px;">
       <button id="prev-song" class="music-btn"><span>💔</span></button>
-      <button id="play-song" class="music-btn"><span>❤️‍🩹</span></button>
+      <button id="play-song" class="music-btn"><span>❤️</span></button>
       <button id="next-song" class="music-btn"><span>💕</span></button>
     </div>
   `;
-  cerrarOtros('musica');
   const lista = document.getElementById('lista-canciones');
   canciones.forEach((c, idx) => {
     const btn = document.createElement('button');
@@ -116,21 +58,18 @@ function mostrarMusica() {
     btn.onclick = () => reproducirCancion(idx);
     lista.appendChild(btn);
   });
-
-  // Agregar música
   document.getElementById('add-music').addEventListener('change', function(e){
     const file = e.target.files[0];
     if(file){
       const reader = new FileReader();
       reader.onload = function(evt){
         canciones.push({archivo: evt.target.result, nombre: file.name.replace(/\.[^/.]+$/, "")});
-        guardarEnLocal('canciones', canciones);
+        localStorage.setItem('canciones', JSON.stringify(canciones));
         mostrarMusica();
       };
       reader.readAsDataURL(file);
     }
   });
-
   let actual = 0;
   const audio = document.getElementById('audio-player');
   const prevBtn = document.getElementById('prev-song');
@@ -148,7 +87,7 @@ function mostrarMusica() {
     reproducirCancion(actual);
   };
   playBtn.onclick = () => {
-    explosionEmojis(['❤️‍🩹','💘','💋','💖','💕','💞'], 700);
+    explosionEmojis(['💖','💘','💋','💕'], 700);
     if(audio.paused) audio.play(); else audio.pause();
   };
   nextBtn.onclick = () => {
@@ -158,9 +97,14 @@ function mostrarMusica() {
   };
 }
 
-// VIDEOS
+// --- SECCIÓN VIDEO ---
+const videoEmojis = ['🎬','💕','💖','🍿','📹','❤️‍🔥'];
+let videos = JSON.parse(localStorage.getItem('videos') || '[]');
 function mostrarVideos() {
-  contenido.innerHTML = `
+  explosionEmojis(videoEmojis, 1000);
+  limpiarSecciones();
+  const sec = document.getElementById('seccion-video');
+  sec.innerHTML = `
     <div class="galeria-titulo">🎬 Nuestros Videos Juntos</div>
     <div id="lista-videos" class="lista-videos"></div>
     <div class="add-file-control">
@@ -168,13 +112,12 @@ function mostrarVideos() {
       <input id="add-video" type="file" accept="video/*" style="display:none;">
     </div>
     <video id="video-player" controls style="width:100%;margin-top:10px;display:none;border-radius:10px;box-shadow:0 2px 16px #0003"></video>
-    <div class="video-controls">
+    <div class="video-controls" style="margin-top:12px;">
       <button id="prev-video" class="music-btn"><span>💔</span></button>
-      <button id="play-video" class="music-btn"><span>❤️‍🩹</span></button>
+      <button id="play-video" class="music-btn"><span>❤️</span></button>
       <button id="next-video" class="music-btn"><span>💕</span></button>
     </div>
   `;
-  cerrarOtros('videos');
   const lista = document.getElementById('lista-videos');
   const vid = document.getElementById('video-player');
   let actual = 0;
@@ -185,21 +128,18 @@ function mostrarVideos() {
     btn.onclick = () => reproducirVideo(idx);
     lista.appendChild(btn);
   });
-
-  // Agregar video
   document.getElementById('add-video').addEventListener('change', function(e){
     const file = e.target.files[0];
     if(file){
       const reader = new FileReader();
       reader.onload = function(evt){
         videos.push({archivo: evt.target.result, nombre: file.name.replace(/\.[^/.]+$/, "")});
-        guardarEnLocal('videos', videos);
+        localStorage.setItem('videos', JSON.stringify(videos));
         mostrarVideos();
       };
       reader.readAsDataURL(file);
     }
   });
-
   function reproducirVideo(idx) {
     actual = idx;
     vid.src = videos[idx].archivo;
@@ -212,7 +152,7 @@ function mostrarVideos() {
     reproducirVideo(actual);
   };
   document.getElementById('play-video').onclick = () => {
-    explosionEmojis(['❤️‍🩹','💘','💋','💖','💕','💞'], 700);
+    explosionEmojis(['💖','💘','💋','💕'], 700);
     if(vid.paused) vid.play(); else vid.pause();
   };
   document.getElementById('next-video').onclick = () => {
@@ -222,9 +162,14 @@ function mostrarVideos() {
   };
 }
 
-// GALERIA con subida de archivos
+// --- SECCIÓN GALERÍA ---
+const galeriaEmojis = ['💖','❤️‍🔥','🥰','✨','🌷','🖼️','💕'];
+let imagenesGaleria = JSON.parse(localStorage.getItem('imagenesGaleria') || '[]');
 function mostrarGaleria() {
-  contenido.innerHTML = `
+  explosionEmojis(galeriaEmojis, 1000);
+  limpiarSecciones();
+  const sec = document.getElementById('seccion-galeria');
+  sec.innerHTML = `
     <div class="galeria-titulo">🌹 Nuestro Álbum de Pasatiempos 🌹</div>
     <div id="galeria-imgs" class="galeria-imgs"></div>
     <div class="add-file-control">
@@ -232,7 +177,6 @@ function mostrarGaleria() {
       <input id="add-file" type="file" accept="image/*" style="display:none;">
     </div>
   `;
-  cerrarOtros('album');
   const cont = document.getElementById('galeria-imgs');
   imagenesGaleria.forEach((src, i) => {
     const div = document.createElement('div');
@@ -240,19 +184,18 @@ function mostrarGaleria() {
     div.innerHTML = `<img src="${src}" alt="Recuerdo" /> <div class="corazon">💖</div>`;
     div.onclick = (ev) => {
       ev.stopPropagation();
-      explosionEmojis(['💖','❤️‍🔥'], 600);
-      setTimeout(() => abrirImgModal(src), 150);
+      explosionEmojis(['💖','❤️‍🔥'], 700);
+      setTimeout(() => abrirImgModal(src), 200);
     };
     cont.appendChild(div);
   });
-  // Botón agregar archivo
   document.getElementById('add-file').addEventListener('change', function(e){
     const file = e.target.files[0];
     if(file){
       const reader = new FileReader();
       reader.onload = function(evt){
         imagenesGaleria.push(evt.target.result);
-        guardarEnLocal('imagenesGaleria', imagenesGaleria);
+        localStorage.setItem('imagenesGaleria', JSON.stringify(imagenesGaleria));
         mostrarGaleria();
       };
       reader.readAsDataURL(file);
@@ -260,12 +203,7 @@ function mostrarGaleria() {
   });
 }
 
-// Cerrar otros contenidos
-function cerrarOtros(abre) {
-  // El contenido dinámico borra lo anterior, así que nada que hacer aquí
-}
-
-// MODAL imagen
+// Modal bonito para imagen ampliada
 function abrirImgModal(src) {
   let modal = document.getElementById('img-modal');
   if(!modal){
@@ -290,49 +228,61 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') cerrarImgModal();
 });
 
-// ----------- BLOG DE NOTAS ---------------
-if (!document.getElementById('notas-btn')) {
-  const notasBtn = document.createElement('button');
-  notasBtn.id = "notas-btn";
-  notasBtn.className = "futurista-btn notas-btn";
-  notasBtn.innerHTML = "📝 Notas";
-  document.querySelector('.futurista-btns').appendChild(notasBtn);
-  notasBtn.onclick = function() {
-    abrirNotasModal();
-  };
+// --- SECCIÓN NOTAS ---
+const notasEmojis = ['📝','💌','💖','✨','💕'];
+function mostrarNotas() {
+  explosionEmojis(notasEmojis, 1000);
+  limpiarSecciones();
+  const sec = document.getElementById('seccion-notas');
+  sec.innerHTML = `
+    <div class="galeria-titulo">📝 Blog de Notas</div>
+    <div class="notas-controls">
+      <textarea id="notas-textarea" rows="4" placeholder="Escribe una nota romántica..." style="width:98%;border-radius:8px;font-size:1.13em;"></textarea>
+      <button id="guardar-nota" class="music-btn" style="margin-top:10px;background:#80d0ff;">💾 Guardar</button>
+    </div>
+    <div id="notas-list" style="margin-top:18px;max-height:170px;overflow:auto;"></div>
+  `;
+  cargarNotas();
+  document.getElementById('guardar-nota').onclick = guardarNota;
 }
-
-function abrirNotasModal() {
-  let modal = document.getElementById('notas-modal');
-  if (!modal) {
-    modal = document.createElement('div');
-    modal.id = "notas-modal";
-    modal.className = "modal-bg";
-    modal.innerHTML =
-      `<div class="modal-content modal-futurista">
-        <span onclick="cerrarNotas()" class="modal-close">&times;</span>
-        <h3 style="color:#ff80bf;margin-bottom:10px;">📝 Blog de Notas</h3>
-        <textarea id="notas-textarea" rows="7" style="width:99%;border-radius:8px;font-size:1.1em;"></textarea>
-        <button onclick="guardarNota()" class="music-btn" style="margin-top:10px;background:#80d0ff;">💾 Guardar</button>
-        <div id="notas-list" style="margin-top:14px;max-height:190px;overflow:auto;"></div>
-      </div>`;
-    document.body.appendChild(modal);
-  }
-  modal.classList.add('active');
-  mostrarNotas();
+function cargarNotas() {
+  let arr = JSON.parse(localStorage.getItem('notas')||'[]');
+  const list = document.getElementById('notas-list');
+  list.innerHTML = '';
+  arr.forEach((nota, idx) => {
+    const div = document.createElement('div');
+    div.className = "nota-item";
+    div.innerHTML = `<span>${nota}</span> <button class="borrar-nota" data-idx="${idx}">❌</button>`;
+    list.appendChild(div);
+  });
+  document.querySelectorAll('.borrar-nota').forEach(btn => {
+    btn.onclick = function() {
+      let arr = JSON.parse(localStorage.getItem('notas')||'[]');
+      arr.splice(btn.getAttribute('data-idx'),1);
+      localStorage.setItem('notas', JSON.stringify(arr));
+      cargarNotas();
+    }
+  });
 }
-window.cerrarNotas = function() {
-  document.getElementById('notas-modal').classList.remove('active');
-};
-window.guardarNota = function() {
+function guardarNota() {
   let arr = JSON.parse(localStorage.getItem('notas')||'[]');
   const val = document.getElementById('notas-textarea').value.trim();
   if(val) arr.push(val);
   localStorage.setItem('notas', JSON.stringify(arr));
   document.getElementById('notas-textarea').value = '';
-  mostrarNotas();
-};
-function mostrarNotas() {
-  let arr = JSON.parse(localStorage.getItem('notas')||'[]');
-  document.getElementById('notas-list').innerHTML = arr.map(n=>`<div class="nota-item">${n}</div>`).join('');
-  }
+  cargarNotas();
+}
+
+// Limpiar todas las secciones antes de mostrar una nueva
+function limpiarSecciones() {
+  document.getElementById('seccion-musica').innerHTML = '';
+  document.getElementById('seccion-video').innerHTML = '';
+  document.getElementById('seccion-galeria').innerHTML = '';
+  document.getElementById('seccion-notas').innerHTML = '';
+}
+
+// Botones para abrir cada sección
+document.getElementById('btn-musica').onclick = mostrarMusica;
+document.getElementById('btn-video').onclick = mostrarVideos;
+document.getElementById('btn-galeria').onclick = mostrarGaleria;
+document.getElementById('btn-notas').onclick = mostrarNotas;
