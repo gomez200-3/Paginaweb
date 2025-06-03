@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuestro Álbum</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body class="emerald-bg">
+  <div class="container">
+    <h1 class="romantic-title"><span style="margin-right:0.4em;">🤫</span>Nuestro Álbum<span style="margin-left:0.4em;">😏</span></h1>
+    <button class="btn-principal">Añadir foto</button>
+    <div class="album-lista">
+      <div class="album-item">
+        <img src="ejemplo1.jpg" alt="foto" class="foto-album">
+        <button class="btn-borrar" title="Borrar">🗑</button>
+      </div>
+      <div class="album-item">
+        <img src="ejemplo2.jpg" alt="foto" class="foto-album">
+        <button class="btn-borrar" title="Borrar">🗑</button>
+      </div>
+    </div>
+    <button class="btn-regresar" id="volver-menu-album">(*REGRESAR*)</button>
+  </div>
+  <script>
+    document.getElementById('volver-menu-album').onclick = function() { window.location = "aventuras.html"; };
+  </script>
+</body>
+</html>
