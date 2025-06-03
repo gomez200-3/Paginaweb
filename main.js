@@ -24,7 +24,7 @@ const romanticModal = document.getElementById('modal-romantic');
 const closeModal = document.getElementById('close-modal');
 const modalMessage = document.getElementById('modal-message');
 
-// Extra: asegúrate de ocultar el modal al cargar
+// Asegúrate de ocultar el modal siempre al cargar (por si acaso)
 window.addEventListener("DOMContentLoaded", function() {
   romanticModal.classList.add('modal-hidden');
 });
