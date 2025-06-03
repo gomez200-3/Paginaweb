@@ -83,5 +83,8 @@ document.getElementById('volver-aventuras').onclick = function() {
   window.location = "aventuras.html";
 };
 
-// Al cargar, mostrar la lista
-window.addEventListener('DOMContentLoaded', renderMusicList);
+// Al cargar, mostrar la lista y asegurar modal oculto
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('modal-music-player').classList.add('modal-hidden');
+  renderMusicList();
+});
