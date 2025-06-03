@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Música Enamorada</title>
+  <title>Nuestra Música Enamorada</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
@@ -22,16 +22,16 @@
   <!-- Modal para reproductor -->
   <div id="modal-music-player" class="modal-hidden">
     <div class="modal-content">
-      <span id="close-music-modal">&times;</span>
-      <h2 id="music-title"></h2>
-      <audio id="audio-player" controls style="width: 100%; margin-top:1em;"></audio>
+      <button class="cerrar-modal" id="close-music-modal" title="Cerrar">😵‍💫</button>
+      <h2 id="music-title" style="color:#e53935; margin-bottom:0.6em;"></h2>
+      <audio id="audio-player" style="display:none;"></audio>
+      <div class="controles-reproductor">
+        <button id="prev-music" class="boton-emoji" title="Anterior">🚀</button>
+        <button id="playpause-music" class="boton-emoji" title="Play/Pausa">🛸</button>
+        <button id="next-music" class="boton-emoji" title="Siguiente">🪐</button>
+      </div>
     </div>
   </div>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('modal-music-player').classList.add('modal-hidden');
-    });
-  </script>
   <script src="musica.js"></script>
 </body>
 </html>
