@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Recuerdos</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;700&family=Orbitron:wght@700&display=swap" />
-  <link rel="stylesheet" href="site.css" />
+    <meta charset="UTF-8">
+    <title>Nueva aventura</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
-<body>
-  <main>
-    <h1 class="anim-title">Recuerdos</h1>
-    <div class="avent-subtext">Esta es la manera que nuestras experiencias se convierten en el mejor Recuerdo</div>
-   <div class="avent-btns">
-   <!-- Si ESTÁS dentro de la carpeta paginas -->
-<a class="avent-btn" href="aventuras.html">Continuar Aventuras 💖</a>
-<a class="avent-btn" href="index.html">Volver al Inicio</a>
-<a class="avent-btn" href="aventuras2.html">Continuar Aventuras 💖</a>
-  </div>
-    <footer>
-      esto es una muestra de mi amor infinito por tu exclusiva forma de ser
-    </footer>
-    <div id="explosion-emojis"></div>
-  </main>
-  <script src="aventuras.js"></script>
+<body class="emerald-bg">
+    <div class="container">
+        <h1 class="romantic-title">Aquí inicia nuestra nueva aventura recolectando nuestros sueños en imágenes, vídeos y música</h1>
+        <div class="btn-group">
+            <button id="volver-inicio" class="btn-romantic">Volver al inicio</button>
+            <button id="iniciar-aventura2" class="btn-romantic">Iniciar aventura</button>
+            <button id="dino-notas" class="btn-dino" title="Reproducir notas 🦕">🦕</button>
+        </div>
+    </div>
+    <!-- Modal para mostrar las notas -->
+    <div id="modal-notas" class="modal-hidden">
+        <div class="modal-content modal-notas-content">
+            <span id="close-notas">&times;</span>
+            <h2 class="notas-title">Notas románticas 🦕</h2>
+            <div id="notas-list"></div>
+        </div>
+    </div>
+    <div id="emoji-explosion"></div>
+    <script src="main.js"></script>
 </body>
 </html>
