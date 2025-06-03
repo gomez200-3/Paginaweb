@@ -1,3 +1,9 @@
+<div id="modal-romantic" class="modal-hidden">
+    <div class="modal-content">
+        <span id="close-modal">&times;</span>
+        <p id="modal-message"></p>
+    </div>
+</div>
 // --- EMOJI MODAL
 const emojiBtns = document.querySelectorAll('.emoji-btn');
 const modalBg = document.getElementById('modal-bg');
