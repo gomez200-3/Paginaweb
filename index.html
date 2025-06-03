@@ -2,27 +2,23 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aquí inician nuestras aventuras</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="style.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="emerald-bg">
-    <div class="container">
-        <h1 class="romantic-title">Aquí inician nuestras aventuras</h1>
-        <button id="start-adventure" class="btn-romantic">Iniciar aventura</button>
-        <div id="emoji-explosion"></div>
-        <div class="emoji-selection">
-            <button class="emoji-btn" data-message="Eres mi calor en los días fríos 🥵">🥵</button>
-            <button class="emoji-btn" data-message="Tu ternura me desarma 🥺">🥺</button>
-            <button class="emoji-btn" data-message="Me dejas sin palabras 🥴">🥴</button>
-            <button class="emoji-btn" data-message="Te adoro con locura 😻">😻</button>
-            <button class="emoji-btn" data-message="Volemos juntos por siempre ✈️">✈️</button>
-        </div>
+<body>
+    <h1 class="romantic-title">Aquí inician nuestras aventuras</h1>
+    <button id="irRecuerdosBtn" class="btn-romantic">Iniciar aventura</button>
+    <div class="emoji-selection">
+        <button class="emoji-btn" data-texto="¡Te adoro!">😭</button>
+        <button class="emoji-btn" data-texto="Siempre juntos">🥺</button>
+        <button class="emoji-btn" data-texto="Eres mi alegría">😌</button>
+        <button class="emoji-btn" data-texto="Me encantas">😻</button>
+        <button class="emoji-btn" data-texto="Volando alto">✈️</button>
     </div>
-    <!-- Modal para mostrar los textos románticos -->
+    <!-- Explosión de emojis -->
+    <div id="explosion-emojis"></div>
+    <!-- Modal romántico, oculto por defecto -->
     <div id="modal-romantic" class="modal-hidden">
         <div class="modal-content">
             <span id="close-modal">&times;</span>
