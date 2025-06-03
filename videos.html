@@ -17,19 +17,15 @@
       </label>
     </form>
     <div id="video-list" class="video-list"></div>
-    <button class="btn-romantic" id="volver-aventuras" style="margin-top:2rem;">Volver al menú</button>
+    <button class="btn-regresar" id="volver-aventuras">(*REGRESAR*)</button>
   </div>
-  <!-- Modal para reproductor de video -->
-  <div id="modal-video-player" class="modal-hidden">
-    <div class="modal-content" style="max-width: 96vw; max-height: 90vh;">
-      <button class="cerrar-modal" id="close-video-modal" title="Cerrar">😵‍💫</button>
+
+  <!-- Modal para reproducir video -->
+  <div id="modal-video-player" class="modal-hidden" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000a;display:flex;align-items:center;justify-content:center;z-index:999;">
+    <div class="modal-content" style="max-width: 96vw; max-height: 90vh; background:#161d21; border-radius:20px; padding:1em; position:relative;">
+      <button class="cerrar-modal" id="close-video-modal" title="Cerrar" style="position:absolute;top:0.6em;right:0.8em;font-size:1.7em;background:none;border:none;cursor:pointer;">😵‍💫</button>
       <h2 id="video-title" style="color:#e53935; margin-bottom:0.6em;"></h2>
-      <video id="video-player" style="display:none;"></video>
-      <div class="controles-reproductor">
-        <button id="prev-video" class="boton-emoji" title="Anterior">🚀</button>
-        <button id="playpause-video" class="boton-emoji" title="Play/Pausa">🛸</button>
-        <button id="next-video" class="boton-emoji" title="Siguiente">🪐</button>
-      </div>
+      <video id="video-player" style="width:100%;max-height:62vh;border-radius:18px;" controls></video>
     </div>
   </div>
   <script src="videos.js"></script>
