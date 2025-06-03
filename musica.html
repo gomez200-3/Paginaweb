@@ -2,36 +2,81 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Nuestra Música Enamorada</title>
+  <title>Te la dedico</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body class="emerald-bg">
   <div class="container">
-    <h1 class="romantic-title">Nuestra Música Enamorada</h1>
-    <form id="music-upload-form" class="add-file-control">
-      <label class="add-file-label">
-        + Añadir canción
-        <input type="file" id="music-input" accept="audio/*" style="display:none" multiple>
-      </label>
+    <h1 class="romantic-title">
+      <span style="margin-right:0.4em;">🎶</span>Te la dedico<span style="margin-left:0.4em;">🎶</span>
+    </h1>
+    <button class="btn-principal" id="add-music-btn">Añadir música</button>
+    <form id="nombre-cancion-form" style="margin:1em 0; display:none;">
+      <input type="file" id="musica-input" accept="audio/*" style="margin-bottom:0.5em;" required>
+      <input type="text" id="nombre-personalizado" placeholder="¿Cómo quieres llamarla?" required>
+      <button type="submit" class="btn-principal" style="padding:0.5em 1.2em;">Guardar</button>
     </form>
-    <div id="music-list" class="music-list"></div>
-    <button class="btn-romantic" id="volver-aventuras" style="margin-top:2rem;">Volver al menú</button>
+    <div class="musica-lista" id="musica-lista"></div>
+    <button class="btn-regresar" id="volver-menu-musica">(*REGRESAR*)</button>
   </div>
-  <!-- Modal para reproductor -->
-  <div id="modal-music-player" class="modal-hidden">
-    <div class="modal-content">
-      <button class="cerrar-modal" id="close-music-modal" title="Cerrar">😵‍💫</button>
-      <h2 id="music-title" style="color:#e53935; margin-bottom:0.6em;"></h2>
-      <audio id="audio-player" style="display:none;"></audio>
-      <div class="controles-reproductor">
-        <button id="prev-music" class="boton-emoji" title="Anterior">🚀</button>
-        <button id="playpause-music" class="boton-emoji" title="Play/Pausa">🛸</button>
-        <button id="next-music" class="boton-emoji" title="Siguiente">🪐</button>
-      </div>
-    </div>
-  </div>
-  <script src="musica.js"></script>
+  <script>
+    // Mostrar formulario para añadir música
+    document.getElementById('add-music-btn').onclick = function() {
+      document.getElementById('nombre-cancion-form').style.display = 'block';
+    };
+
+    // Guardar música con nombre personalizado en localStorage
+    document.getElementById('nombre-cancion-form').onsubmit = function(e) {
+      e.preventDefault();
+      const fileInput = document.getElementById('musica-input');
+      const nombre = document.getElementById('nombre-personalizado').value.trim();
+      if(fileInput.files.length && nombre) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          let lista = JSON.parse(localStorage.getItem('musicas') || '[]');
+          lista.push({nombre, data: evt.target.result});
+          localStorage.setItem('musicas', JSON.stringify(lista));
+          renderMusicaLista();
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+        fileInput.value = '';
+        document.getElementById('nombre-personalizado').value = '';
+        document.getElementById('nombre-cancion-form').style.display = 'none';
+      }
+    };
+
+    function renderMusicaLista() {
+      const lista = JSON.parse(localStorage.getItem('musicas') || '[]');
+      const div = document.getElementById('musica-lista');
+      div.innerHTML = '';
+      if(lista.length === 0) {
+        div.innerHTML = '<span style="color:#fff;font-style:italic;">No has añadido música aún.</span>';
+        return;
+      }
+      lista.forEach((musica, idx) => {
+        const item = document.createElement('div');
+        item.className = 'musica-item';
+        item.innerHTML = `
+          <span>${musica.nombre}</span>
+          <audio controls src="${musica.data}" style="max-width:90px; vertical-align:middle;"></audio>
+          <button class="btn-borrar" title="Borrar">🗑</button>
+        `;
+        item.querySelector('.btn-borrar').onclick = function() {
+          if(confirm('¿Seguro que deseas borrar esta canción?')) {
+            let lista = JSON.parse(localStorage.getItem('musicas') || '[]');
+            lista.splice(idx,1);
+            localStorage.setItem('musicas', JSON.stringify(lista));
+            renderMusicaLista();
+          }
+        };
+        div.appendChild(item);
+      });
+    }
+
+    document.getElementById('volver-menu-musica').onclick = function() { window.location = "aventuras.html"; };
+    window.addEventListener('DOMContentLoaded', renderMusicaLista);
+  </script>
 </body>
 </html>
