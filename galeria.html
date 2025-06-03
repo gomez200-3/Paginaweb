@@ -23,11 +23,16 @@
   <div id="modal-foto" class="modal-hidden">
     <div class="modal-content" style="max-width:96vw; max-height:92vh;">
       <span id="cerrar-foto-modal">&times;</span>
-      <img id="foto-grande" src="" alt="Foto" style="width:100%; max-width:420px; max-height:45vh; border-radius:15px; box-shadow:0 4px 24px #43e97b66;">
-      <input id="titulo-foto" type="text" maxlength="60" style="width:95%; margin-top:1em; font-size:1.12em; border-radius:8px; border:1px solid #43e97b; padding:0.5em 0.7em;" placeholder="Agrega o edita el título de la foto"/>
+      <img id="foto-grande" src="" alt="Foto" style="width:100%; max-width:420px; max-height:45vh; border-radius:15px; box-shadow:0 4px 24px #18d97d66;">
+      <input id="titulo-foto" type="text" maxlength="60" style="width:95%; margin-top:1em; font-size:1.12em; border-radius:8px; border:1px solid #18d97d; padding:0.5em 0.7em;" placeholder="Agrega un título...">
       <button class="btn-romantic" id="guardar-titulo-foto" style="margin-top:0.7em;">Guardar título</button>
     </div>
   </div>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('modal-foto').classList.add('modal-hidden');
+    });
+  </script>
   <script src="galeria.js"></script>
 </body>
 </html>
