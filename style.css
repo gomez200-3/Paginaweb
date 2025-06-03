@@ -1,3 +1,11 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Pacifico', cursive, Arial, sans-serif;
+    background: #009688;
+}
+
 /* Intro animada */
 .intro-anim {
     position: fixed;
@@ -47,24 +55,6 @@
     to { opacity: 0; visibility: hidden;}
 }
 
-body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Pacifico', cursive, Arial, sans-serif;
-    background: #009688; /* fallback */
-}
-.emerald-bg {
-    background: linear-gradient(135deg, #009688 0%, #43e97b 100%);
-    min-height: 100vh;
-}
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
 .romantic-title {
     font-size: 2.5rem;
     color: #fff;
@@ -115,14 +105,34 @@ body, html {
     transform: scale(1.15) rotate(5deg);
 }
 
-#emoji-explosion {
+#explosion-emojis {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
+    z-index: 3000;
+}
+.explosion-emoji {
+    position: absolute;
+    font-size: 2rem;
+    transition: transform 0.7s cubic-bezier(0.6, -0.28, 0.74, 0.05), opacity 0.7s;
+    will-change: transform, opacity;
+    animation: explodeAnim 0.8s forwards;
+}
+@keyframes explodeAnim {
+    from {
+        transform: translate(0,0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translate(var(--tx,0),var(--ty,0)) scale(1.7);
+        opacity: 0;
+    }
 }
 
+/* Modal romántico */
 .modal-hidden {
     display: none;
 }
@@ -132,7 +142,7 @@ body, html {
     justify-content: center;
     position: fixed;
     inset: 0;
-    z-index: 1000;
+    z-index: 4000;
     background: rgba(0,0,0,0.7);
     animation: fadeIn 0.3s;
 }
