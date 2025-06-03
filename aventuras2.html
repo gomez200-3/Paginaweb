@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NUESTRAS AVENTURAS</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;700&family=Orbitron:wght@700&display=swap" />
-  <link rel="stylesheet" href="site.css" />
+    <meta charset="UTF-8">
+    <title>Sueños, música y recuerdos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
-<body>
-  <main>
-    <h1 class="futurista-title anim-futurista">NUESTRAS AVENTURAS</h1>
-    <div class="futurista-btns">
-      <button id="videos-btn" class="futurista-btn videos-btn">🎬 Videos</button>
-      <button id="musica-btn" class="futurista-btn musica-btn">🎵 Música</button>
-      <button id="album-btn" class="futurista-btn album-btn">🛩 Álbum de Pasatiempos
-        <span id="avion" class="avion-anim">🛩</span>
-        <span id="platillo" class="platillo-anim">🛸</span>
-      </button>
+<body class="emerald-bg">
+    <div class="container">
+        <h1 class="romantic-title">¡Viviendo sueños juntos!</h1>
+        <div class="btn-group">
+            <button id="volver-inicio2" class="btn-romantic">Volver al inicio</button>
+            <button id="regresar-aventura" class="btn-romantic">Regresar</button>
+        </div>
+        <div class="media-buttons">
+            <button id="btn-musica" class="btn-romantic">Música 🎶</button>
+            <button id="btn-video" class="btn-romantic">Vídeo 🎥</button>
+            <button id="btn-galeria" class="btn-romantic">Album de pasatiempos 🖼️</button>
+            <button id="btn-notas" class="btn-romantic">Blog de notas 📝</button>
+        </div>
+        <!-- Secciones dinámicas -->
+        <div id="seccion-musica" class="media-section"></div>
+        <div id="seccion-video" class="media-section"></div>
+        <div id="seccion-galeria" class="media-section"></div>
+        <div id="seccion-notas" class="media-section"></div>
     </div>
-    <div class="futurista-volver">
-      <a class="avent-btn volver-btn" href="#">Volver al Inicio</a>
-    </div>
-    <div id="contenido-futurista"></div>
-    <footer>
-      esto es una muestra de mi amor infinito por tu exclusiva forma de ser
-    </footer>
-    <div id="explosion-emojis"></div>
-  </main>
-  <script src="aventuras2.js"></script>
+    <div id="emoji-explosion"></div>
+    <script src="main.js"></script>
 </body>
 </html>
