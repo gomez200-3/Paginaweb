@@ -11,7 +11,7 @@
   <div class="container">
     <h1 class="romantic-title">Notas románticas</h1>
     <form id="nota-form" autocomplete="off" style="margin-bottom:1.5em;">
-      <textarea id="nota-input" maxlength="420" rows="3" placeholder="Escribe aquí tu nota romántica..." style="width:97%;border-radius:10px;border:1.5px solid #43e97b;padding:0.7em 0.8em;font-size:1.13em;"></textarea>
+      <textarea id="nota-input" maxlength="420" rows="3" placeholder="Escribe aquí tu nota romántica..." style="width:97%;border-radius:10px;border:1.5px solid #18d97d;padding:0.7em 0.8em;font-size:1.11em;color:#222;background: #effff7;"></textarea>
       <button type="submit" class="btn-romantic" style="margin-top:0.7em;">Añadir nota</button>
     </form>
     <div id="nota-lista" class="nota-lista"></div>
@@ -24,6 +24,12 @@
       <div id="contenido-nota-modal" style="margin-top:1em;color:#009688;"></div>
     </div>
   </div>
+  <script>
+    // Al cargar, asegurar que el modal está oculto
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('modal-nota').classList.add('modal-hidden');
+    });
+  </script>
   <script src="notas.js"></script>
 </body>
 </html>
