@@ -1,14 +1,9 @@
-body {
-  background: linear-gradient(135deg,#43e97b 0%,#38f9d7 100%);
+body, .emerald-bg {
+  background: #0a332b !important;
   margin: 0;
   font-family: 'Quicksand', Arial, sans-serif;
   min-height: 100vh;
   color: #222;
-}
-
-.emerald-bg {
-  background: linear-gradient(135deg,#43e97b 0%,#38f9d7 100%);
-  min-height: 100vh;
 }
 
 .container {
@@ -16,7 +11,7 @@ body {
   margin: 2.5em auto 0 auto;
   background: #fff5fdcc;
   border-radius: 20px;
-  box-shadow: 0 4px 38px #43e97b44;
+  box-shadow: 0 4px 38px #18d97d44;
   padding: 2.2em 1.1em 2.7em 1.1em;
   text-align: center;
 }
@@ -25,51 +20,50 @@ body {
 .galeria-titulo {
   font-family: 'Pacifico', cursive;
   font-size: 2.1em;
-  color: #43e97b;
+  color: #18d97d;
   margin-bottom: 1em;
   margin-top: 0.6em;
   letter-spacing: 1.5px;
-  text-shadow: 0 2px 10px #43e97b44;
+  text-shadow: 0 2px 10px #18d97d44;
 }
 
-.btn-romantic {
-  background: linear-gradient(90deg,#43e97b 0%,#38f9d7 100%);
-  color: #fff;
+.btn-romantic, a.btn-romantic {
+  background: #18d97d !important;
+  color: #fff !important;
   font-family: 'Quicksand', Arial, sans-serif;
   font-size: 1.13em;
   border: none;
   border-radius: 12px;
   padding: 0.7em 1.3em;
   margin-top: 0.5em;
-  box-shadow: 0 2px 10px #43e97b55;
+  box-shadow: 0 2px 10px #18d97d55;
   cursor: pointer;
   transition: transform 0.14s, box-shadow 0.21s;
   letter-spacing: 0.6px;
+  text-decoration: none !important;
+  display: inline-block;
 }
-.btn-romantic:hover {
+.btn-romantic:hover, a.btn-romantic:hover {
   transform: scale(1.045);
-  box-shadow: 0 6px 24px #43e97b88;
-  background: linear-gradient(90deg, #38f9d7 0%, #43e97b 100%);
+  box-shadow: 0 6px 24px #18d97d88;
+  background: #15b96b !important;
 }
 
-.add-file-control {
-  margin-bottom: 1.3em;
-}
 .add-file-label {
-  background: #43e97b;
+  background: #18d97d;
   color: #fff;
   border-radius: 10px;
   padding: 0.6em 1.15em;
   cursor: pointer;
   font-weight: 600;
   font-size: 1.09em;
-  box-shadow: 0 2px 12px #43e97b44;
+  box-shadow: 0 2px 12px #18d97d44;
   transition: background 0.12s;
   margin-bottom: 1em;
   display: inline-block;
 }
 .add-file-label:hover {
-  background: #38f9d7;
+  background: #15b96b;
   color: #fff;
 }
 
@@ -83,7 +77,7 @@ body {
 .nota-item {
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 12px #43e97b22;
+  box-shadow: 0 2px 12px #18d97d22;
   padding: 1em 1.1em;
   display: flex;
   align-items: center;
@@ -93,7 +87,7 @@ body {
   transition: box-shadow 0.16s;
 }
 .nota-item:hover {
-  box-shadow: 0 6px 24px #43e97b44;
+  box-shadow: 0 6px 24px #18d97d44;
 }
 
 .borrar-nota {
@@ -112,8 +106,9 @@ body {
 }
 
 .modal-hidden {
-  display: none;
+  display: none !important;
 }
+
 #modal-music-player,
 #modal-video-player,
 #modal-foto,
@@ -122,20 +117,22 @@ body {
   z-index: 999;
   left: 0; top: 0;
   width: 100vw; height: 100vh;
-  background: rgba(50, 205, 153, 0.39);
+  background: rgba(26, 71, 60, 0.39);
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .modal-content {
   background: #fff;
   border-radius: 17px;
   padding: 1.4em 1.1em 2em 1.1em;
-  box-shadow: 0 4px 38px #43e97b66;
+  box-shadow: 0 4px 38px #18d97d66;
   position: relative;
   min-width: 210px;
   max-width: 98vw;
 }
+
 #close-music-modal,
 #close-video-modal,
 #cerrar-foto-modal,
@@ -144,7 +141,7 @@ body {
   right: 1.1em;
   top: 1em;
   font-size: 2em;
-  color: #43e97b;
+  color: #18d97d;
   cursor: pointer;
   font-weight: bold;
   transition: color 0.13s;
@@ -155,44 +152,4 @@ body {
 #cerrar-foto-modal:hover,
 #cerrar-nota-modal:hover {
   color: #f44336;
-}
-
-#especial-mensaje {
-  margin-top: 1.5em;
-  font-family: 'Quicksand', Arial, sans-serif;
-  padding: 0.8em 0.7em;
-}
-
-@media (max-width: 670px) {
-  .container {
-    margin: 0.8em 0 0 0;
-    padding: 1.2em 0.3em 2.3em 0.3em;
-    max-width:99vw;
-  }
-  .romantic-title,
-  .galeria-titulo {
-    font-size: 1.33em;
-  }
-  .nota-item {
-    padding: 0.7em 0.6em;
-    font-size: .96em;
-  }
-  .modal-content {
-    padding: 1em 0.3em 1.7em 0.3em;
-    min-width: 110px;
-  }
-  #foto-grande {
-    max-width: 80vw !important;
-    max-height: 36vh !important;
-  }
-}
-
-::-webkit-scrollbar {
-  width: 7px;
-  background: #38f9d722;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-  background: #43e97b66;
-  border-radius: 10px;
-}
+    }
