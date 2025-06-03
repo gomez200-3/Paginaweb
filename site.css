@@ -1,7 +1,18 @@
 body {
-  background: #00FFFF; /* Fondo de pantalla verde agua marina oscuro */
+  background: #19686b; /* Fondo de pantalla verde agua marina oscuro */
+  margin: 0;
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: #fff;
+  min-height: 100vh;
 }
 
+main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 15px 5px 60px 5px;
+}
+
+/* -------------------- BOTONES -------------------- */
 .emoji-btn,
 .recuerdos-btn,
 .futurista-btn,
@@ -11,8 +22,19 @@ body {
 .music-btn,
 .add-file-label,
 .galeria-img-agregar-label {
-  background: linear-gradient(90deg, #00FFFF 60%, #80d0ff 100%) !important;
-  color: #fff !important;
+  font-size: 1.1em;
+  padding: 12px 28px;
+  background: linear-gradient(90deg, #2eb6d1 60%, #80d0ff 100%);
+  border: none;
+  border-radius: 22px;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 10px #2eb6d180;
+  text-decoration: none;
+  font-family: 'Montserrat', Arial, sans-serif;
+  margin: 8px 4px 8px 0;
+  transition: background 0.22s, color 0.14s, transform 0.14s;
+  display: inline-block;
 }
 
 .emoji-btn:hover,
@@ -27,18 +49,25 @@ body {
 .music-btn:active,
 .add-file-label:hover,
 .galeria-img-agregar-label:hover {
-  background: linear-gradient(90deg, #80d0ff 60%, #2eb6d1 100%) !important;
-  color: #fff !important;
+  background: linear-gradient(90deg, #80d0ff 60%, #2eb6d1 100%);
+  color: #fff;
   transform: scale(1.08);
   outline: none;
 }
 
-/* El resto de tu código queda intacto, no se modifica nada adicional */
-main {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 15px 5px 60px 5px;
+/* Ejemplo para botones circulares de música si los tienes */
+.music-btn {
+  width: 54px;
+  height: 54px;
+  font-size: 2em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
+
+/* -------------------- RESTO DE TU CSS ORIGINAL -------------------- */
 
 .portada-titulo,
 .futurista-title,
@@ -84,7 +113,25 @@ main {
   border-radius: 22px;
   color: #fff;
   cursor: pointer;
-  box-shadow: 0 2px 10px #ff00a840;
+  box-shadow: 0 2px 10px #2eb6d180;
   transition: background 0.22s, transform 0.14s;
 }
-/* ...el resto de tu CSS permanece igual... */
+
+.portada-section {
+  margin: 30px 0 18px 0;
+  text-align: center;
+}
+
+footer {
+  font-family: 'Pacifico', cursive;
+  color: #fff;
+  background: #00005a70;
+  border-radius: 8px;
+  padding: 9px 20px;
+  margin: 38px 0 0 0;
+  text-align: center;
+  font-size: 1.07em;
+  letter-spacing: 0.03em;
+}
+
+/* ... (continúa el resto de tu CSS original, no cambies nada más) ... */
