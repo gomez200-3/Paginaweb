@@ -9,22 +9,54 @@
 </head>
 <body class="emerald-bg">
   <div class="container">
-    <h1 class="romantic-title"><span style="margin-right:0.4em;">😍</span>Nuestras Notas<span style="margin-left:0.4em;">😍</span></h1>
-    <button class="btn-principal">Añadir nota</button>
-    <div class="notas-lista">
-      <div class="nota-item">
-        <span>Te amo mucho 💖</span>
-        <button class="btn-borrar" title="Borrar">🗑</button>
-      </div>
-      <div class="nota-item">
-        <span>Siempre juntos</span>
-        <button class="btn-borrar" title="Borrar">🗑</button>
-      </div>
-    </div>
+    <h1 class="romantic-title"><span class="emoji">📝</span>Nuestras Notas<span class="emoji">📝</span></h1>
+    <form id="form-nota">
+      <input type="text" id="nueva-nota" placeholder="Escribe tu nota romántica..." required>
+      <button class="btn-romantic" type="submit">Añadir Nota</button>
+    </form>
+    <div class="notas-lista" id="notas-lista"></div>
     <button class="btn-regresar" id="volver-menu-notas">(*REGRESAR*)</button>
   </div>
+  <!-- Mini reproductor romántico global -->
+  <!-- PEGA AQUÍ EL BLOQUE DE mini-player.html -->
   <script>
+    function renderNotas() {
+      const notas = JSON.parse(localStorage.getItem('notas') || '[]');
+      const div = document.getElementById('notas-lista');
+      div.innerHTML = '';
+      if(notas.length === 0) {
+        div.innerHTML = '<span class="mensaje-romantico">No hay notas aún.</span>';
+        return;
+      }
+      notas.forEach((nota, idx) => {
+        const item = document.createElement('div');
+        item.className = 'nota-item';
+        item.innerHTML = `<span>${nota}</span><button class="btn-borrar" title="Borrar">🗑</button>`;
+        item.querySelector('.btn-borrar').onclick = function() {
+          if(confirm('¿Borrar esta nota?')) {
+            let notas = JSON.parse(localStorage.getItem('notas') || '[]');
+            notas.splice(idx,1);
+            localStorage.setItem('notas', JSON.stringify(notas));
+            renderNotas();
+          }
+        };
+        div.appendChild(item);
+      });
+    }
+    document.getElementById('form-nota').onsubmit = function(e){
+      e.preventDefault();
+      const val = document.getElementById('nueva-nota').value.trim();
+      if(val){
+        let notas = JSON.parse(localStorage.getItem('notas') || '[]');
+        notas.push(val);
+        localStorage.setItem('notas', JSON.stringify(notas));
+        renderNotas();
+        document.getElementById('nueva-nota').value = '';
+      }
+    };
     document.getElementById('volver-menu-notas').onclick = function() { window.location = "aventuras.html"; };
+    window.addEventListener('DOMContentLoaded', renderNotas);
   </script>
+  <!-- PEGA AQUÍ mini-player.html -->
 </body>
 </html>
