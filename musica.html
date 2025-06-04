@@ -46,17 +46,22 @@
       const fileInput = document.getElementById('musica-input');
       const nombre = document.getElementById('nombre-personalizado').value.trim();
       if(fileInput.files.length && nombre) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          let lista = JSON.parse(localStorage.getItem('musicas') || '[]');
-          lista.push({nombre, data: evt.target.result});
-          localStorage.setItem('musicas', JSON.stringify(lista));
-          renderMusicaLista();
-        };
-        reader.readAsDataURL(fileInput.files[0]);
-        fileInput.value = '';
-        document.getElementById('nombre-personalizado').value = '';
-        document.getElementById('nombre-cancion-form').style.display = 'none';
+        const file = fileInput.files[0];
+        if (file.type.startsWith('audio/')) { // sólo archivos de audio
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            let lista = JSON.parse(localStorage.getItem('musicas') || '[]');
+            lista.push({nombre, data: evt.target.result});
+            localStorage.setItem('musicas', JSON.stringify(lista));
+            renderMusicaLista();
+          };
+          reader.readAsDataURL(fileInput.files[0]);
+          fileInput.value = '';
+          document.getElementById('nombre-personalizado').value = '';
+          document.getElementById('nombre-cancion-form').style.display = 'none';
+        } else {
+          alert('Sólo se permiten archivos de audio.');
+        }
       }
     };
     function renderMusicaLista() {
