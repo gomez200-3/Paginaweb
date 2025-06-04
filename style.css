@@ -4,7 +4,7 @@ body, .emerald-bg {
 }
 
 .container {
-  max-width: 440px;
+  max-width: 480px;
   margin: 2.5em auto 0 auto;
   background: transparent !important;
   border-radius: 0;
@@ -13,146 +13,219 @@ body, .emerald-bg {
   text-align: center;
 }
 
+/* Encabezados románticos */
 .romantic-title {
   font-family: 'Pacifico', cursive;
-  color: #18d97d;
+  color: #ff5ebc;
   font-size: 2.2em;
-  margin-bottom: 0.6em;
-  text-shadow: 0 2px 10px #0a332b80;
+  margin-bottom: 0.5em;
+  text-shadow: 0 2px 10px #802f7a80, 0 1px 0 #fff8;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
 }
 
-.btn-principal, .btn-regresar {
-  background: #e53935;
-  color: #fff;
-  border: none;
-  border-radius: 16px;
+.romantic-title .emoji {
   font-size: 1.2em;
-  font-family: 'Quicksand', Arial, sans-serif;
-  padding: 0.85em 2.3em;
-  margin: 1em 0.25em 0.5em 0.25em;
-  box-shadow: 0 2px 8px #e5393555;
-  cursor: pointer;
-  letter-spacing: 0.07em;
-  transition: background 0.13s, transform 0.1s;
-  display: inline-block;
+  filter: drop-shadow(0 2px 8px #ff5ebc66);
 }
-.btn-principal:active, .btn-regresar:active {
-  background: #ab2320;
+
+.romantic-subtitle {
+  font-family: 'Quicksand', Arial, sans-serif;
+  font-size: 1.18em;
+  color: #fff;
+  opacity: 0.87;
+  margin-bottom: 1.5em;
+}
+
+/* Botones románticos */
+.btn-romantic, .btn-regresar {
+  font-size: 1.18em;
+  color: #fff;
+  background: linear-gradient(90deg,#e53935 60%,#ff5ebc 100%);
+  border: none;
+  border-radius: 40px;
+  padding: 0.95em 2.2em;
+  margin: 0.7em 0.18em 1.2em 0.18em;
+  box-shadow: 0 3px 20px #e5393555, 0 1px 0 #fff4;
+  cursor: pointer;
+  font-family: 'Pacifico', cursive;
+  letter-spacing: 1.5px;
+  outline: none;
+  display: inline-block;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.18s;
+  position: relative;
+}
+.btn-romantic:active, .btn-regresar:active {
+  background: linear-gradient(90deg,#ab2320 60%,#c53a8a 100%);
+  transform: scale(0.97);
+  box-shadow: 0 2px 10px #e5393555;
 }
 
 .btn-borrar {
   background: #e53935;
   color: #fff;
   border: none;
-  border-radius: 20px;
-  font-size: 1.2em;
-  padding: 0.35em 0.9em;
+  border-radius: 50%;
+  font-size: 1.35em;
+  padding: 0.37em 0.72em;
   cursor: pointer;
-  margin-left: 0.3em;
+  margin-left: 0.4em;
+  box-shadow: 0 2px 14px #e5393555;
   transition: background 0.13s, transform 0.1s;
-  box-shadow: 0 2px 8px #e5393555;
-}
-.btn-borrar:active {
-  background: #ab2320;
-}
-
-/* Galería para videos */
-.video-list {
-  margin-top: 1.2em;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: 1em;
-  background: transparent;
-}
-
-.video-item {
-  background: #161d21;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px #18d97d22;
-  overflow: hidden;
-  cursor: pointer;
-  position: relative;
-  aspect-ratio: 1/1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.video-thumb {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  background: #222;
-}
-
-.video-duration {
-  position: absolute;
-  left: 0.45em;
-  bottom: 0.45em;
-  background: rgba(0,0,0,0.7);
-  color: #fff;
-  padding: 0.13em 0.55em;
-  border-radius: 8px;
-  font-size: 0.93em;
   font-family: 'Quicksand', Arial, sans-serif;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 0.2em;
+  vertical-align: middle;
+}
+.btn-borrar:active { background: #ab2320; }
+
+input[type="text"], input[type="file"], textarea {
+  font-family: 'Quicksand', Arial, sans-serif;
+  font-size: 1.08em;
+  border-radius: 16px;
+  border: none;
+  background: #fff;
+  color: #2a2a2a;
+  margin: 0.45em 0;
+  padding: 0.7em 1.1em;
+  box-shadow: 0 1px 6px #e5393533;
+  outline: none;
+  width: 85%;
+  max-width: 260px;
 }
 
-.icon-play {
-  position: absolute;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
+input[type="file"] {
+  padding: 0.5em 0.8em;
+  background: #fff9;
+}
+
+label, .add-file-label {
+  font-family: 'Quicksand', Arial, sans-serif;
   color: #fff;
-  font-size: 1.7em;
-  opacity: 0.84;
-  pointer-events: none;
+  font-size: 1.1em;
+  margin-bottom: 0.7em;
+  display: block;
+  cursor: pointer;
 }
 
-/* Galerías y listas para álbum, notas, especial, música */
-.album-lista, .notas-lista, .especial-lista, .musica-lista {
+.album-lista, .notas-lista, .especial-lista, .musica-lista, .video-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 1.1em;
   justify-content: center;
-  margin: 1em 0 1em 0;
+  margin: 1.2em 0 1em 0;
 }
 
-.album-item, .nota-item, .especial-item, .musica-item {
+.album-item, .nota-item, .especial-item, .musica-item, .video-item {
   background: #161d21;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px #18d97d22;
-  padding: 0.7em 1em;
+  border-radius: 15px;
+  box-shadow: 0 2px 14px #18d97d22;
+  padding: 0.7em 0.8em 0.5em 0.8em;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 180px;
-  max-width: 320px;
-  margin: 0.1em 0.3em;
+  min-width: 170px;
+  max-width: 220px;
   width: 100%;
+  font-size: 1.01em;
 }
 
-.foto-album {
-  width: 60px;
-  height: 60px;
+.foto-album, .video-thumb {
+  width: 68px;
+  height: 68px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 11px;
   margin-right: 1em;
+  background:#262c;
 }
-
-input[type="text"], input[type="file"] {
+.album-nombre, .video-nombre {
+  flex:1;
+  text-align: left;
+  margin-left: 0.5em;
+  color: #fff;
   font-family: 'Quicksand', Arial, sans-serif;
   font-size: 1em;
 }
 
-input[type="text"] {
-  padding: 0.5em;
-  border-radius: 8px;
+/* MINI REPRODUCTOR */
+#mini-player-modal {
+  position: fixed;
+  bottom: 12vh;
+  left: 6vw;
+  min-width: 220px;
+  max-width: 330px;
+  background: #23243b;
+  color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px #0009, 0 1px 0 #fff2;
+  padding: 1.2em 1.15em 1.2em 1.15em;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: grab;
+  user-select: none;
+  transition: box-shadow 0.18s;
+}
+#mini-player-modal.dragging { box-shadow: 0 8px 40px #000c; }
+
+#mini-player-modal img {
+  width: 82px;
+  height: 82px;
+  border-radius: 16px;
+  margin-bottom: 0.7em;
+  object-fit: cover;
+  border: 2px solid #ff5ebc;
+  box-shadow: 0 2px 12px #ff5ebc33;
+}
+
+#mini-player-modal .player-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.1em;
+  color: #ff5ebc;
+  margin-bottom: 0.4em;
+  text-align: center;
+}
+#mini-player-modal .player-controls {
+  display: flex;
+  gap: 0.7em;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.4em;
+}
+#mini-player-modal button {
+  background: none;
   border: none;
-  width: 70%;
-  max-width: 220px;
-  margin-bottom: 0.8em;
+  font-size: 2em;
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.13s, transform 0.11s;
+  padding: 0.12em 0.3em;
+  border-radius: 12px;
+}
+#mini-player-modal button:hover {
+  color: #ff5ebc;
+  transform: scale(1.15);
+}
+#mini-player-modal .close-player {
+  position: absolute;
+  top: 0.45em;
+  right: 0.6em;
+  font-size: 1.5em;
+  color: #ff5ebc;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 200;
+}
+
+@media (max-width: 600px) {
+  #mini-player-modal {
+    min-width: 170px;
+    max-width: 90vw;
+    left: 2vw;
+    bottom: 7vh;
+    padding: 0.7em 0.5em 0.8em 0.5em;
+  }
   }
