@@ -10,17 +10,25 @@
 <body class="emerald-bg">
   <div class="container">
     <h1 class="romantic-title">Nuestros Videos</h1>
-    <form id="video-upload-form" class="add-file-control">
-      <label class="add-file-label">
-        + Añadir video
-        <input type="file" id="video-input" accept="video/*" style="display:none" multiple>
-      </label>
-    </form>
+    <label class="btn-romantic-round" style="cursor:pointer;">
+      + Añadir video
+      <input type="file" id="video-input" accept="video/*" multiple style="display:none">
+    </label>
     <div id="video-list" class="video-list"></div>
     <button class="btn-regresar" id="volver-aventuras">(*REGRESAR*)</button>
   </div>
-  <!-- Mini reproductor romántico global -->
-  <!-- PEGA AQUÍ EL BLOQUE DE mini-player.html -->
+  <!-- Mini reproductor aquí -->
+  <div id="mini-player-modal" style="display:none;">
+    <button class="close-player" title="Cerrar">✖️</button>
+    <img id="mini-player-cover" src="cover1.jpg" alt="Portada">
+    <div class="player-title" id="mini-player-title">Canción romántica</div>
+    <div class="player-controls">
+      <button id="btn-prev" title="Anterior">🚀</button>
+      <button id="btn-play" title="Play/Pause">🛸</button>
+      <button id="btn-next" title="Siguiente">🪐</button>
+    </div>
+    <audio id="mini-player-audio"></audio>
+  </div>
   <script>
     function getVideos() {
       return JSON.parse(localStorage.getItem('videos') || '[]');
@@ -39,38 +47,12 @@
       videos.forEach((video, idx) => {
         const item = document.createElement('div');
         item.className = 'video-item';
-        item.dataset.idx = idx;
-        const videoEl = document.createElement('video');
-        videoEl.src = video.data;
-        videoEl.className = 'video-thumb';
-        videoEl.muted = true;
-        videoEl.playsInline = true;
-        videoEl.preload = "metadata";
-        videoEl.style.background = "#222";
-        item.appendChild(videoEl);
-
-        // Icono play
-        const iconPlay = document.createElement('span');
-        iconPlay.className = 'icon-play';
-        iconPlay.innerHTML = '▶️';
-        iconPlay.style.position = "absolute";
-        iconPlay.style.left = "50%";
-        iconPlay.style.top = "50%";
-        iconPlay.style.transform = "translate(-50%,-50%)";
-        item.appendChild(iconPlay);
-
-        // Duración
-        const dur = document.createElement('span');
-        dur.className = 'video-nombre';
-        dur.innerHTML = '...';
-        item.appendChild(dur);
-
-        // Botón borrar
-        const btnBorrar = document.createElement('button');
-        btnBorrar.className = 'btn-borrar';
-        btnBorrar.title = 'Borrar video';
-        btnBorrar.innerHTML = '🗑';
-        btnBorrar.onclick = (ev) => {
+        item.innerHTML = `
+          <video src="${video.data}" class="video-thumb" style="width:100%;border-radius:13px;margin-bottom:0.7em;" preload="metadata"></video>
+          <span class="video-nombre">${video.name || 'Video'}</span>
+          <button class="btn-borrar" title="Borrar video">🗑</button>
+        `;
+        item.querySelector('.btn-borrar').onclick = (ev) => {
           ev.stopPropagation();
           if (confirm('¿Seguro que quieres borrar este video?')) {
             let videos = getVideos();
@@ -79,13 +61,10 @@
             renderVideoList();
           }
         };
-        item.appendChild(btnBorrar);
-
-        videoEl.onloadedmetadata = () => {
-          const d = Math.floor(videoEl.duration);
-          dur.textContent = d>=60 ? `${Math.floor(d/60)}:${(d%60).toString().padStart(2, '0')}` : `0:${(d%60).toString().padStart(2, '0')}`;
+        // Permite reproducir video
+        item.querySelector('.video-thumb').onclick = function() {
+          this.paused ? this.play() : this.pause();
         };
-
         videoList.appendChild(item);
       });
     }
@@ -95,6 +74,7 @@
       let videos = getVideos();
       let filesToLoad = files.length;
       files.forEach(file => {
+        if (!file.type.startsWith('video/')) return;
         const reader = new FileReader();
         reader.onload = function(evt) {
           videos.push({
@@ -115,7 +95,7 @@
       window.location = "aventuras.html";
     };
     window.addEventListener('DOMContentLoaded', renderVideoList);
+    // Mini reproductor: pega aquí tu JS global
   </script>
-  <!-- PEGA AQUÍ mini-player.html -->
 </body>
 </html>
