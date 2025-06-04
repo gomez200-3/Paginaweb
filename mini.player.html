@@ -1,4 +1,4 @@
-<!-- MINI REPRODUCTOR ROMÁNTICO GLOBAL Y PERSISTENTE -->
+<!-- MINI REPRODUCTOR GLOBAL -->
 <div id="mini-player-modal" style="display:none;">
   <button class="close-player" title="Cerrar">✖️</button>
   <img id="mini-player-cover" src="cover1.jpg" alt="Portada">
@@ -34,11 +34,13 @@ let lastTime = 0;
 const playerModal = document.getElementById('mini-player-modal');
 const audio = document.getElementById('mini-player-audio');
 const cover = document.getElementById('mini-player-cover');
-const titleEl = document.getElementById('mini-player-title');
+const title = document.getElementById('mini-player-title');
 const btnPrev = document.getElementById('btn-prev');
 const btnPlay = document.getElementById('btn-play');
 const btnNext = document.getElementById('btn-next');
 const btnClose = document.querySelector('.close-player');
+
+// --- Estado global persistente usando localStorage ---
 function savePlayerState() {
   localStorage.setItem('miniPlayerState', JSON.stringify({
     current, isPlaying, lastTime: audio.currentTime
@@ -54,7 +56,7 @@ function setPlayer(idx) {
   const song = playlist[idx];
   audio.src = song.src;
   cover.src = song.cover;
-  titleEl.textContent = song.title;
+  title.textContent = song.title;
   audio.currentTime = lastTime || 0;
 }
 function playSong() {
@@ -69,6 +71,7 @@ function pauseSong() {
   btnPlay.textContent = '🛸';
   savePlayerState();
 }
+// --- Controles ---
 btnPlay.onclick = function() {
   if(isPlaying) pauseSong();
   else playSong();
@@ -88,7 +91,7 @@ btnNext.onclick = function() {
 btnClose.onclick = function() {
   playerModal.style.display = 'none';
   pauseSong();
-  localStorage.setItem('miniPlayerState', '');
+  localStorage.setItem('miniPlayerState', ''); // opcional: borra el estado
 };
 audio.onpause = savePlayerState;
 audio.onplay = savePlayerState;
@@ -96,18 +99,21 @@ audio.ontimeupdate = function() {
   lastTime = audio.currentTime;
   savePlayerState();
 };
+// --- Mostrar mini reproductor y recuperar estado ---
 window.addEventListener('DOMContentLoaded', () => {
   loadPlayerState();
   setPlayer(current);
   playerModal.style.display = 'flex';
   if (isPlaying) playSong();
   else pauseSong();
+  // Restaurar posición si la guardaste (opcional)
   const pos = JSON.parse(localStorage.getItem('miniPlayerPos') || '{}');
   if (pos.left && pos.top) {
     playerModal.style.left = pos.left;
     playerModal.style.top = pos.top;
   }
 });
+// --- Drag & drop del mini-player (PC y móvil) ---
 let offsetX, offsetY, dragging = false;
 function savePos() {
   localStorage.setItem('miniPlayerPos', JSON.stringify({
@@ -154,4 +160,4 @@ document.addEventListener('touchend', function() {
   dragging = false;
   playerModal.classList.remove('dragging');
 });
-  </script>
+</script>
