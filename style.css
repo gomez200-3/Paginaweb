@@ -24,10 +24,23 @@ body, .emerald-bg {
   justify-content: center;
   align-items: center;
   gap: 0.3em;
+  animation: fadeInDown 1s cubic-bezier(.68,-0.55,.27,1.55);
 }
 
-.btn-romantic, .btn-regresar {
-  font-size: 1.18em;
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-60px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 #ff5ebc66;}
+  70% { box-shadow: 0 0 0 18px transparent;}
+  100% { box-shadow: 0 0 0 0 transparent;}
+}
+
+/* Botón romántico animado */
+.btn-romantic, .btn-regresar, .btn-romantic-round {
+  font-size: 1.16em;
   color: #fff;
   background: linear-gradient(90deg,#e53935 60%,#ff5ebc 100%);
   border: none;
@@ -40,60 +53,175 @@ body, .emerald-bg {
   letter-spacing: 1.5px;
   outline: none;
   display: inline-block;
-  transition: background 0.2s, transform 0.1s, box-shadow 0.18s;
+  transition: background 0.25s, transform 0.13s, box-shadow 0.18s;
+  animation: pulse 2.5s infinite;
   position: relative;
 }
-.btn-romantic:active, .btn-regresar:active {
+
+.btn-romantic:active, .btn-regresar:active, .btn-romantic-round:active {
   background: linear-gradient(90deg,#ab2320 60%,#c53a8a 100%);
-  transform: scale(0.97);
+  transform: scale(0.98);
   box-shadow: 0 2px 10px #e5393555;
 }
-
-/* Botón redondo extra */
 .btn-romantic-round {
-  font-size: 1.35em;
-  background: linear-gradient(90deg,#e53935 60%,#ff5ebc 100%);
   border-radius: 999px;
-  padding: 1em 2.7em;
-  margin: 1.2em auto 1.5em auto;
-  box-shadow: 0 6px 36px #e5393555;
-  font-family: 'Pacifico', cursive;
-  border: none;
-  display: block;
-  transition: background 0.2s, transform 0.1s, box-shadow 0.18s;
-}
-.btn-romantic-round:active {
-  background: linear-gradient(90deg,#ab2320 60%,#c53a8a 100%);
+  font-size: 1.23em;
+  padding: 1.1em 3em;
+  margin: 1.3em auto 1.6em auto;
+  box-shadow: 0 7px 36px #e5393555;
+  animation-delay: 0.2s;
 }
 
-/* Entradas y formularios */
-input[type="file"], input[type="text"] {
+.btn-borrar {
+  background: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.35em;
+  padding: 0.37em 0.72em;
+  cursor: pointer;
+  margin-left: 0.4em;
+  box-shadow: 0 2px 14px #e5393555;
+  transition: background 0.13s, transform 0.1s;
+  font-family: 'Quicksand', Arial, sans-serif;
+  vertical-align: middle;
+}
+.btn-borrar:active { background: #ab2320; }
+
+input[type="file"] {
   border-radius: 24px;
   border: none;
   font-size: 1.08em;
-  padding: 0.8em 1.25em;
-  margin: 1em auto;
-  background: #f4f4f433;
-  color: #23243b;
+  padding: 0.8em 1.2em;
+  margin: 1em auto 0 auto;
+  background: #23243b;
+  color: #fff;
   width: 90%;
   max-width: 320px;
   font-family: 'Quicksand', Arial, sans-serif;
   box-shadow: 0 2px 12px #e5393533;
   display: block;
+  transition: background 0.3s, color 0.2s;
+}
+
+input[type="file"]::file-selector-button {
+  background: linear-gradient(90deg,#e53935 60%,#ff5ebc 100%);
+  border: none;
+  color: #fff;
+  font-family: 'Pacifico', cursive;
+  padding: 0.7em 1.3em;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 0.9em;
+  font-size: 1.04em;
+  box-shadow: 0 3px 10px #e5393555;
+  transition: background 0.23s, color 0.2s;
+  animation: pulse 2.5s infinite;
+}
+input[type="file"]:focus {
+  outline: 2px solid #ff5ebc;
+}
+
+input[type="text"] {
+  border-radius: 24px;
+  border: none;
+  font-size: 1.08em;
+  padding: 0.8em 1.25em;
+  margin: 1em auto;
+  background: #fff3;
+  color: #fff;
+  width: 90%;
+  max-width: 320px;
+  font-family: 'Quicksand', Arial, sans-serif;
+  box-shadow: 0 2px 12px #e5393533;
+  display: block;
+  transition: background 0.3s, color 0.2s;
+}
+input[type="text"]:focus {
+  outline: 2px solid #ff5ebc;
+  background: #fff7;
+  color: #e53935;
+}
+
+/* Galería de videos/álbum ajustable */
+.video-list, .album-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1.1em;
+  justify-content: center;
+  margin: 1.2em 0 1em 0;
+}
+
+.video-item, .album-item {
+  background: #161d21;
+  border-radius: 13px;
+  box-shadow: 0 2px 14px #18d97d22;
+  padding: 0.36em 0.5em 0.36em 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.foto-album, .video-thumb {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 11px;
+  background:#262c;
+  margin-bottom: 0.7em;
+  max-width: 180px;
+  min-width: 80px;
+}
+
+.album-nombre, .video-nombre {
+  color: #fff;
+  font-family: 'Quicksand', Arial, sans-serif;
+  margin: 0.3em 0 0.2em 0;
+  font-size: 1em;
+  text-align: center;
+  word-break: break-word;
+}
+
+.notas-lista, .especial-lista, .musica-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1em;
+  justify-content: center;
+  margin: 1.2em 0 1em 0;
+}
+
+.nota-item, .especial-item, .musica-item {
+  background: #161d21;
+  border-radius: 13px;
+  box-shadow: 0 2px 14px #18d97d22;
+  padding: 0.8em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.07em;
+}
+
+@media (max-width: 600px) {
+  .container { padding: 1em 0.1em 1.3em 0.1em;}
+  .romantic-title { font-size: 1.22em; }
+  .btn-romantic, .btn-regresar, .btn-romantic-round { font-size: 1em; padding: 0.8em 1.2em;}
+  input[type="text"], input[type="file"] { font-size: 1em;}
+  .foto-album, .video-thumb { max-width:130px;}
 }
 
 /* Mini reproductor compacto y redondo */
 #mini-player-modal {
   position: fixed;
-  bottom: 6vh;
+  bottom: 4vh;
   left: 3vw;
-  min-width: 170px;
-  max-width: 260px;
+  min-width: 140px;
+  max-width: 230px;
   background: #23243b;
   color: #fff;
   border-radius: 36px;
   box-shadow: 0 4px 24px #0009, 0 1px 0 #fff2;
-  padding: 0.7em 1em 0.7em 1em;
+  padding: 0.6em 0.8em 0.6em 0.8em;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -102,40 +230,41 @@ input[type="file"], input[type="text"] {
   user-select: none;
   transition: box-shadow 0.18s;
   font-size: 1em;
+  animation: fadeInDown 0.8s;
 }
 #mini-player-modal.dragging { box-shadow: 0 8px 40px #000c; }
 
 #mini-player-modal img {
-  width: 56px;
-  height: 56px;
-  border-radius: 17px;
-  margin-bottom: 0.5em;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  margin-bottom: 0.4em;
   object-fit: cover;
   border: 2px solid #ff5ebc;
   box-shadow: 0 2px 12px #ff5ebc33;
 }
 #mini-player-modal .player-title {
   font-family: 'Pacifico', cursive;
-  font-size: 1em;
+  font-size: 0.96em;
   color: #ff5ebc;
-  margin-bottom: 0.3em;
+  margin-bottom: 0.2em;
   text-align: center;
 }
 #mini-player-modal .player-controls {
   display: flex;
-  gap: 0.6em;
+  gap: 0.4em;
   align-items: center;
   justify-content: center;
-  margin-top: 0.2em;
+  margin-top: 0.13em;
 }
 #mini-player-modal button {
   background: none;
   border: none;
-  font-size: 1.4em;
+  font-size: 1.18em;
   cursor: pointer;
   color: #fff;
   transition: color 0.13s, transform 0.11s;
-  padding: 0.09em 0.22em;
+  padding: 0.02em 0.13em;
   border-radius: 12px;
 }
 #mini-player-modal button:hover {
@@ -144,9 +273,9 @@ input[type="file"], input[type="text"] {
 }
 #mini-player-modal .close-player {
   position: absolute;
-  top: 0.3em;
-  right: 0.6em;
-  font-size: 1.3em;
+  top: 0.25em;
+  right: 0.5em;
+  font-size: 1.15em;
   color: #ff5ebc;
   background: none;
   border: none;
