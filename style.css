@@ -13,7 +13,6 @@ body, .emerald-bg {
   text-align: center;
 }
 
-/* Encabezados románticos */
 .romantic-title {
   font-family: 'Pacifico', cursive;
   color: #ff5ebc;
@@ -27,20 +26,6 @@ body, .emerald-bg {
   gap: 0.3em;
 }
 
-.romantic-title .emoji {
-  font-size: 1.2em;
-  filter: drop-shadow(0 2px 8px #ff5ebc66);
-}
-
-.romantic-subtitle {
-  font-family: 'Quicksand', Arial, sans-serif;
-  font-size: 1.18em;
-  color: #fff;
-  opacity: 0.87;
-  margin-bottom: 1.5em;
-}
-
-/* Botones románticos */
 .btn-romantic, .btn-regresar {
   font-size: 1.18em;
   color: #fff;
@@ -49,7 +34,7 @@ body, .emerald-bg {
   border-radius: 40px;
   padding: 0.95em 2.2em;
   margin: 0.7em 0.18em 1.2em 0.18em;
-  box-shadow: 0 3px 20px #e5393555, 0 1px 0 #fff4;
+  box-shadow: 0 5px 30px #e5393555, 0 1px 0 #fff4;
   cursor: pointer;
   font-family: 'Pacifico', cursive;
   letter-spacing: 1.5px;
@@ -64,102 +49,51 @@ body, .emerald-bg {
   box-shadow: 0 2px 10px #e5393555;
 }
 
-.btn-borrar {
-  background: #e53935;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
+/* Botón redondo extra */
+.btn-romantic-round {
   font-size: 1.35em;
-  padding: 0.37em 0.72em;
-  cursor: pointer;
-  margin-left: 0.4em;
-  box-shadow: 0 2px 14px #e5393555;
-  transition: background 0.13s, transform 0.1s;
-  font-family: 'Quicksand', Arial, sans-serif;
-  vertical-align: middle;
-}
-.btn-borrar:active { background: #ab2320; }
-
-input[type="text"], input[type="file"], textarea {
-  font-family: 'Quicksand', Arial, sans-serif;
-  font-size: 1.08em;
-  border-radius: 16px;
+  background: linear-gradient(90deg,#e53935 60%,#ff5ebc 100%);
+  border-radius: 999px;
+  padding: 1em 2.7em;
+  margin: 1.2em auto 1.5em auto;
+  box-shadow: 0 6px 36px #e5393555;
+  font-family: 'Pacifico', cursive;
   border: none;
-  background: #fff;
-  color: #2a2a2a;
-  margin: 0.45em 0;
-  padding: 0.7em 1.1em;
-  box-shadow: 0 1px 6px #e5393533;
-  outline: none;
-  width: 85%;
-  max-width: 260px;
-}
-
-input[type="file"] {
-  padding: 0.5em 0.8em;
-  background: #fff9;
-}
-
-label, .add-file-label {
-  font-family: 'Quicksand', Arial, sans-serif;
-  color: #fff;
-  font-size: 1.1em;
-  margin-bottom: 0.7em;
   display: block;
-  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.18s;
+}
+.btn-romantic-round:active {
+  background: linear-gradient(90deg,#ab2320 60%,#c53a8a 100%);
 }
 
-.album-lista, .notas-lista, .especial-lista, .musica-lista, .video-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.1em;
-  justify-content: center;
-  margin: 1.2em 0 1em 0;
-}
-
-.album-item, .nota-item, .especial-item, .musica-item, .video-item {
-  background: #161d21;
-  border-radius: 15px;
-  box-shadow: 0 2px 14px #18d97d22;
-  padding: 0.7em 0.8em 0.5em 0.8em;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-width: 170px;
-  max-width: 220px;
-  width: 100%;
-  font-size: 1.01em;
-}
-
-.foto-album, .video-thumb {
-  width: 68px;
-  height: 68px;
-  object-fit: cover;
-  border-radius: 11px;
-  margin-right: 1em;
-  background:#262c;
-}
-.album-nombre, .video-nombre {
-  flex:1;
-  text-align: left;
-  margin-left: 0.5em;
-  color: #fff;
+/* Entradas y formularios */
+input[type="file"], input[type="text"] {
+  border-radius: 24px;
+  border: none;
+  font-size: 1.08em;
+  padding: 0.8em 1.25em;
+  margin: 1em auto;
+  background: #f4f4f433;
+  color: #23243b;
+  width: 90%;
+  max-width: 320px;
   font-family: 'Quicksand', Arial, sans-serif;
-  font-size: 1em;
+  box-shadow: 0 2px 12px #e5393533;
+  display: block;
 }
 
-/* MINI REPRODUCTOR */
+/* Mini reproductor compacto y redondo */
 #mini-player-modal {
   position: fixed;
-  bottom: 12vh;
-  left: 6vw;
-  min-width: 220px;
-  max-width: 330px;
+  bottom: 6vh;
+  left: 3vw;
+  min-width: 170px;
+  max-width: 260px;
   background: #23243b;
   color: #fff;
-  border-radius: 20px;
+  border-radius: 36px;
   box-shadow: 0 4px 24px #0009, 0 1px 0 #fff2;
-  padding: 1.2em 1.15em 1.2em 1.15em;
+  padding: 0.7em 1em 0.7em 1em;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -167,41 +101,41 @@ label, .add-file-label {
   cursor: grab;
   user-select: none;
   transition: box-shadow 0.18s;
+  font-size: 1em;
 }
 #mini-player-modal.dragging { box-shadow: 0 8px 40px #000c; }
 
 #mini-player-modal img {
-  width: 82px;
-  height: 82px;
-  border-radius: 16px;
-  margin-bottom: 0.7em;
+  width: 56px;
+  height: 56px;
+  border-radius: 17px;
+  margin-bottom: 0.5em;
   object-fit: cover;
   border: 2px solid #ff5ebc;
   box-shadow: 0 2px 12px #ff5ebc33;
 }
-
 #mini-player-modal .player-title {
   font-family: 'Pacifico', cursive;
-  font-size: 1.1em;
+  font-size: 1em;
   color: #ff5ebc;
-  margin-bottom: 0.4em;
+  margin-bottom: 0.3em;
   text-align: center;
 }
 #mini-player-modal .player-controls {
   display: flex;
-  gap: 0.7em;
+  gap: 0.6em;
   align-items: center;
   justify-content: center;
-  margin-top: 0.4em;
+  margin-top: 0.2em;
 }
 #mini-player-modal button {
   background: none;
   border: none;
-  font-size: 2em;
+  font-size: 1.4em;
   cursor: pointer;
   color: #fff;
   transition: color 0.13s, transform 0.11s;
-  padding: 0.12em 0.3em;
+  padding: 0.09em 0.22em;
   border-radius: 12px;
 }
 #mini-player-modal button:hover {
@@ -210,22 +144,12 @@ label, .add-file-label {
 }
 #mini-player-modal .close-player {
   position: absolute;
-  top: 0.45em;
+  top: 0.3em;
   right: 0.6em;
-  font-size: 1.5em;
+  font-size: 1.3em;
   color: #ff5ebc;
   background: none;
   border: none;
   cursor: pointer;
   z-index: 200;
 }
-
-@media (max-width: 600px) {
-  #mini-player-modal {
-    min-width: 170px;
-    max-width: 90vw;
-    left: 2vw;
-    bottom: 7vh;
-    padding: 0.7em 0.5em 0.8em 0.5em;
-  }
-  }
