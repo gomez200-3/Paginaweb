@@ -12,11 +12,11 @@
     <h1 class="romantic-title">
       <span style="margin-right:0.4em;">🎶</span>Te la dedico<span style="margin-left:0.4em;">🎶</span>
     </h1>
-    <button class="btn-principal" id="add-music-btn">Añadir música</button>
+    <button class="btn-romantic" id="add-music-btn">Añadir música</button>
     <form id="nombre-cancion-form" style="margin:1em 0; display:none;">
       <input type="file" id="musica-input" accept="audio/*" style="margin-bottom:0.5em;" required>
       <input type="text" id="nombre-personalizado" placeholder="¿Cómo quieres llamarla?" required>
-      <button type="submit" class="btn-principal" style="padding:0.5em 1.2em;">Guardar</button>
+      <button type="submit" class="btn-romantic" style="padding:0.5em 1.2em;">Guardar</button>
     </form>
     <div class="musica-lista" id="musica-lista"></div>
     <button class="btn-regresar" id="volver-menu-musica">(*REGRESAR*)</button>
@@ -108,7 +108,17 @@ const playlist = [
     title: "Canción romántica 3",
     src: "musica-romantica3.mp3",
     cover: "cover3.jpg"
-  }
+  },
+    {
+    title: "Canción romántica 3",
+    src: "musica-romantica3.mp3",
+    cover: "cover4.jpg"
+},
+    {
+    title: "Canción romántica 3",
+    src: "musica-romantica3.mp3",
+    cover: "cover5.jpg"
+    }
 ];
 let current = 0;
 let isPlaying = false;
