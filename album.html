@@ -36,9 +36,12 @@
   </div>
   <script>
     const precargadas = [
-      { nombre: "Foto especial 1", img: "media/foto1.jpg" },
-      { nombre: "Foto especial 2", img: "media/foto2.jpg" }
-    ];
+      { nombre: "recuerdas éste día", img: "Media/andrea.jpg" },
+      { nombre: "EL DIA DE LA CULEBRA", img: "Media/Vamos_tmfotos.jpg" },
+      { nombre: "recuerdas éste día", img: "Media/Recuerdo2202.jpg" },
+      { nombre: "recuerdas éste día", img: "Media/IMG-mi reina.jpg" },
+      { nombre: "recuerdas éste día", img: "Media/IMG_20250406_210730.jpg" },
+    ]
     function renderAlbum() {
       const userPhotos = JSON.parse(localStorage.getItem('album') || '[]');
       const allPhotos = [...precargadas, ...userPhotos].slice(0, 1000);
