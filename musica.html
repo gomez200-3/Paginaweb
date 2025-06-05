@@ -38,9 +38,181 @@
   <script>
     // Precargadas de /media (edítalas si cambias nombres/portadas)
     const precargadas = [
-      {nombre: "Canción romántica", data: "Media/Don Omar - Dutty Love (Lyric Video) ft. Natti Natasha(M4A_128K).m4a", cover: "Media/IMG_20250406_210730.jpg"},
-      {nombre: "Canción romántica", data: "Media/Zion x Ken-Y - More (La Formula) ft. Jory [Official Video](M4A_128K).m4a", cover: "Media/20250503_182247.jpg"},
-      {nombre: "Canción romántica", data: "Media/Shawn Mendes - There_s Nothing Holdin_ Me Back _ Traducida al Español(M4A_128K).m4a", cover: "Media/gutierrez.jpg"}
+      {nombre: "Canción romántica", data: "Media/musica/Afaz Natural - _Quizás_ LETRA  (Video Lyric)(M4A_128K).m4a", cover: "Media/I<!-- MINI REPRODUCTOR GLOBAL -->
+<div id="mini-player-modal" style="display:none;">
+  <button class="close-player" title="Cerrar">✖️</button>
+  <img id="mini-player-cover" src="cover1.jpg" alt="Portada">
+  <div class="player-title" id="mini-player-title">Canción romántica</div>
+  <div class="player-controls">
+    <button id="btn-prev" title="Anterior">🚀</button>
+    <button id="btn-play" title="Play/Pause">🛸</button>
+    <button id="btn-next" title="Siguiente">🪐</button>
+  </div>
+  <audio id="mini-player-audio"></audio>
+</div>
+<script>
+const playlist = [
+  {
+    title: "Canción romántica",
+    src: "Media/musica/Willy Garcia - Amanecí Con Ganas De Ti (Video Live Performance) Salsa Romántica 2023(M4A_128K).m4a",
+    cover: "cover1.jpg"
+  },
+  {
+    title: "Canción romántica😍 ",
+    src: "Media/musica/Afaz Natural - _Quizás_ LETRA (Video Lyric)(M4A_128K).m4a",
+    cover: "Media/Fotos/04.jpg"
+  },
+  {
+    title: "Canción romántica🤯 ",
+    src: "Media/musica/Deseandote(M4A_128K).m4a",
+    cover: "Media/Fotos/05.jpg"
+  },
+    {
+    title: "Canción romántica❤️‍🔥 ",
+    src: "Media/musica/Esa Mujer(M4A_128K).m4a",
+    cover: "Media/Fotos/08.jpg"
+  },
+    {
+    title: "Canción romántica 🌷",
+    src: "Media/musica/Jerry Rivera - Que Hay De Malo (Official Video)(M4A_128K).m4a",
+    cover: "cover2.jpg"
+  },
+];
+let current = 0;
+let isPlaying = false;
+let lastTime = 0;
+const playerModal = document.getElementById('mini-player-modal');
+const audio = document.getElementById('mini-player-audio');
+const cover = document.getElementById('mini-player-cover');
+const title = document.getElementById('mini-player-title');
+const btnPrev = document.getElementById('btn-prev');
+const btnPlay = document.getElementById('btn-play');
+const btnNext = document.getElementById('btn-next');
+const btnClose = document.querySelector('.close-player');
+
+// --- Estado global persistente usando localStorage ---
+function savePlayerState() {
+  localStorage.setItem('miniPlayerState', JSON.stringify({
+    current, isPlaying, lastTime: audio.currentTime
+  }));
+}
+function loadPlayerState() {
+  const state = JSON.parse(localStorage.getItem('miniPlayerState') || '{}');
+  if (typeof state.current === 'number') current = state.current;
+  if (typeof state.isPlaying === 'boolean') isPlaying = state.isPlaying;
+  if (typeof state.lastTime === 'number') lastTime = state.lastTime;
+}
+function setPlayer(idx) {
+  const song = playlist[idx];
+  audio.src = song.src;
+  cover.src = song.cover;
+  title.textContent = song.title;
+  audio.currentTime = lastTime || 0;
+}
+function playSong() {
+  audio.play();
+  isPlaying = true;
+  btnPlay.textContent = '⏸️';
+  savePlayerState();
+}
+function pauseSong() {
+  audio.pause();
+  isPlaying = false;
+  btnPlay.textContent = '🛸';
+  savePlayerState();
+}
+// --- Controles ---
+btnPlay.onclick = function() {
+  if(isPlaying) pauseSong();
+  else playSong();
+};
+btnPrev.onclick = function() {
+  current = (current-1+playlist.length)%playlist.length;
+  lastTime = 0;
+  setPlayer(current);
+  playSong();
+};
+btnNext.onclick = function() {
+  current = (current+1)%playlist.length;
+  lastTime = 0;
+  setPlayer(current);
+  playSong();
+};
+btnClose.onclick = function() {
+  playerModal.style.display = 'none';
+  pauseSong();
+  localStorage.setItem('miniPlayerState', ''); // opcional: borra el estado
+};
+audio.onpause = savePlayerState;
+audio.onplay = savePlayerState;
+audio.ontimeupdate = function() {
+  lastTime = audio.currentTime;
+  savePlayerState();
+};
+// --- Mostrar mini reproductor y recuperar estado ---
+window.addEventListener('DOMContentLoaded', () => {
+  loadPlayerState();
+  setPlayer(current);
+  playerModal.style.display = 'flex';
+  if (isPlaying) playSong();
+  else pauseSong();
+  // Restaurar posición si la guardaste (opcional)
+  const pos = JSON.parse(localStorage.getItem('miniPlayerPos') || '{}');
+  if (pos.left && pos.top) {
+    playerModal.style.left = pos.left;
+    playerModal.style.top = pos.top;
+  }
+});
+// --- Drag & drop del mini-player (PC y móvil) ---
+let offsetX, offsetY, dragging = false;
+function savePos() {
+  localStorage.setItem('miniPlayerPos', JSON.stringify({
+    left: playerModal.style.left, top: playerModal.style.top
+  }));
+}
+playerModal.addEventListener('mousedown', function(e) {
+  if(e.target.className!=='close-player') {
+    dragging = true;
+    playerModal.classList.add('dragging');
+    offsetX = e.clientX - playerModal.offsetLeft;
+    offsetY = e.clientY - playerModal.offsetTop;
+  }
+});
+document.addEventListener('mousemove', function(e) {
+  if (dragging) {
+    playerModal.style.left = (e.clientX - offsetX) + 'px';
+    playerModal.style.top = (e.clientY - offsetY) + 'px';
+    savePos();
+  }
+});
+document.addEventListener('mouseup', function() {
+  dragging = false;
+  playerModal.classList.remove('dragging');
+});
+playerModal.addEventListener('touchstart', function(e) {
+  if(e.target.className!=='close-player') {
+    dragging = true;
+    playerModal.classList.add('dragging');
+    const touch = e.touches[0];
+    offsetX = touch.clientX - playerModal.offsetLeft;
+    offsetY = touch.clientY - playerModal.offsetTop;
+  }
+});
+document.addEventListener('touchmove', function(e) {
+  if (dragging) {
+    const touch = e.touches[0];
+    playerModal.style.left = (touch.clientX - offsetX) + 'px';
+    playerModal.style.top = (touch.clientY - offsetY) + 'px';
+    savePos();
+  }
+});
+document.addEventListener('touchend', function() {
+  dragging = false;
+  playerModal.classList.remove('dragging');
+});
+</scri"},
+      {nombre: "Canción romántica", data: "Media/musica/Deseandote(M4A_128K).m4a", cover: "Media/20250503_182247.jpg"},
+      {nombre: "Canción romántica", data: "Media/musica/Eddie Santiago   Lluvia_ Tu Me Haces Falta_ Mia Salsa Románticas Mix1(M4A_128K).m4a", cover: "Media/gutierrez.jpg"}
     ];
 
     document.getElementById('add-music-btn').onclick = function() {
