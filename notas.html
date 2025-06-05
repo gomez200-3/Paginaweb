@@ -18,17 +18,6 @@
     <button class="btn-regresar" id="volver-menu-notas">(*REGRESAR*)</button>
   </div>
   <!-- Mini reproductor aquí -->
-  <div id="mini-player-modal" style="display:none;">
-    <button class="close-player" title="Cerrar">✖️</button>
-    <img id="mini-player-cover" src="cover1.jpg" alt="Portada">
-    <div class="player-title" id="mini-player-title">Canción romántica</div>
-    <div class="player-controls">
-      <button id="btn-prev" title="Anterior">🚀</button>
-      <button id="btn-play" title="Play/Pause">🛸</button>
-      <button id="btn-next" title="Siguiente">🪐</button>
-    </div>
-    <audio id="mini-player-audio"></audio>
-  </div>
   <script>
     function renderNotas() {
       const notas = JSON.parse(localStorage.getItem('notas') || '[]');
