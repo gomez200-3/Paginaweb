@@ -20,7 +20,7 @@
   <!-- Mini reproductor aquí -->
   <div id="mini-player-modal" style="display:none;">
     <button class="close-player" title="Cerrar">✖️</button>
-    <img id="mini-player-cover" src="cover1.jpg" alt="Portada">
+    <img id="mini-player-cover" src="media/cover1.jpg" alt="Portada">
     <div class="player-title" id="mini-player-title">Canción romántica</div>
     <div class="player-controls">
       <button id="btn-prev" title="Anterior">🚀</button>
@@ -30,6 +30,11 @@
     <audio id="mini-player-audio"></audio>
   </div>
   <script>
+    // Videos precargados desde /media
+    const precargados = [
+      { name: "Nuestro video 1", data: "media/video1.mp4" },
+      { name: "Nuestro video 2", data: "media/video2.mp4" }
+    ];
     function getVideos() {
       return JSON.parse(localStorage.getItem('videos') || '[]');
     }
@@ -37,34 +42,31 @@
       localStorage.setItem('videos', JSON.stringify(videos));
     }
     function renderVideoList() {
+      const allVideos = [...precargados, ...getVideos()].slice(0, 1000);
       const videoList = document.getElementById('video-list');
       videoList.innerHTML = '';
-      const videos = getVideos();
-      if (videos.length === 0) {
+      if (allVideos.length === 0) {
         videoList.innerHTML = '<p style="color:#fff;font-style:italic;">No has subido ningún video aún.</p>';
         return;
       }
-      videos.forEach((video, idx) => {
+      allVideos.forEach((video, idx) => {
+        const isPrecargado = idx < precargados.length;
         const item = document.createElement('div');
         item.className = 'video-item';
         item.innerHTML = `
-          <video src="${video.data}" class="video-thumb" style="width:100%;border-radius:13px;margin-bottom:0.7em;" preload="metadata"></video>
+          <video src="${video.data}" class="video-thumb" style="width:100%;border-radius:13px;margin-bottom:0.7em;" preload="metadata" controls></video>
           <span class="video-nombre">${video.name || 'Video'}</span>
-          <button class="btn-borrar" title="Borrar video">🗑</button>
+          ${isPrecargado ? '' : '<button class="btn-borrar" title="Borrar video">🗑</button>'}
         `;
-        item.querySelector('.btn-borrar').onclick = (ev) => {
-          ev.stopPropagation();
-          if (confirm('¿Seguro que quieres borrar este video?')) {
+        if (!isPrecargado) {
+          item.querySelector('.btn-borrar').onclick = (ev) => {
+            ev.stopPropagation();
             let videos = getVideos();
-            videos.splice(idx, 1);
+            videos.splice(idx - precargados.length, 1);
             saveVideos(videos);
             renderVideoList();
-          }
-        };
-        // Permite reproducir video
-        item.querySelector('.video-thumb').onclick = function() {
-          this.paused ? this.play() : this.pause();
-        };
+          };
+        }
         videoList.appendChild(item);
       });
     }
@@ -72,6 +74,10 @@
       const files = Array.from(e.target.files);
       if (files.length === 0) return;
       let videos = getVideos();
+      if (files.length + videos.length + precargados.length > 1000) {
+        alert('¡Has alcanzado el límite de 1000 videos!');
+        return;
+      }
       let filesToLoad = files.length;
       files.forEach(file => {
         if (!file.type.startsWith('video/')) return;
@@ -95,7 +101,7 @@
       window.location = "aventuras.html";
     };
     window.addEventListener('DOMContentLoaded', renderVideoList);
-    // Mini reproductor: pega aquí tu JS global
+    // Mini reproductor: pega aquí tu JS global (idéntico al de música)
   </script>
 </body>
 </html>
