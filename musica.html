@@ -26,7 +26,7 @@
   <!-- Mini reproductor romántico global aquí -->
   <div id="mini-player-modal" style="display:none;">
     <button class="close-player" title="Cerrar">✖️</button>
-    <img id="mini-player-cover" src="cover1.jpg" alt="Portada">
+    <img id="mini-player-cover" src="media/cover1.jpg" alt="Portada">
     <div class="player-title" id="mini-player-title">Canción romántica</div>
     <div class="player-controls">
       <button id="btn-prev" title="Anterior">🚀</button>
@@ -36,11 +36,16 @@
     <audio id="mini-player-audio"></audio>
   </div>
   <script>
-    // Mostrar formulario para añadir música
+    // Precargadas de /media (edítalas si cambias nombres/portadas)
+    const precargadas = [
+      {nombre: "Canción romántica 1", data: "media/song1.mp3", cover: "media/cover1.jpg"},
+      {nombre: "Canción romántica 2", data: "media/song2.mp3", cover: "media/cover2.jpg"},
+      {nombre: "Canción romántica 3", data: "media/song3.mp3", cover: "media/cover3.jpg"}
+    ];
+
     document.getElementById('add-music-btn').onclick = function() {
       document.getElementById('nombre-cancion-form').style.display = 'block';
     };
-    // Guardar música en LocalStorage
     document.getElementById('nombre-cancion-form').onsubmit = function(e) {
       e.preventDefault();
       const fileInput = document.getElementById('musica-input');
@@ -51,6 +56,10 @@
           const reader = new FileReader();
           reader.onload = function(evt) {
             let lista = JSON.parse(localStorage.getItem('musicas') || '[]');
+            if (lista.length + precargadas.length >= 1000) {
+              alert('¡Has alcanzado el límite de 1000 canciones!');
+              return;
+            }
             lista.push({nombre, data: evt.target.result});
             localStorage.setItem('musicas', JSON.stringify(lista));
             renderMusicaLista();
@@ -65,7 +74,10 @@
       }
     };
     function renderMusicaLista() {
-      const lista = JSON.parse(localStorage.getItem('musicas') || '[]');
+      let lista = [
+        ...precargadas,
+        ...(JSON.parse(localStorage.getItem('musicas') || '[]'))
+      ].slice(0, 1000);
       const div = document.getElementById('musica-lista');
       div.innerHTML = '';
       if(lista.length === 0) {
@@ -73,29 +85,166 @@
         return;
       }
       lista.forEach((musica, idx) => {
+        const isPrecargada = idx < precargadas.length;
         const item = document.createElement('div');
         item.className = 'musica-item';
         item.innerHTML = `
           <span>${musica.nombre}</span>
           <audio controls src="${musica.data}" style="max-width:90px; vertical-align:middle;"></audio>
-          <button class="btn-borrar" title="Borrar">🗑</button>
+          ${isPrecargada ? '' : '<button class="btn-borrar" title="Borrar">🗑</button>'}
         `;
-        item.querySelector('.btn-borrar').onclick = function() {
-          if(confirm('¿Seguro que deseas borrar esta canción?')) {
-            let lista = JSON.parse(localStorage.getItem('musicas') || '[]');
-            lista.splice(idx,1);
-            localStorage.setItem('musicas', JSON.stringify(lista));
-            renderMusicaLista();
-          }
-        };
+        if (!isPrecargada) {
+          item.querySelector('.btn-borrar').onclick = function() {
+            if(confirm('¿Seguro que deseas borrar esta canción?')) {
+              let listaUser = JSON.parse(localStorage.getItem('musicas') || '[]');
+              listaUser.splice(idx - precargadas.length,1);
+              localStorage.setItem('musicas', JSON.stringify(listaUser));
+              renderMusicaLista();
+            }
+          };
+        }
         div.appendChild(item);
       });
     }
     document.getElementById('volver-menu-musica').onclick = function() { window.location = "aventuras.html"; };
     window.addEventListener('DOMContentLoaded', renderMusicaLista);
 
-    // --- MINI REPRODUCTOR COPIA TU SCRIPT GLOBAL AQUÍ ---
-    // (Pega aquí el mismo JS del reproductor global que ya tienes funcionando)
+    // --- MINI REPRODUCTOR GLOBAL ---
+    let current = 0;
+    let isPlaying = false;
+    let lastTime = 0;
+    function getPlaylist() {
+      const userSongs = JSON.parse(localStorage.getItem('musicas') || '[]');
+      return [...precargadas, ...userSongs].slice(0, 1000);
+    }
+    const playerModal = document.getElementById('mini-player-modal');
+    const audio = document.getElementById('mini-player-audio');
+    const cover = document.getElementById('mini-player-cover');
+    const titleEl = document.getElementById('mini-player-title');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnPlay = document.getElementById('btn-play');
+    const btnNext = document.getElementById('btn-next');
+    const btnClose = document.querySelector('.close-player');
+    function savePlayerState() {
+      localStorage.setItem('miniPlayerState', JSON.stringify({
+        current, isPlaying, lastTime: audio.currentTime
+      }));
+    }
+    function loadPlayerState() {
+      const state = JSON.parse(localStorage.getItem('miniPlayerState') || '{}');
+      if (typeof state.current === 'number') current = state.current;
+      if (typeof state.isPlaying === 'boolean') isPlaying = state.isPlaying;
+      if (typeof state.lastTime === 'number') lastTime = state.lastTime;
+    }
+    function setPlayer(idx) {
+      const playlist = getPlaylist();
+      const song = playlist[idx] || playlist[0];
+      if (!song) return;
+      audio.src = song.data;
+      cover.src = song.cover || 'media/cover1.jpg';
+      titleEl.textContent = song.nombre;
+      audio.currentTime = lastTime || 0;
+    }
+    function playSong() {
+      audio.play();
+      isPlaying = true;
+      btnPlay.textContent = '⏸️';
+      savePlayerState();
+    }
+    function pauseSong() {
+      audio.pause();
+      isPlaying = false;
+      btnPlay.textContent = '🛸';
+      savePlayerState();
+    }
+    btnPlay.onclick = function() {
+      if(isPlaying) pauseSong();
+      else playSong();
+    };
+    btnPrev.onclick = function() {
+      const pl = getPlaylist();
+      current = (current-1+pl.length)%pl.length;
+      lastTime = 0;
+      setPlayer(current);
+      playSong();
+    };
+    btnNext.onclick = function() {
+      const pl = getPlaylist();
+      current = (current+1)%pl.length;
+      lastTime = 0;
+      setPlayer(current);
+      playSong();
+    };
+    btnClose.onclick = function() {
+      playerModal.style.display = 'none';
+      pauseSong();
+      localStorage.setItem('miniPlayerState', '');
+    };
+    audio.onpause = savePlayerState;
+    audio.onplay = savePlayerState;
+    audio.ontimeupdate = function() {
+      lastTime = audio.currentTime;
+      savePlayerState();
+    };
+    window.addEventListener('DOMContentLoaded', () => {
+      loadPlayerState();
+      setPlayer(current);
+      playerModal.style.display = 'flex';
+      if (isPlaying) playSong();
+      else pauseSong();
+      const pos = JSON.parse(localStorage.getItem('miniPlayerPos') || '{}');
+      if (pos.left && pos.top) {
+        playerModal.style.left = pos.left;
+        playerModal.style.top = pos.top;
+      }
+    });
+    // Drag & drop
+    let offsetX, offsetY, dragging = false;
+    function savePos() {
+      localStorage.setItem('miniPlayerPos', JSON.stringify({
+        left: playerModal.style.left, top: playerModal.style.top
+      }));
+    }
+    playerModal.addEventListener('mousedown', function(e) {
+      if(e.target.className!=='close-player') {
+        dragging = true;
+        playerModal.classList.add('dragging');
+        offsetX = e.clientX - playerModal.offsetLeft;
+        offsetY = e.clientY - playerModal.offsetTop;
+      }
+    });
+    document.addEventListener('mousemove', function(e) {
+      if (dragging) {
+        playerModal.style.left = (e.clientX - offsetX) + 'px';
+        playerModal.style.top = (e.clientY - offsetY) + 'px';
+        savePos();
+      }
+    });
+    document.addEventListener('mouseup', function() {
+      dragging = false;
+      playerModal.classList.remove('dragging');
+    });
+    playerModal.addEventListener('touchstart', function(e) {
+      if(e.target.className!=='close-player') {
+        dragging = true;
+        playerModal.classList.add('dragging');
+        const touch = e.touches[0];
+        offsetX = touch.clientX - playerModal.offsetLeft;
+        offsetY = touch.clientY - playerModal.offsetTop;
+      }
+    });
+    document.addEventListener('touchmove', function(e) {
+      if (dragging) {
+        const touch = e.touches[0];
+        playerModal.style.left = (touch.clientX - offsetX) + 'px';
+        playerModal.style.top = (touch.clientY - offsetY) + 'px';
+        savePos();
+      }
+    });
+    document.addEventListener('touchend', function() {
+      dragging = false;
+      playerModal.classList.remove('dragging');
+    });
   </script>
 </body>
 </html>
