@@ -2,25 +2,30 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Nuestros Videos</title>
+  <title>Álbum romántico</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body class="emerald-bg">
   <div class="container">
-    <h1 class="romantic-title">Nuestros Videos</h1>
-    <label class="btn-romantic-round" style="cursor:pointer;">
-      + Añadir video
-      <input type="file" id="video-input" accept="video/*" multiple style="display:none">
-    </label>
-    <div id="video-list" class="video-list"></div>
-    <button class="btn-regresar" id="volver-aventuras">(*REGRESAR*)</button>
+    <h1 class="romantic-title">
+      <span class="emoji">📸</span>
+      Álbum de Recuerdos
+      <span class="emoji">💘</span>
+    </h1>
+    <form id="form-foto" style="margin-bottom:1em;">
+      <input type="file" id="nueva-foto" accept="image/*" required>
+      <input type="text" id="nombre-foto" placeholder="Ponle un nombre especial" required>
+      <button class="btn-romantic-round" type="submit">Añadir foto</button>
+    </form>
+    <div class="album-lista" id="album-lista"></div>
+    <button class="btn-regresar" id="volver-menu-album">(*REGRESAR*)</button>
   </div>
   <!-- Mini reproductor aquí -->
   <div id="mini-player-modal" style="display:none;">
     <button class="close-player" title="Cerrar">✖️</button>
-    <img id="mini-player-cover" src="cover1.jpg" alt="Portada">
+    <img id="mini-player-cover" src="media/cover1.jpg" alt="Portada">
     <div class="player-title" id="mini-player-title">Canción romántica</div>
     <div class="player-controls">
       <button id="btn-prev" title="Anterior">🚀</button>
@@ -30,72 +35,65 @@
     <audio id="mini-player-audio"></audio>
   </div>
   <script>
-    function getVideos() {
-      return JSON.parse(localStorage.getItem('videos') || '[]');
-    }
-    function saveVideos(videos) {
-      localStorage.setItem('videos', JSON.stringify(videos));
-    }
-    function renderVideoList() {
-      const videoList = document.getElementById('video-list');
-      videoList.innerHTML = '';
-      const videos = getVideos();
-      if (videos.length === 0) {
-        videoList.innerHTML = '<p style="color:#fff;font-style:italic;">No has subido ningún video aún.</p>';
+    const precargadas = [
+      { nombre: "Foto especial 1", img: "media/foto1.jpg" },
+      { nombre: "Foto especial 2", img: "media/foto2.jpg" }
+    ];
+    function renderAlbum() {
+      const userPhotos = JSON.parse(localStorage.getItem('album') || '[]');
+      const allPhotos = [...precargadas, ...userPhotos].slice(0, 1000);
+      const div = document.getElementById('album-lista');
+      div.innerHTML = '';
+      if(allPhotos.length === 0) {
+        div.innerHTML = '<span class="mensaje-romantico">No has añadido fotos aún.</span>';
         return;
       }
-      videos.forEach((video, idx) => {
+      allPhotos.forEach((foto, idx) => {
+        const isPrecargada = idx < precargadas.length;
         const item = document.createElement('div');
-        item.className = 'video-item';
+        item.className = 'album-item';
         item.innerHTML = `
-          <video src="${video.data}" class="video-thumb" style="width:100%;border-radius:13px;margin-bottom:0.7em;" preload="metadata"></video>
-          <span class="video-nombre">${video.name || 'Video'}</span>
-          <button class="btn-borrar" title="Borrar video">🗑</button>
+          <img src="${foto.img}" alt="foto" class="foto-album">
+          <span class="album-nombre">${foto.nombre}</span>
+          ${isPrecargada ? '' : '<button class="btn-borrar" title="Borrar">🗑</button>'}
         `;
-        item.querySelector('.btn-borrar').onclick = (ev) => {
-          ev.stopPropagation();
-          if (confirm('¿Seguro que quieres borrar este video?')) {
-            let videos = getVideos();
-            videos.splice(idx, 1);
-            saveVideos(videos);
-            renderVideoList();
-          }
-        };
-        // Permite reproducir video
-        item.querySelector('.video-thumb').onclick = function() {
-          this.paused ? this.play() : this.pause();
-        };
-        videoList.appendChild(item);
+        if (!isPrecargada) {
+          item.querySelector('.btn-borrar').onclick = function() {
+            if(confirm('¿Borrar esta foto?')) {
+              let album = JSON.parse(localStorage.getItem('album') || '[]');
+              album.splice(idx - precargadas.length,1);
+              localStorage.setItem('album', JSON.stringify(album));
+              renderAlbum();
+            }
+          };
+        }
+        div.appendChild(item);
       });
     }
-    document.getElementById('video-input').addEventListener('change', function(e) {
-      const files = Array.from(e.target.files);
-      if (files.length === 0) return;
-      let videos = getVideos();
-      let filesToLoad = files.length;
-      files.forEach(file => {
-        if (!file.type.startsWith('video/')) return;
+    document.getElementById('form-foto').onsubmit = function(e) {
+      e.preventDefault();
+      const fileInput = document.getElementById('nueva-foto');
+      const nombre = document.getElementById('nombre-foto').value.trim();
+      if(fileInput.files.length && nombre) {
+        let album = JSON.parse(localStorage.getItem('album') || '[]');
+        if (album.length + precargadas.length >= 1000) {
+          alert('¡Has alcanzado el límite de 1000 fotos!');
+          return;
+        }
         const reader = new FileReader();
         reader.onload = function(evt) {
-          videos.push({
-            name: file.name,
-            data: evt.target.result
-          });
-          filesToLoad--;
-          if (filesToLoad === 0) {
-            saveVideos(videos);
-            renderVideoList();
-          }
+          album.push({nombre, img: evt.target.result});
+          localStorage.setItem('album', JSON.stringify(album));
+          renderAlbum();
         };
-        reader.readAsDataURL(file);
-      });
-      e.target.value = "";
-    });
-    document.getElementById('volver-aventuras').onclick = function() {
-      window.location = "aventuras.html";
+        reader.readAsDataURL(fileInput.files[0]);
+        fileInput.value = '';
+        document.getElementById('nombre-foto').value = '';
+      }
     };
-    window.addEventListener('DOMContentLoaded', renderVideoList);
-    // Mini reproductor: pega aquí tu JS global
+    document.getElementById('volver-menu-album').onclick = function() { window.location = "aventuras.html"; };
+    window.addEventListener('DOMContentLoaded', renderAlbum);
+    // Mini reproductor: pega aquí tu JS global (idéntico al de música)
   </script>
 </body>
 </html>
